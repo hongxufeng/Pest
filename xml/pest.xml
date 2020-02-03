@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tables>
+    <table id="house_personnnel"
+        name="house_personnnel" defaultorder="uid asc" >
+        <house_id >房屋id</house_id>
+        <uid visibility="table-hidden">UID</uid>
+        <personnel_id>人员id</personnel_id>
+        <holder_flag selector-func="GetDefinitionData" selector-func-agrs="0,否,1,是" >是否户主</holder_flag>
+        <relation_holder>户主关系</relation_holder>
+        <nature>房屋性质</nature>
+        <street>所属小区/街道</street>
+        <street_no>所属行政区划代码</street_no>
+        <address>详细地址</address>
+        <number>常驻人口数量</number>
+        <name>人员姓名</name>
+        <card_no>人员身份证号</card_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="house_unit"
+        name="house_unit" defaultorder="uid asc" >
+        <house_id >房屋id</house_id>
+        <uid visibility="table-hidden">UID</uid>
+        <name>公司名称</name>
+        <identification_number>企业识别号</identification_number>
+        <identification_picture>企业执照照片</identification_picture>
+        <kind>公司种类</kind>
+        <scale>公司规模</scale>
+        <tel>公司电话</tel>
+        <bank_name>开户行名称</bank_name>
+        <bank_account>开户行帐号</bank_account>
+        <nature>房屋性质</nature>
+        <street>所属小区/街道</street>
+        <street_no>所属行政区划代码</street_no>
+        <address>详细地址</address>
+        <number>常驻人口数量</number>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="unit_personnel"
+        name="unit_personnel" defaultorder="uid asc" >
+        <house_id >房屋id</house_id>
+        <uid visibility="table-hidden">UID</uid>
+        <personnel_id>人员id</personnel_id>
+        <unit_id>公司id</unit_id>
+        <position>职位</position>
+        <nature>房屋性质</nature>
+        <street>所属小区/街道</street>
+        <street_no>所属行政区划代码</street_no>
+        <address>详细地址</address>
+        <number>常驻人口数量</number>
+        <personnel_name>人员姓名</personnel_name>
+        <card_no>人员身份证号</card_no>
+        <unit_name>公司名称</unit_name>
+        <license_number>证件号</license_number>
+        <identification_number>识别号</identification_number>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="personnel_list"
+        name="personnel_list" defaultorder="uid asc" >
+        <name >人员名称</name>
+        <uid visibility="table-hidden">UID</uid>
+        <card_no>身份证号</card_no>
+        <occupation>职业</occupation>
+        <picture>图片</picture>
+        <history>接触史</history>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+</tables>
