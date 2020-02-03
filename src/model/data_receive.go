@@ -31,35 +31,61 @@ type CRUDSettings struct {
 	QueryValue string
 }
 type HouseData struct {
-	nature    string
-	street    string
-	street_no string
-	address   string
-	number    string
+	Nature    string
+	Street    string
+	Street_No string
+	Address   string
+	Number    string
 }
 type UnitData struct {
-	name                  string
-	house_id              int
-	license_number        int
-	identification_number int
-	picture               string
-	kind                  string
-	scale                 int
-	tel                   int
-	bank_name             string
-	bank_account          string
-	comment               string
+	Name                  string
+	House_ID              int
+	License_Number        int
+	Identification_Number int
+	Picture               string
+	Kind                  string
+	Scale                 int
+	Tel                   int
+	Bank_Name             string
+	Bank_Account          string
+	Comment               string
 }
 type PersonnelData struct {
-	name              string
-	occupation        string
-	card_no           string
-	picture           string
-	sex               int
-	nation            string
-	birthday          string
-	address           string
-	sign_organization string
-	limited_date      string
-	history           string
+	Name              string
+	Occupation        string
+	Card_No           string
+	Picture           string
+	Sex               int
+	Nation            string
+	Birthday          string
+	Address           string
+	Sign_Organization string
+	Limited_Date      string
+	History           string
+}
+type HousePersonnelData struct {
+	House_ID        int
+	Personnel_ID    int
+	Holder_Flag     int
+	Relation_Holder string
+}
+type UnitPersonnelData struct {
+	Unit_ID      int
+	Personnel_ID int
+	Position     string
+}
+type TouchData struct {
+	Personnel_ID int
+	Way          string
+	Time         string
+	Place        string
+	Touch_Number int
+	Touch_People string
+}
+type DailyReportData struct {
+	Personnel_ID      int
+	Symptom           string
+	Hospitalized_Flag int
+	Temperature       float64
+	Touch_People      string
 }

@@ -55,9 +55,8 @@
     </table>
     <table id="unit_personnel"
         name="unit_personnel" defaultorder="uid asc" >
-        <house_id >房屋id</house_id>
-        <uid visibility="table-hidden">UID</uid>
         <personnel_id>人员id</personnel_id>
+        <uid visibility="table-hidden">UID</uid>
         <unit_id>公司id</unit_id>
         <position>职位</position>
         <nature>房屋性质</nature>
