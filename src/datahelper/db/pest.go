@@ -147,7 +147,7 @@ func ExecAddTouch(data *model.TouchData) (uid int64, err error) {
 	if err != nil {
 		return 0, err
 	}
-	err = DelTableCache(model.XML_Table_Pest)
+	err = DelTableCache(model.XML_Table_Touch_History)
 	if err != nil {
 		return 0, err
 	}
@@ -160,7 +160,7 @@ func ExecAddDailyReport(data *model.DailyReportData) (uid int64, err error) {
 	if err != nil {
 		return 0, err
 	}
-	err = DelTableCache(model.XML_Table_Pest)
+	err = DelTableCache(model.XML_Table_Daily_Report)
 	if err != nil {
 		return 0, err
 	}

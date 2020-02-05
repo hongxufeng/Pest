@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <tables>
-    <table id="house_personnnel"
-        name="house_personnnel" defaultorder="uid asc" >
+    <table id="house_personnel"
+        name="house_personnel" defaultorder="uid asc" >
         <house_id >房屋id</house_id>
         <uid visibility="table-hidden">UID</uid>
         <personnel_id>人员id</personnel_id>
@@ -30,8 +30,9 @@
         <house_id >房屋id</house_id>
         <uid visibility="table-hidden">UID</uid>
         <name>公司名称</name>
+        <license_number>企业识别号</license_number>
         <identification_number>企业识别号</identification_number>
-        <identification_picture>企业执照照片</identification_picture>
+        <picture>企业执照照片</picture>
         <kind>公司种类</kind>
         <scale>公司规模</scale>
         <tel>公司电话</tel>
@@ -57,6 +58,7 @@
         name="unit_personnel" defaultorder="uid asc" >
         <personnel_id>人员id</personnel_id>
         <uid visibility="table-hidden">UID</uid>
+        <house_id>房子id</house_id>
         <unit_id>公司id</unit_id>
         <position>职位</position>
         <nature>房屋性质</nature>
