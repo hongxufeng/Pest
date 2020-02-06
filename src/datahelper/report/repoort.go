@@ -24,24 +24,24 @@ func New(uid uint32, configFile string, tableID string) (param *Param, err error
 	var ColConfigDict []model.ColumnConfig
 	var ColName []string
 	doc := etree.NewDocument()
-	// xmlbyte, e := db.GetXmlConfigCache(configFile)
-	// if e != nil {
+	xmlbyte, e := db.GetXmlConfigCache(configFile)
+	if e != nil {
 	filename := "xml/" + configFile + ".xml"
 	//fmt.Println(filename)
-	xmlbyte, err := ioutil.ReadFile(filename)
+	xmlbyte, err = ioutil.ReadFile(filename)
 	//fmt.Println(xmlbyte)
 	if err != nil {
 		return
 	}
-	// 	err = db.SetXmlConfigCache(configFile, xmlbyte)
-	// }
+	 	err = db.SetXmlConfigCache(configFile, xmlbyte)
+	 }
 	err = doc.ReadFromBytes(xmlbyte)
 	if err != nil {
 		return
 	}
 	tableconfig := model.TableConfig{}
 	if tableelement := doc.FindElements("./tables/table[@id='" + tableID + "']"); len(tableelement) > 0 {
-		fmt.Println(len(tableelement))
+		//fmt.Println(len(tableelement))
 		table := tableelement[0]
 		defaultorder := table.SelectAttr("defaultorder")
 		if defaultorder != nil {
@@ -301,7 +301,7 @@ func (param *Param) Table(req *service.HttpRequest, settings *model.Settings) (r
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(count)
+	//fmt.Println(count)
 	query, err := BuildQuerySQL(req, param, settings)
 	if err != nil {
 		return nil, err
@@ -352,7 +352,7 @@ func (param *Param) LocateNode() (res map[string]interface{}, err error) {
 
 func (param *Param) CURD(req *service.HttpRequest, settings *model.CRUDSettings) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
-	fmt.Println("CURD")
+	//fmt.Println("CURD")
 	var bodybuf bytes.Buffer
 	err = GetCURD(req, param, settings, &bodybuf)
 	if err != nil {

@@ -33,7 +33,7 @@ func (module *ReportModule) User_GetTable(req *service.HttpRequest, result map[s
 		return
 	}
 	_ = req.GetParams(true, "sort", &settings.Order)
-	fmt.Println(settings.TableID)
+	//fmt.Println(settings.TableID)
 	err = req.ParseEncodeUrl(false, "table", &settings.TableID, "configFile", &settings.ConfigFile, "hasCheckbox", &settings.HasCheckbox, "style", &settings.Style, "rowList", &settings.RowList)
 	if err != nil {
 		return
@@ -57,7 +57,7 @@ func (module *ReportModule) User_GetTableJson(req *service.HttpRequest, result m
 		return
 	}
 	_ = req.GetParams(true, "sort", &settings.Order)
-	fmt.Println(settings.TableID)
+	//fmt.Println(settings.TableID)
 	err = req.ParseEncodeUrl(false, "table", &settings.TableID, "configFile", &settings.ConfigFile)
 	if err != nil {
 		return
@@ -80,7 +80,7 @@ func (module *ReportModule) Base_GetTableJson(req *service.HttpRequest, result m
 		return
 	}
 	_ = req.GetParams(true, "sort", &settings.Order)
-	fmt.Println(settings.TableID)
+	//fmt.Println(settings.TableID)
 	err = req.ParseEncodeUrl(false, "table", &settings.TableID, "configFile", &settings.ConfigFile)
 	if err != nil {
 		return

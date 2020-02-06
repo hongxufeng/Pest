@@ -211,7 +211,8 @@ func (server *Server) Respose(w http.ResponseWriter, r *http.Request, err error,
 	default:
 		re = NewError(ERR_INTERNAL, e.Error(), "未知错误")
 	}
-
+	//添加跨域访问设置
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json;charset=utf-8")
 	if re.Code == ERR_NOERR {
 		if !server.customResult {

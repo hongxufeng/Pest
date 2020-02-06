@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"database/sql"
 	"datahelper/db"
-	"fmt"
 	"model"
 	"utils/function"
 	"utils/service"
@@ -32,7 +31,7 @@ func QueryThis(req *service.HttpRequest, param *Param, settings *model.CRUDSetti
 }
 func BuildVEBody(req *service.HttpRequest, param *Param, settings *model.CRUDSettings, bodybuf *bytes.Buffer) (err error) {
 	query, err := BuildQueryThisSQL(req, param, settings)
-	fmt.Println(query)
+	//fmt.Println(query)
 	if err != nil {
 		return
 	}
