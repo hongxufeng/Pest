@@ -76,9 +76,9 @@ func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
 	}
 }
 func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
-	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,create_time) VALUES (?,?,?,?,?,?,?)"
+	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,creator_card_no,create_time) VALUES (?,?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, time.Now().UnixNano())
+	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, data.Creator_Card_No, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}

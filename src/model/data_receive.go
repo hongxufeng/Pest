@@ -31,12 +31,13 @@ type CRUDSettings struct {
 	QueryValue string
 }
 type HouseData struct {
-	Nature    string
-	Street    string
-	Street_No int
-	Address   string
-	Number    int
-	Comment   string
+	Nature          string
+	Street          string
+	Street_No       int
+	Address         string
+	Number          int
+	Comment         string
+	Creator_Card_No string
 }
 type UnitData struct {
 	Name                  string

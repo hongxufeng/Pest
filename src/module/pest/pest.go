@@ -28,7 +28,7 @@ func (module *PestModule) Init(conf *config.Config) error {
 
 func (module *PestModule) Base_CreateHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.HouseData
-	err = req.ParseEncodeUrl(false, "Nature", &data.Nature, "Street", &data.Street, "Street_No", &data.Street_No, "Address", &data.Address, "Number", &data.Number, "Comment", &data.Comment)
+	err = req.ParseEncodeUrl(false, "Nature", &data.Nature, "Street", &data.Street, "Street_No", &data.Street_No, "Address", &data.Address, "Number", &data.Number, "Comment", &data.Comment, "Creator_Card_No", &data.Creator_Card_No)
 	if err != nil {
 		return
 	}
