@@ -76,9 +76,9 @@ func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
 	}
 }
 func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
-	query := "INSERT INTO house_list (nature,street,street_no,address,number,create_time) VALUES (?,?,?,?,?,?)"
+	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,create_time) VALUES (?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, time.Now().UnixNano())
+	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}
@@ -102,9 +102,9 @@ func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
 	return
 }
 func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
-	query := "INSERT INTO personnel_list (name,occupation,card_no,picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+	query := "INSERT INTO personnel_list (name,occupation,card_no,card_picture,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
+	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Card_Picture, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}
@@ -154,9 +154,9 @@ func ExecAddTouch(data *model.TouchData) (uid int64, err error) {
 	return
 }
 func ExecAddDailyReport(data *model.DailyReportData) (uid int64, err error) {
-	query := "INSERT INTO daily_report_list (personnel_id,symptom,hospitalized_flag,temperature,touch_people,create_time) VALUES (?,?,?,?,?,?)"
+	query := "INSERT INTO daily_report_list (personnel_id,symptom,hospitalized_flag,temperature,time,touch_people,create_time) VALUES (?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.Personnel_ID, data.Symptom, data.Hospitalized_Flag, data.Temperature, data.Touch_People, time.Now().UnixNano())
+	uid, err = Insert(query, data.Personnel_ID, data.Symptom, data.Hospitalized_Flag, data.Temperature, data.Time, data.Touch_People, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}

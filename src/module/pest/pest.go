@@ -28,12 +28,12 @@ func (module *PestModule) Init(conf *config.Config) error {
 
 func (module *PestModule) Base_CreateHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.HouseData
-	err = req.ParseEncodeUrl(false, "Nature", &data.Nature, "Street", &data.Street, "Street_No", &data.Street_No, "Address", &data.Address, "Number", &data.Number)
+	err = req.ParseEncodeUrl(false, "Nature", &data.Nature, "Street", &data.Street, "Street_No", &data.Street_No, "Address", &data.Address, "Number", &data.Number, "Comment", &data.Comment)
 	if err != nil {
 		return
 	}
 
-	if data.Nature == "" || data.Street == "" || data.Street_No == "" || data.Address == "" {
+	if data.Nature == "" || data.Street == "" || data.Address == "" {
 		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
 		return
 	}
@@ -66,7 +66,7 @@ func (module *PestModule) Base_CreateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_CreatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Name", &data.Name, "Occupation", &data.Occupation, "Card_No", &data.Card_No, "Picture", &data.Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
+	err = req.ParseEncodeUrl(false, "Name", &data.Name, "Occupation", &data.Occupation, "Card_No", &data.Card_No, "Card_Picture", &data.Card_Picture, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
 	if err != nil {
 		return
 	}
@@ -128,7 +128,7 @@ func (module *PestModule) Base_AddTouch(req *service.HttpRequest, result map[str
 }
 func (module *PestModule) Base_AddDailyReport(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.DailyReportData
-	err = req.ParseEncodeUrl(false, "Personnel_ID", &data.Personnel_ID, "Symptom", &data.Symptom, "Hospitalized_Flag", &data.Hospitalized_Flag, "Temperature", &data.Temperature, "Touch_People", &data.Touch_People)
+	err = req.ParseEncodeUrl(false, "Personnel_ID", &data.Personnel_ID, "Time", &data.Time, "Symptom", &data.Symptom, "Hospitalized_Flag", &data.Hospitalized_Flag, "Temperature", &data.Temperature, "Touch_People", &data.Touch_People)
 	if err != nil {
 		return
 	}

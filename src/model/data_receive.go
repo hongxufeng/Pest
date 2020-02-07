@@ -33,9 +33,10 @@ type CRUDSettings struct {
 type HouseData struct {
 	Nature    string
 	Street    string
-	Street_No string
+	Street_No int
 	Address   string
-	Number    string
+	Number    int
+	Comment   string
 }
 type UnitData struct {
 	Name                  string
@@ -43,7 +44,7 @@ type UnitData struct {
 	License_Number        int
 	Identification_Number int
 	Picture               string
-	Kind                  string
+	Kind                  int
 	Scale                 int
 	Tel                   int
 	Bank_Name             string
@@ -54,7 +55,8 @@ type PersonnelData struct {
 	Name              string
 	Occupation        string
 	Card_No           string
-	Picture           string
+	Card_Picture      string
+	Face_Picture      string
 	Sex               int
 	Nation            string
 	Birthday          string
@@ -85,7 +87,17 @@ type TouchData struct {
 type DailyReportData struct {
 	Personnel_ID      int
 	Symptom           string
+	Time              string
 	Hospitalized_Flag int
 	Temperature       float64
 	Touch_People      string
+}
+type IsolationData struct {
+	House_ID           int
+	Flag               int
+	Reason             string
+	Start_Time         string
+	End_Time           string
+	Real_Compelte_Time string
+	Unit_ID            string
 }
