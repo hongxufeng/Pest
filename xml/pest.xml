@@ -132,4 +132,25 @@
             &lt;/span>
         </pagerbuttons>
     </table>
+    <table id="house_list"
+        name="house_list" defaultorder="uid asc" >
+        <nature >房屋性质</nature>
+        <uid visibility="table-hidden">UID</uid>
+        <street>所属小区/街道</street>
+        <street_no>所属行政区划代码</street_no>
+        <address>详细地址</address>
+        <number>常驻人口数量</number>
+        <comment >房屋备注</comment>
+        <creator_card_no>添加人身份证号</creator_card_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
 </tables>
