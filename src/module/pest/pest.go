@@ -88,7 +88,7 @@ func (module *PestModule) Base_CreatePersonnel(req *service.HttpRequest, result 
 }
 func (module *PestModule) Base_AddRelationPersonnelHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.HousePersonnelData
-	err = req.ParseEncodeUrl(false, "House_ID", &data.House_ID, "Personnel_ID", &data.Personnel_ID, "Holder_Flag", &data.Holder_Flag, "Relation_Holder", &data.Relation_Holder)
+	err = req.ParseEncodeUrl(false, "House_ID", &data.House_ID, "Personnel_ID", &data.Personnel_ID, "Role", &data.Role, "Relation_Holder", &data.Relation_Holder, "Relation_Together", &data.Relation_Together)
 	if err != nil {
 		return
 	}

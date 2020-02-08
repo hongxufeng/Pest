@@ -115,9 +115,9 @@ func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
 	return
 }
 func ExecAddRelationHousePersonnel(data *model.HousePersonnelData) (uid int64, err error) {
-	query := "INSERT INTO relation_house_personnel (house_id,personnel_id,holder_flag,relation_holder,create_time) VALUES (?,?,?,?,?)"
+	query := "INSERT INTO relation_house_personnel (house_id,personnel_id,role,relation_holder,relation_together,create_time) VALUES (?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.House_ID, data.Personnel_ID, data.Holder_Flag, data.Relation_Holder, time.Now().UnixNano())
+	uid, err = Insert(query, data.House_ID, data.Personnel_ID, data.Role, data.Relation_Holder, data.Relation_Together, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}

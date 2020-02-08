@@ -67,10 +67,11 @@ type PersonnelData struct {
 	History           string
 }
 type HousePersonnelData struct {
-	House_ID        int
-	Personnel_ID    int
-	Holder_Flag     int
-	Relation_Holder string
+	House_ID          int
+	Personnel_ID      int
+	Role              int
+	Relation_Holder   int
+	Relation_Together int
 }
 type UnitPersonnelData struct {
 	Unit_ID      int
