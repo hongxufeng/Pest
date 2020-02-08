@@ -3,7 +3,6 @@ package report
 import (
 	"bytes"
 	"datahelper/db"
-	"fmt"
 	"io/ioutil"
 	"model"
 	"utils/function"
@@ -26,15 +25,15 @@ func New(uid uint32, configFile string, tableID string) (param *Param, err error
 	doc := etree.NewDocument()
 	xmlbyte, e := db.GetXmlConfigCache(configFile)
 	if e != nil {
-	filename := "xml/" + configFile + ".xml"
-	//fmt.Println(filename)
-	xmlbyte, err = ioutil.ReadFile(filename)
-	//fmt.Println(xmlbyte)
-	if err != nil {
-		return
+		filename := "xml/" + configFile + ".xml"
+		//fmt.Println(filename)
+		xmlbyte, err = ioutil.ReadFile(filename)
+		//fmt.Println(xmlbyte)
+		if err != nil {
+			return
+		}
+		err = db.SetXmlConfigCache(configFile, xmlbyte)
 	}
-	 	err = db.SetXmlConfigCache(configFile, xmlbyte)
-	 }
 	err = doc.ReadFromBytes(xmlbyte)
 	if err != nil {
 		return
@@ -85,7 +84,7 @@ func New(uid uint32, configFile string, tableID string) (param *Param, err error
 	path := "./tables/table[@id='" + tableID + "']/*"
 	//fmt.Println(path)
 	for _, elemnt := range doc.FindElements(path) {
-		fmt.Printf("%s: %s\n", elemnt.Tag, elemnt.Text())
+		//fmt.Printf("%s: %s\n", elemnt.Tag, elemnt.Text())
 		if elemnt.Tag == "buttons" || elemnt.Tag == "pagerbuttons" {
 			ColName = append(ColName, elemnt.Tag)
 		}
