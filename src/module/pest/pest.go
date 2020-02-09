@@ -66,7 +66,7 @@ func (module *PestModule) Base_CreateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_CreatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Name", &data.Name, "Occupation", &data.Occupation, "Card_No", &data.Card_No, "Card_Picture", &data.Card_Picture, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
+	err = req.ParseEncodeUrl(false, "Name", &data.Name, "Occupation", &data.Occupation, "Card_No", &data.Card_No, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
 	if err != nil {
 		return
 	}
