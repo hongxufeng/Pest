@@ -14,7 +14,8 @@
         <address>详细地址</address>
         <number>常驻人口数量</number>
         <comment >房屋备注</comment>
-        <card_picture >身份证照片</card_picture>
+        <card_picture_front >身份证正面照片</card_picture_front>
+        <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
         <name>人员姓名</name>
         <card_no>人员身份证号</card_no>
@@ -74,7 +75,8 @@
         <number>常驻人口数量</number>
         <unit_comment >单位备注</unit_comment>
         <house_comment >房屋备注</house_comment>
-        <card_picture >身份证照片</card_picture>
+        <card_picture_front >身份证正面照片</card_picture_front>
+        <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
         <personnel_name>人员姓名</personnel_name>
         <card_no>人员身份证号</card_no>
@@ -98,7 +100,8 @@
         <uid visibility="table-hidden">UID</uid>
         <card_no>身份证号</card_no>
         <occupation>职业</occupation>
-        <card_picture >身份证照片</card_picture>
+        <card_picture_front >身份证正面照片</card_picture_front>
+        <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
         <history>接触史</history>
         <buttons>
