@@ -53,18 +53,19 @@ type UnitData struct {
 	Comment               string
 }
 type PersonnelData struct {
-	Name              string
-	Occupation        string
-	Card_No           string
-	Card_Picture      string
-	Face_Picture      string
-	Sex               int
-	Nation            string
-	Birthday          string
-	Address           string
-	Sign_Organization string
-	Limited_Date      string
-	History           string
+	Name               string
+	Occupation         string
+	Card_No            string
+	Card_Picture_Front string
+	Card_Picture_Back  string
+	Face_Picture       string
+	Sex                int
+	Nation             string
+	Birthday           string
+	Address            string
+	Sign_Organization  string
+	Limited_Date       string
+	History            string
 }
 type HousePersonnelData struct {
 	House_ID          int
@@ -76,7 +77,7 @@ type HousePersonnelData struct {
 type UnitPersonnelData struct {
 	Unit_ID      int
 	Personnel_ID int
-	Position     string
+	Position     int
 }
 type TouchData struct {
 	Personnel_ID int

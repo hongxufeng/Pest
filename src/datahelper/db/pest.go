@@ -102,9 +102,9 @@ func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
 	return
 }
 func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
-	query := "INSERT INTO personnel_list (name,occupation,card_no,card_picture,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+	query := "INSERT INTO personnel_list (name,occupation,card_no,card_picture_front,card_picture_back,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
-	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Card_Picture, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
+	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}
