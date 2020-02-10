@@ -3,6 +3,7 @@ package main
 import (
 	"datahelper/db"
 	"fmt"
+	"module/area"
 	"module/pest"
 	"module/report"
 	"module/user"
@@ -40,5 +41,6 @@ func main() {
 	server.AddModule("user", &user.UserModule{})
 	server.AddModule("report", &report.ReportModule{})
 	server.AddModule("pest", &pest.PestModule{})
+	server.AddModule("area", &area.AreaModule{})
 	fmt.Println(server.StartService())
 }

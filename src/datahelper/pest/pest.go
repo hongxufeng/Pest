@@ -10,7 +10,6 @@ func CreateHouse(data *model.HouseData) (res map[string]interface{}, err error) 
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecCreateHouse(data)
 	if err == nil {
-		res["status"] = 1
 		res["house_id"] = uid
 		res["msg"] = "房屋生成成功！"
 	}
@@ -20,7 +19,6 @@ func CreateUnit(data *model.UnitData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecCreateUnit(data)
 	if err == nil {
-		res["status"] = 1
 		res["unit_id"] = uid
 		res["msg"] = "单位生成成功！"
 	}
@@ -35,7 +33,6 @@ func CreatePersonnel(data *model.PersonnelData) (res map[string]interface{}, err
 	}
 	uid, err := db.ExecCreatePersonnel(data)
 	if err == nil {
-		res["status"] = 1
 		res["personnel_id"] = uid
 		res["msg"] = "人员生成成功！"
 	}
@@ -50,7 +47,6 @@ func AddRelationHousePersonnel(data *model.HousePersonnelData) (res map[string]i
 	}
 	uid, err := db.ExecAddRelationHousePersonnel(data)
 	if err == nil {
-		res["status"] = 1
 		res["uid"] = uid
 		res["msg"] = "人员房屋关系添加成功！"
 	}
@@ -65,7 +61,6 @@ func AddRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]int
 	}
 	uid, err := db.ExecAddRelationUnitPersonnel(data)
 	if err == nil {
-		res["status"] = 1
 		res["uid"] = uid
 		res["msg"] = "人员单位关系添加成功！"
 	}
@@ -75,7 +70,6 @@ func AddTouch(data *model.TouchData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecAddTouch(data)
 	if err == nil {
-		res["status"] = 1
 		res["uid"] = uid
 		res["msg"] = "其他接触史添加成功！"
 	}
@@ -85,7 +79,6 @@ func AddDailyReport(data *model.DailyReportData) (res map[string]interface{}, er
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecAddDailyReport(data)
 	if err == nil {
-		res["status"] = 1
 		res["uid"] = uid
 		res["msg"] = "每日上报添加成功！"
 	}

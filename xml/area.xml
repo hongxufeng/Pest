@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tables>
+    <table id="area_list"
+        name="area_list" defaultorder="uid asc" >
+        <street_name >街道名称</street_name>
+        <uid visibility="table-hidden">UID</uid>
+        <community_no>社区id</community_no>
+        <community_name>社区名称</community_name>
+        <station_no>派出所id</station_no>
+        <station_name>派出所名称</station_name>
+        <district_name>县区名称</district_name>
+        <district_no>县区id</district_no>
+        <city_name>市名称</city_name>
+        <city_no>市id</city_no>
+        <province_name>省名称</province_name>
+        <province_no >省id</province_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+</tables>
