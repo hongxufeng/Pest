@@ -2,8 +2,9 @@
 <tables>
     <table id="area_list"
         name="area_list" defaultorder="uid asc" >
-        <street_name >街道名称</street_name>
+        <name >全名</name>
         <uid visibility="table-hidden">UID</uid>
+        <street_name >街道名称</street_name>
         <community_no>社区id</community_no>
         <community_name>社区名称</community_name>
         <station_no>派出所id</station_no>
