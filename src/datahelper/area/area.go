@@ -4,11 +4,23 @@ import (
 	"datahelper/db"
 	"model"
 	"os"
+	"path"
 	"utils/function"
 
 	"github.com/skip2/go-qrcode"
 )
 
+func GenerateQrCode(url string, filename string) error {
+	path := path.Dir(filename)
+	_, err := os.Stat(path)
+	if err != nil {
+		err = os.MkdirAll(path, os.ModePerm)
+		if err != nil {
+			return err
+		}
+	}
+	return qrcode.WriteFile(url, qrcode.Medium, 256, filename)
+}
 func AddStation(data *model.StationData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecAddStation(data)
@@ -38,17 +50,9 @@ func AddStreet(data *model.StreetData) (res map[string]interface{}, err error) {
 		return
 	}
 	url := "http://47.92.86.80:8081/index.html?street_no=" + function.Int64ToString(uid)
-	path := function.MakePath(province_name, city_name, district_name, station_name, community_name)
-	_, err = os.Stat(path)
-	if err != nil {
-		err = os.MkdirAll(path, os.ModePerm)
-		if err != nil {
-			return
-		}
-	}
-	objname := "qr/" + path + "/" + street_name + ".png"
+	objname := function.MakePath("qr", province_name, city_name, district_name, station_name, community_name) + "/" + street_name + ".png"
 	filename := "web/" + objname
-	err = qrcode.WriteFile(url, qrcode.Medium, 256, filename)
+	err = GenerateQrCode(url, filename)
 	if err != nil {
 		return
 	}
