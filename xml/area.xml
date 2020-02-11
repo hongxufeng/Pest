@@ -21,7 +21,47 @@
             &lt;span class="glyphicon glyphicon-edit rt-qrcode" title="查看二维码" data-args="street_qrcode">&lt;/span>
         </buttons>
         <pagerbuttons>
-            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+        &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="station_list"
+        name="station_list" defaultorder="uid asc" >
+        <station_name search-type="true">派出所名称</station_name>
+        <uid visibility="table-hidden">UID</uid>
+        <district_name>县区名称</district_name>
+        <district_no visibility="table-hidden">县区id</district_no>
+        <city_name search-type="true">市名称</city_name>
+        <city_no visibility="table-hidden">市id</city_no>
+        <province_name search-type="true">省名称</province_name>
+        <province_no visibility="table-hidden">省id</province_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="community_station"
+        name="community_station" defaultorder="uid asc" > 
+        <community_name search-type="true">社区名称</community_name>
+        <uid visibility="table-hidden">UID</uid>
+        <station_no visibility="table-hidden">派出所id</station_no>
+        <station_name search-type="true">派出所名称</station_name>
+        <district_name>县区名称</district_name>
+        <district_no visibility="table-hidden">县区id</district_no>
+        <city_name search-type="true">市名称</city_name>
+        <city_no visibility="table-hidden">市id</city_no>
+        <province_name search-type="true">省名称</province_name>
+        <province_no visibility="table-hidden">省id</province_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
             &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
             &lt;/span>
         </pagerbuttons>
