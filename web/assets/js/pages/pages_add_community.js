@@ -34,7 +34,7 @@ var changestation = function() {
 var addcommunity = function() {
     var community_name = $('#community_name').val();
     var station_no = $('#station-select').val();
-    alert(community_name + station_no)
+    //alert(community_name + station_no)
     $.post("user/area/AddCommunity", {
             Community_Name: community_name,
             Station_No: station_no

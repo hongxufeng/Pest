@@ -6,7 +6,7 @@ var addstation = function() {
     var city_name = $('#city-select').val();
     var district_no = $('#district-select option:selected').data('code');
     var district_name = $('#district-select').val();
-    alert(province_no)
+    //alert(province_no)
     $.post("user/area/AddStation", {
             Station_Name: station_name,
             Province_No: province_no,

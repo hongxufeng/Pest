@@ -65,7 +65,7 @@ var changecommunity = function() {
 var addstreet = function() {
     var street_name = $('#street_name').val();
     var community_no = $('#community-select').val();
-    alert(street_name + community_no)
+    //alert(street_name + community_no)
     $.post("user/area/AddStreet", {
             Street_Name: street_name,
             Community_No: community_no
