@@ -5,6 +5,18 @@ import (
 	"time"
 )
 
+func GetStreetbyID(uid int64) (name string, province_name string, city_name string, district_name string, station_name string, community_name string, street_name string, err error) {
+	queryStr := "SELECT name,province_name,city_name,district_name,station_name,community_name,street_name FROM area_list WHERE uid=? limit 0,1"
+	result, err := MysqlMain.Query(queryStr, uid)
+	if err != nil {
+		return
+	}
+	defer result.Close()
+	if result.Next() {
+		err = result.Scan(&name, &province_name, &city_name, &district_name, &station_name, &community_name, &street_name)
+	}
+	return
+}
 func ExecAddStation(data *model.StationData) (uid int64, err error) {
 	query := "INSERT INTO station_list (station_name,province_no,province_name,city_no,city_name,district_no,district_name,create_time) VALUES (?,?,?,?,?,?,?,?)"
 	//fmt.Println(time.Now())
@@ -43,4 +55,13 @@ func ExecAddStreet(data *model.StreetData) (uid int64, err error) {
 		return 0, err
 	}
 	return
+}
+func ExecUpdateStreetQr(qrfile string) error {
+	query := "update street_list set street_qrcode=?"
+	//fmt.Println(time.Now())
+	err := Exec(query, qrfile)
+	if err != nil {
+		return err
+	}
+	return DelTableCache(model.XML_Table_Area)
 }

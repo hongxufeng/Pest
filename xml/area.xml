@@ -15,6 +15,7 @@
         <city_no visibility="table-hidden">市id</city_no>
         <province_name search-type="true">省名称</province_name>
         <province_no visibility="table-hidden">省id</province_no>
+        <street_qrcode visibility="table-hidden">街道二维码</street_qrcode>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>

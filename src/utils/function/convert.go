@@ -470,7 +470,17 @@ func MakeKey2(keys ...interface{}) string {
 	}
 	return buf.String()
 }
-
+func MakePath(keys ...interface{}) string {
+	if len(keys) == 0 {
+		return ""
+	}
+	var buf bytes.Buffer
+	buf.WriteString(fmt.Sprintf("%v", keys[0]))
+	for i := 1; i < len(keys); i++ {
+		buf.WriteString(fmt.Sprintf("/%v", keys[i]))
+	}
+	return buf.String()
+}
 func SplitKey(key string) []string {
 	return strings.Split(key, "_")
 }
