@@ -14,10 +14,8 @@
 
 (function($) {
     var serverURL = "user/report/";
-
     var cachedRows = {};
     var nullRows = {};
-
     $.fn.rt = function(options) {
 
         var _this = this,
