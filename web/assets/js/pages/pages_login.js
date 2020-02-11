@@ -93,7 +93,7 @@ $.validator.setDefaults({
                         Cookies.set('auth', data.res.userdata.auth, { expires: 90 });
                         Cookies.set('avatar', data.res.userdata.avatar, { expires: 90 });
                     }
-                    window.location.href = "task.html";
+                    window.location.href = "area.html";
                 } else {
                     failureAnimation(data.res.faildata.msg);
                     return false;

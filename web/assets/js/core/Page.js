@@ -2,7 +2,7 @@ var BasePagesInit = function() {
     var initPage = function() {
         if (Cookies.get('avatar') == undefined) {
             if (confirm("您未进行登录，并不能获取数据哦！")) {
-                window.location.href = "pages_login.html";
+                window.location.href = "login.html";
             } else {
                 return false;
             }
@@ -21,6 +21,6 @@ var BasePagesInit = function() {
 }();
 
 // Initialize when page loaded
-$(document).ready(function () {
+$(document).ready(function() {
     BasePagesInit.init();
 });
