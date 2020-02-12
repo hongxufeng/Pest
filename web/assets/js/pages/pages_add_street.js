@@ -15,9 +15,11 @@ var changestation = function() {
                 return false;
             }
             if (data.status === "ok") {
+                $("#station-select").empty();
+                $("#community-select").empty();
+                var html = '<option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>';
+                $("#community-select").append(html);
                 if (data.res.count > 0) {
-                    $("#station-select").empty();
-                    var html = '<option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>';
                     if (data.res.table) {
                         var res = JSON.parse(data.res.table);
                     } else {
@@ -26,8 +28,8 @@ var changestation = function() {
                     $.each(res, function(index, value) {
                         html += '<option data-code="' + res[index].uid + '" data-text="' + res[index].station_name + '" value="' + res[index].uid + '">' + res[index].station_name + '</option>';
                     });
-                    $("#station-select").append(html);
                 }
+                $("#station-select").append(html);
             }
         }
     );
@@ -45,9 +47,9 @@ var changecommunity = function() {
                 return false;
             }
             if (data.status === "ok") {
+                $("#community-select").empty();
+                var html = '<option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>';
                 if (data.res.count > 0) {
-                    $("#community-select").empty();
-                    var html = '<option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>';
                     if (data.res.table) {
                         var res = JSON.parse(data.res.table);
                     } else {
@@ -56,8 +58,8 @@ var changecommunity = function() {
                     $.each(res, function(index, value) {
                         html += '<option data-code="' + res[index].uid + '" data-text="' + res[index].community_name + '" value="' + res[index].uid + '">' + res[index].community_name + '</option>';
                     });
-                    $("#community-select").append(html);
                 }
+                $("#community-select").append(html);
             }
         }
     );

@@ -110,7 +110,7 @@ $.validator.setDefaults({
                 }
                 if (data.res.loginstatus === 0) {
                     alert("用户添加成功！");
-                    window.location.href = "user.html";
+                    location.href = "user.html";
                 } else {
                     failureAnimation(data.res.faildata.msg);
                     return false;
