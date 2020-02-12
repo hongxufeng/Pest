@@ -12,12 +12,12 @@ type HouseData struct {
 type UnitData struct {
 	Name                  string
 	House_ID              int
-	License_Number        int
-	Identification_Number int
+	License_Number        string
+	Identification_Number string
 	Picture               string
 	Kind                  int
 	Scale                 int
-	Tel                   int
+	Tel                   string
 	Bank_Name             string
 	Bank_Account          string
 	Comment               string

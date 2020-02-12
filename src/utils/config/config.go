@@ -1,9 +1,10 @@
 package config
 
 import (
-	"os"
 	"errors"
 	"fmt"
+	"os"
+
 	"gopkg.in/yaml.v2"
 )
 
@@ -13,11 +14,12 @@ type Address struct {
 }
 
 type Config struct {
-	Environment string `yaml:environment`
-	Address Address `yaml:"address"`
-	LogDir  string  `yaml:"log"`
-	Mysql   string  `yaml:"mysql"`
-	Redis   string  `yaml:"redis"`
+	Environment string  `yaml:environment`
+	Address     Address `yaml:"address"`
+	LogDir      string  `yaml:"log"`
+	Mysql       string  `yaml:"mysql"`
+	Redis       string  `yaml:"redis"`
+	Qrurl       string  `yaml:"qrurl"`
 }
 
 func (c *Config) LoadPath(path string) error {
@@ -42,6 +44,6 @@ func Load(c interface{}, path string) error {
 		return errors.New(fmt.Sprintf("cannot read %v bytes from %v", info.Size(), path))
 	}
 
-	e = yaml.Unmarshal([]byte(data),c)
+	e = yaml.Unmarshal([]byte(data), c)
 	return e
 }

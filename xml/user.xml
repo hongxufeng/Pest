@@ -8,7 +8,6 @@
         <power selector-func="GetDefinitionData" selector-func-agrs="0,管理人员,1,工作人员" >权限</power>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
-            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
         </buttons>
         <pagerbuttons>

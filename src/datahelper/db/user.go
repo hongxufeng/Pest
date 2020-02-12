@@ -98,7 +98,7 @@ func ExecCreateUser(registerData *model.RegisterData) error {
 	return DelTableCache(model.XML_Table_User)
 
 }
-func ExecCreateUser(uid int) error {
+func ExecDeleteUser(uid int) error {
 	query := "delete from " + userlist + " where uid=?"
 	//fmt.Println(query)
 	err := Exec(query, uid)
