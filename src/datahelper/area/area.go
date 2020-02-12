@@ -109,10 +109,10 @@ func UpdateArea(qrurl string, data *model.UpdateData) (res map[string]interface{
 	}
 	return
 }
-func UpdateQrCode(uid int64, qrurl string) error {
+func UpdateQrCode(uid int64, qrurl string) (err error) {
 	_, province_name, city_name, district_name, station_name, community_name, street_name, street_qrcode, err := db.GetStreetbyID(uid)
 	if err != nil {
-		return err
+		return
 	}
 	url := qrurl + "?street_no=" + function.Int64ToString(uid)
 	objname := function.MakePath("qr", province_name, city_name, district_name, station_name, community_name) + "/" + street_name + ".png"
@@ -120,21 +120,13 @@ func UpdateQrCode(uid int64, qrurl string) error {
 	if objname != street_qrcode {
 		err = os.Remove(filename)
 		if err != nil {
-			return err
+			return
 		}
 	}
 	err = GenerateQrCode(url, filename)
 	if err != nil {
-		return err
+		return
 	}
 	err = db.ExecUpdateStreetQr(uid, objname)
-	path := path.Dir(filename)
-	_, err = os.Stat(path)
-	if err != nil {
-		err = os.MkdirAll(path, os.ModePerm)
-		if err != nil {
-			return err
-		}
-	}
-	return qrcode.WriteFile(url, qrcode.Medium, 256, filename)
+	return
 }
