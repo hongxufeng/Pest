@@ -101,7 +101,7 @@ func (module *AreaModule) User_DeleteArea(req *service.HttpRequest, result map[s
 		return
 	}
 	var data model.DeleteData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Cmd_Delect", &data.Cmd_Delete)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Cmd_Delete", &data.Cmd_Delete)
 	if err != nil {
 		return
 	}
@@ -118,7 +118,7 @@ func (module *AreaModule) User_UpdateArea(req *service.HttpRequest, result map[s
 		return
 	}
 	var data model.UpdateData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Cmd_Update", &data.Cmd_Update, &data.Update_Name)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Cmd_Update", &data.Cmd_Update, "Update_Name", &data.Update_Name)
 	if err != nil {
 		return
 	}

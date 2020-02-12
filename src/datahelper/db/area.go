@@ -62,7 +62,7 @@ func ExecUpdateStreetQr(uid int64, qrfile string) error {
 	return DelTableCache(model.XML_Table_Area)
 }
 func ExecDeleteStreet(uid int) error {
-	query := "delect from street_list where uid=?"
+	query := "delete from street_list where uid=?"
 	err := Exec(query, uid)
 	if err != nil {
 		return err
@@ -70,7 +70,7 @@ func ExecDeleteStreet(uid int) error {
 	return DelTableCache(model.XML_Table_Area)
 }
 func ExecDeleteStation(uid int) error {
-	query := "delect station_list,community_list,street_list from station_list,community_list,street_list where station_list.uid=? and community_list.station_no=station_list.uid and street_list.community_no=community_list.uid"
+	query := "delete station_list,community_list,street_list from station_list,community_list,street_list where station_list.uid=? and community_list.station_no=station_list.uid and street_list.community_no=community_list.uid"
 	err := Exec(query, uid)
 	if err != nil {
 		return err
@@ -78,7 +78,7 @@ func ExecDeleteStation(uid int) error {
 	return DelTableCache(model.XML_Table_Area)
 }
 func ExecDeleteCommunity(uid int) error {
-	query := "delect station_list,community_list from station_list,community_list where station_list.uid=? and community_list.station_no=station_list.uid"
+	query := "delete station_list,community_list from station_list,community_list where station_list.uid=? and community_list.station_no=station_list.uid"
 	err := Exec(query, uid)
 	if err != nil {
 		return err

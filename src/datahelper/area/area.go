@@ -81,6 +81,7 @@ func DeleteArea(data *model.DeleteData) (res map[string]interface{}, err error) 
 		err = service.NewError(service.ERR_INVALID_PARAM, "输入cmd参数错误！")
 	}
 	if err == nil {
+		res["deletestatus"] = 1
 		res["msg"] = "删除成功！"
 	}
 	return
@@ -105,6 +106,7 @@ func UpdateArea(qrurl string, data *model.UpdateData) (res map[string]interface{
 		err = service.NewError(service.ERR_INVALID_PARAM, "输入cmd参数错误！")
 	}
 	if err == nil {
+		res["updatestatus"] = 1
 		res["msg"] = "更新成功！"
 	}
 	return
@@ -118,9 +120,12 @@ func UpdateQrCode(uid int64, qrurl string) (err error) {
 	objname := function.MakePath("qr", province_name, city_name, district_name, station_name, community_name) + "/" + street_name + ".png"
 	filename := "web/" + objname
 	if objname != street_qrcode {
-		err = os.Remove(filename)
-		if err != nil {
-			return
+		_, e := os.Stat(filename)
+		if e == nil {
+			err = os.Remove(filename)
+			if err != nil {
+				return
+			}
 		}
 	}
 	err = GenerateQrCode(url, filename)
