@@ -238,7 +238,7 @@
                     _this.on("click", ".rt-treeSearcher-btn", searchTree).on("click", ".rt-search-result .rt-node-cols", locateNode);
                     _this.on("click", ".rt-node-cols", nodeOnClick);
                     _this.on("click", ".rt-node>.rt-checkboxWrapper", checkNode);
-                    _this.on("click", ".rt-view", viewThis).on("click", ".rt-view-return", postData).on("click", ".rt-delete", deleteThis);
+                    _this.on("click", ".rt-view", viewThis).on("click", ".rt-view-return", postData);
                     //_this.on("click", ".rt-create", createOne).on("click", ".rt-view", viewThis).on("click", ".rt-edit", editThis).on("click", ".rt-delete", deleteThis)
                     //_this.on("keyup", ".rt-search-txt", startSearching).on("change", ".rt-search-txt.date", startSearching);
                     $(".rt-refresh").off();

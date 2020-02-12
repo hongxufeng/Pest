@@ -111,3 +111,20 @@ func (module *UserModule) User_UserRegister(req *service.HttpRequest, result map
 	result["res"] = userreg
 	return
 }
+func (module *UserModule) User_UserDelete(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	if req.Power > 0 {
+		err = service.NewError(service.ERR_POWER_DENIED, "所处用户权限不足！")
+		return
+	}
+	var uid int
+	err = req.ParseEncodeUrl(false, "uid", &uid)
+	if err != nil {
+		return
+	}
+	res, err := user.DeleteUser(uid)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}

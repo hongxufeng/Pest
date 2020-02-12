@@ -97,6 +97,15 @@ func CreateUser(registerData *model.RegisterData) (res map[string]interface{}, e
 	}
 	return
 }
+func DeleteUser(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteUser(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "用户删除成功！"
+	}
+	return
+}
 func CreateSuccessResp(ud *db.UserInfo) (res map[string]interface{}) {
 	res = make(map[string]interface{}, 0)
 	res["loginstatus"] = 1
