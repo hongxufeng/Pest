@@ -78,20 +78,6 @@ $.validator.setDefaults({
         var password = md5($("#register-password").val());
         var nickname = $("#register-nickname").val();
         var power = $("#register-power option:selected").val();
-        alert(power)
-        var failureAnimation = function(msg) {
-            if (msg != undefined) {
-                $("#tip").html(msg);
-            }
-            var failureBlock = $(".alert-dismissable");
-            $(".login-title").css("display", "none");
-            failureBlock.css("display", "block");
-            if (failureBlock.hasClass("shake")) {
-                failureBlock.removeClass("shake").addClass("wobble");
-            } else {
-                failureBlock.removeClass("wobble").addClass("shake");
-            }
-        };
         var postData = {
             method: "POST",
             url: "user/user/UserRegister",
@@ -108,16 +94,14 @@ $.validator.setDefaults({
                     alert(data.msg);
                     return false;
                 }
-                if (data.res.loginstatus === 0) {
-                    alert("用户添加成功！");
-                    location.href = "user.html";
-                } else {
-                    failureAnimation(data.res.faildata.msg);
-                    return false;
+                if (data.res.registerstatus === 1) {
+                    alert(data.res.msg);
+
                 }
+                location.href = "user.html";
             },
             error: function() {
-                failureAnimation("您需要先搭建服务器哦！");
+                alert("您需要先搭建服务器哦！");
                 return false;
             }
         };
