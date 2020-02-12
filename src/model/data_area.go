@@ -1,7 +1,7 @@
 package model
 
 const (
-	Cmd_Station   = "create"
+	Cmd_Station   = "station"
 	Cmd_Community = "community"
 	Cmd_Street    = "street"
 )
@@ -29,6 +29,6 @@ type DeleteData struct {
 }
 type UpdateData struct {
 	Cmd_Update  string
-	Uid         int
+	Uid         int64
 	Update_Name string
 }

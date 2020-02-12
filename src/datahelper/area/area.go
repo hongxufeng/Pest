@@ -85,7 +85,7 @@ func DeleteArea(data *model.DeleteData) (res map[string]interface{}, err error) 
 	}
 	return
 }
-func UpdateArea(data *model.UpdateData) (res map[string]interface{}, err error) {
+func UpdateArea(qrurl string, data *model.UpdateData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	switch data.Cmd_Update {
 	case model.Cmd_Station:
@@ -99,7 +99,7 @@ func UpdateArea(data *model.UpdateData) (res map[string]interface{}, err error) 
 		if err != nil {
 			return
 		}
-		err = UpdateQrCode(data.Uid)
+		err = UpdateQrCode(data.Uid, qrurl)
 		break
 	default:
 		err = service.NewError(service.ERR_INVALID_PARAM, "输入cmd参数错误！")
@@ -109,10 +109,10 @@ func UpdateArea(data *model.UpdateData) (res map[string]interface{}, err error) 
 	}
 	return
 }
-func UpdateQrCode(uid int) error {
+func UpdateQrCode(uid int64, qrurl string) error {
 	_, province_name, city_name, district_name, station_name, community_name, street_name, street_qrcode, err := db.GetStreetbyID(uid)
 	if err != nil {
-		return
+		return err
 	}
 	url := qrurl + "?street_no=" + function.Int64ToString(uid)
 	objname := function.MakePath("qr", province_name, city_name, district_name, station_name, community_name) + "/" + street_name + ".png"
@@ -120,16 +120,16 @@ func UpdateQrCode(uid int) error {
 	if objname != street_qrcode {
 		err = os.Remove(filename)
 		if err != nil {
-			return
+			return err
 		}
 	}
 	err = GenerateQrCode(url, filename)
 	if err != nil {
-		return
+		return err
 	}
 	err = db.ExecUpdateStreetQr(uid, objname)
 	path := path.Dir(filename)
-	_, err := os.Stat(path)
+	_, err = os.Stat(path)
 	if err != nil {
 		err = os.MkdirAll(path, os.ModePerm)
 		if err != nil {

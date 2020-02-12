@@ -122,7 +122,7 @@ func (module *AreaModule) User_UpdateArea(req *service.HttpRequest, result map[s
 	if err != nil {
 		return
 	}
-	res, err := area.UpdateArea(&data)
+	res, err := area.UpdateArea(module.qrurl, &data)
 	if err != nil {
 		return
 	}
