@@ -78,7 +78,7 @@ func ExecDeleteStation(uid int) error {
 	return DelTableCache(model.XML_Table_Area)
 }
 func ExecDeleteCommunity(uid int) error {
-	query := "delete station_list,community_list from station_list,community_list where station_list.uid=? and community_list.station_no=station_list.uid"
+	query := "delete street_list,community_list from street_list,community_list where community_list.uid=? and community_list.uid=street_list.community_no"
 	err := Exec(query, uid)
 	if err != nil {
 		return err

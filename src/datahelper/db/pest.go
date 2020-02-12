@@ -77,7 +77,6 @@ func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
 }
 func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
 	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,creator_card_no,create_time) VALUES (?,?,?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, data.Creator_Card_No, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -90,7 +89,6 @@ func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
 }
 func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
 	query := "INSERT INTO unit_list (name,house_id,license_number,identification_number,picture,kind,scale,tel,bank_name,bank_account,comment,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Name, data.House_ID, data.License_Number, data.Identification_Number, data.Picture, data.Kind, data.Scale, data.Tel, data.Bank_Name, data.Bank_Account, data.Comment, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -103,7 +101,6 @@ func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
 }
 func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
 	query := "INSERT INTO personnel_list (name,occupation,card_no,card_picture_front,card_picture_back,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -114,9 +111,35 @@ func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
 	}
 	return
 }
+func ExecUpdateHouse(data *model.HouseData) (err error) {
+	query := "update house_list set nature=?,street=?,street_no=?,address=?,number=?,comment=? where uid=?"
+	err = Exec(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecUpdateUnit(data *model.UnitData) (err error) {
+	query := "update unit_list set name=?,license_number=?,identification_number=?,picture=?,kind=?,scale=?,tel=?,bank_name=?,bank_account=?,comment=? where uid=?"
+	err = Exec(query, data.Name, data.License_Number, data.Identification_Number, data.Picture, data.Kind, data.Scale, data.Tel, data.Bank_Name, data.Bank_Account, data.Comment, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecUpdatePersonnel(data *model.PersonnelData) (err error) {
+	query := "update personnel_list set name=?,occupation=?,card_picture_front=?,card_picture_back=?,face_picture=?,sex=?,nation=?,birthday=?,address=?,sign_organization=?,limited_date=?,history=? where uid=?"
+	err = Exec(query, data.Name, data.Occupation, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
 func ExecAddRelationHousePersonnel(data *model.HousePersonnelData) (uid int64, err error) {
 	query := "INSERT INTO relation_house_personnel (house_id,personnel_id,role,relation_holder,relation_together,create_time) VALUES (?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.House_ID, data.Personnel_ID, data.Role, data.Relation_Holder, data.Relation_Together, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -129,7 +152,6 @@ func ExecAddRelationHousePersonnel(data *model.HousePersonnelData) (uid int64, e
 }
 func ExecAddRelationUnitPersonnel(data *model.UnitPersonnelData) (uid int64, err error) {
 	query := "INSERT INTO relation_unit_personnel (unit_id,personnel_id,position,create_time) VALUES (?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Unit_ID, data.Personnel_ID, data.Position, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -140,9 +162,26 @@ func ExecAddRelationUnitPersonnel(data *model.UnitPersonnelData) (uid int64, err
 	}
 	return
 }
+func ExecDeleteRelationHousePersonnel(data *model.HousePersonnelData) (err error) {
+	query := "delete from relation_house_personnel where house_id=? and personnel_id=?"
+	err = Exec(query, data.House_ID, data.Personnel_ID, data.Role, data.Relation_Holder, data.Relation_Together, time.Now().UnixNano())
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeleteRelationUnitPersonnel(data *model.UnitPersonnelData) (err error) {
+	query := "delete from relation_unit_personnel where unit_id=? and personnel_id=?"
+	err = Exec(query, data.Unit_ID, data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
 func ExecAddTouch(data *model.TouchData) (uid int64, err error) {
 	query := "INSERT INTO touch_list (personnel_id,way,time,place,touch_number,touch_people,create_time) VALUES (?,?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Personnel_ID, data.Way, data.Time, data.Place, data.Touch_Number, data.Touch_People, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -155,7 +194,6 @@ func ExecAddTouch(data *model.TouchData) (uid int64, err error) {
 }
 func ExecAddDailyReport(data *model.DailyReportData) (uid int64, err error) {
 	query := "INSERT INTO daily_report_list (personnel_id,symptom,hospitalized_flag,temperature,time,touch_people,create_time) VALUES (?,?,?,?,?,?,?)"
-	//fmt.Println(time.Now())
 	uid, err = Insert(query, data.Personnel_ID, data.Symptom, data.Hospitalized_Flag, data.Temperature, data.Time, data.Touch_People, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
@@ -164,5 +202,23 @@ func ExecAddDailyReport(data *model.DailyReportData) (uid int64, err error) {
 	if err != nil {
 		return 0, err
 	}
+	return
+}
+func ExecUpdateTouch(data *model.TouchData) (err error) {
+	query := "update touch_list set way=?,time=?,place=?,touch_number=?,touch_people=? where uid=?"
+	err = Exec(query, data.Way, data.Time, data.Place, data.Touch_Number, data.Touch_People, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Touch_History)
+	return
+}
+func ExecUpdateDailyReport(data *model.DailyReportData) (err error) {
+	query := "update daily_report_list set symptom=?,hospitalized_flag=?,temperature=?,time=?,touch_people=? where uid=?"
+	err = Exec(query, data.Symptom, data.Hospitalized_Flag, data.Temperature, data.Time, data.Touch_People, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Daily_Report)
 	return
 }

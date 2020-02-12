@@ -38,6 +38,33 @@ func CreatePersonnel(data *model.PersonnelData) (res map[string]interface{}, err
 	}
 	return
 }
+func UpdateHouse(data *model.HouseData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateHouse(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "房屋更新成功！"
+	}
+	return
+}
+func UpdateUnit(data *model.UnitData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateUnit(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "单位更新成功！"
+	}
+	return
+}
+func UpdatePersonnel(data *model.PersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdatePersonnel(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "人员更新成功！"
+	}
+	return
+}
 func AddRelationHousePersonnel(data *model.HousePersonnelData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	isexist, _ := db.CheckPersonnelHouse(data.House_ID, data.Personnel_ID)
@@ -66,6 +93,24 @@ func AddRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]int
 	}
 	return
 }
+func DeleteRelationHousePersonnel(data *model.HousePersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteRelationHousePersonnel(data)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "人员房屋关系添加成功！"
+	}
+	return
+}
+func DeleteRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteRelationUnitPersonnel(data)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "人员单位关系添加成功！"
+	}
+	return
+}
 func AddTouch(data *model.TouchData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	uid, err := db.ExecAddTouch(data)
@@ -81,6 +126,24 @@ func AddDailyReport(data *model.DailyReportData) (res map[string]interface{}, er
 	if err == nil {
 		res["uid"] = uid
 		res["msg"] = "每日上报添加成功！"
+	}
+	return
+}
+func UpdateTouch(data *model.TouchData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateTouch(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "其他接触史更新成功！"
+	}
+	return
+}
+func UpdateDailyReport(data *model.DailyReportData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateDailyReport(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "每日上报更新成功！"
 	}
 	return
 }

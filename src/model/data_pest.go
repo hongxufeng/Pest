@@ -1,6 +1,7 @@
 package model
 
 type HouseData struct {
+	Uid             int
 	Nature          string
 	Street          string
 	Street_No       int
@@ -10,6 +11,7 @@ type HouseData struct {
 	Creator_Card_No string
 }
 type UnitData struct {
+	Uid                   int
 	Name                  string
 	House_ID              int
 	License_Number        string
@@ -23,6 +25,7 @@ type UnitData struct {
 	Comment               string
 }
 type PersonnelData struct {
+	Uid                int
 	Name               string
 	Occupation         string
 	Card_No            string
@@ -50,6 +53,7 @@ type UnitPersonnelData struct {
 	Position     int
 }
 type TouchData struct {
+	Uid          int
 	Personnel_ID int
 	Way          string
 	Time         string
@@ -58,6 +62,7 @@ type TouchData struct {
 	Touch_People string
 }
 type DailyReportData struct {
+	Uid               int
 	Personnel_ID      int
 	Symptom           string
 	Time              string
@@ -66,6 +71,7 @@ type DailyReportData struct {
 	Touch_People      string
 }
 type IsolationData struct {
+	Uid                int
 	House_ID           int
 	Flag               int
 	Reason             string

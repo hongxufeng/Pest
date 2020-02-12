@@ -38,11 +38,11 @@ func (module *PestModule) Base_CreateHouse(req *service.HttpRequest, result map[
 		return
 	}
 
-	houseCreate, err := pest.CreateHouse(&data)
+	res, err := pest.CreateHouse(&data)
 	if err != nil {
 		return
 	}
-	result["res"] = houseCreate
+	result["res"] = res
 	return
 }
 func (module *PestModule) Base_CreateUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
@@ -57,11 +57,11 @@ func (module *PestModule) Base_CreateUnit(req *service.HttpRequest, result map[s
 		return
 	}
 
-	unitCreate, err := pest.CreateUnit(&data)
+	res, err := pest.CreateUnit(&data)
 	if err != nil {
 		return
 	}
-	result["res"] = unitCreate
+	result["res"] = res
 	return
 }
 func (module *PestModule) Base_CreatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
@@ -79,11 +79,67 @@ func (module *PestModule) Base_CreatePersonnel(req *service.HttpRequest, result 
 		return
 	}
 
-	personnelCreate, err := pest.CreatePersonnel(&data)
+	res, err := pest.CreatePersonnel(&data)
 	if err != nil {
 		return
 	}
-	result["res"] = personnelCreate
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.HouseData
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Nature", &data.Nature, "Street", &data.Street, "Street_No", &data.Street_No, "Address", &data.Address, "Number", &data.Number, "Comment", &data.Comment)
+	if err != nil {
+		return
+	}
+
+	if data.Nature == "" || data.Street == "" || data.Address == "" {
+		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
+		return
+	}
+
+	res, err := pest.UpdateHouse(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.UnitData
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "License_Number", &data.License_Number, "Identification_Number", &data.Identification_Number, "Picture", &data.Picture, "Kind", &data.Kind, "Scale", &data.Scale, "Tel", &data.Tel, "Bank_Name", &data.Bank_Name, "Bank_Account", &data.Bank_Account, "Comment", &data.Comment)
+	if err != nil {
+		return
+	}
+
+	if data.Name == "" {
+		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
+		return
+	}
+
+	res, err := pest.UpdateUnit(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.PersonnelData
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
+	if err != nil {
+		return
+	}
+	if data.Name == "" {
+		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
+		return
+	}
+
+	res, err := pest.UpdatePersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
 	return
 }
 func (module *PestModule) Base_AddRelationPersonnelHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
@@ -112,6 +168,32 @@ func (module *PestModule) Base_AddRelationPersonnelUnit(req *service.HttpRequest
 	result["res"] = res
 	return
 }
+func (module *PestModule) Base_DeleteRelationPersonnelHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.HousePersonnelData
+	err = req.ParseEncodeUrl(false, "House_ID", &data.House_ID, "Personnel_ID", &data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	res, err := pest.DeleteRelationHousePersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_DeleteRelationPersonnelUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.UnitPersonnelData
+	err = req.ParseEncodeUrl(false, "Unit_ID", &data.Unit_ID, "Personnel_ID", &data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	res, err := pest.DeleteRelationUnitPersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
 func (module *PestModule) Base_AddTouch(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.TouchData
 	err = req.ParseEncodeUrl(false, "Personnel_ID", &data.Personnel_ID, "Way", &data.Way, "Time", &data.Time, "Place", &data.Place, "Touch_Number", &data.Touch_Number, "Touch_People", &data.Touch_People)
@@ -134,6 +216,34 @@ func (module *PestModule) Base_AddDailyReport(req *service.HttpRequest, result m
 	}
 
 	res, err := pest.AddDailyReport(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateTouch(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.TouchData
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Way", &data.Way, "Time", &data.Time, "Place", &data.Place, "Touch_Number", &data.Touch_Number, "Touch_People", &data.Touch_People)
+	if err != nil {
+		return
+	}
+
+	res, err := pest.UpdateTouch(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateDailyReport(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.DailyReportData
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Time", &data.Time, "Symptom", &data.Symptom, "Hospitalized_Flag", &data.Hospitalized_Flag, "Temperature", &data.Temperature, "Touch_People", &data.Touch_People)
+	if err != nil {
+		return
+	}
+
+	res, err := pest.UpdateDailyReport(&data)
 	if err != nil {
 		return
 	}
