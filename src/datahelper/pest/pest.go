@@ -147,3 +147,39 @@ func UpdateDailyReport(data *model.DailyReportData) (res map[string]interface{},
 	}
 	return
 }
+func DeleteHouse(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteHouse(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "房屋删除成功！"
+	}
+	return
+}
+func DeleteUnit(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteUnit(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "单位删除成功！"
+	}
+	return
+}
+func DeleteTouch(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteTouch(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "其他接触史删除成功！"
+	}
+	return
+}
+func DeleteDailyReport(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteDailyReport(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "每日上报删除成功！"
+	}
+	return
+}

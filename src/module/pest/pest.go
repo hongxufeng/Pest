@@ -142,6 +142,33 @@ func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result 
 	result["res"] = res
 	return
 }
+func (module *PestModule) Base_DeleteHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var uid int
+	err = req.ParseEncodeUrl(false, "Uid", &uid)
+	if err != nil {
+		return
+	}
+
+	res, err := pest.DeleteHouse(uid)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_DeleteUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var uid int
+	err = req.ParseEncodeUrl(false, "Uid", &uid)
+	if err != nil {
+		return
+	}
+	res, err := pest.DeleteUnit(uid)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
 func (module *PestModule) Base_AddRelationPersonnelHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.HousePersonnelData
 	err = req.ParseEncodeUrl(false, "House_ID", &data.House_ID, "Personnel_ID", &data.Personnel_ID, "Role", &data.Role, "Relation_Holder", &data.Relation_Holder, "Relation_Together", &data.Relation_Together)
@@ -244,6 +271,34 @@ func (module *PestModule) Base_UpdateDailyReport(req *service.HttpRequest, resul
 	}
 
 	res, err := pest.UpdateDailyReport(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_DeleteTouch(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var uid int
+	err = req.ParseEncodeUrl(false, "Uid", &uid)
+	if err != nil {
+		return
+	}
+
+	res, err := pest.DeleteTouch(uid)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_DeleteDailyReport(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var uid int
+	err = req.ParseEncodeUrl(false, "Uid", &uid)
+	if err != nil {
+		return
+	}
+
+	res, err := pest.DeleteDailyReport(uid)
 	if err != nil {
 		return
 	}

@@ -222,3 +222,39 @@ func ExecUpdateDailyReport(data *model.DailyReportData) (err error) {
 	err = DelTableCache(model.XML_Table_Daily_Report)
 	return
 }
+func ExecDeleteHouse(uid int) (err error) {
+	query := "delete house_list,relation_house_personnel,unit_list,relation_unit_personnel from house_list,relation_house_personnel,unit_list,relation_unit_personnel where house_list.uid=? and relation_house_personnel.house_id=house_list.uid and unit_list.house_id=house_list.uid and relation_unit_personnel.unit_id=unit_list.uid"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeleteUnit(uid int) (err error) {
+	query := "delete unit_list,relation_unit_personnel from unit_list,relation_unit_personnel where unit_list.uid=? and relation_unit_personnel.unit_id=unit_list.uid"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeleteTouch(uid int) (err error) {
+	query := "delete from touch_list where uid=?"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Touch_History)
+	return
+}
+func ExecDeleteDailyReport(uid int) (err error) {
+	query := "delete from daily_report_list where uid=?"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Daily_Report)
+	return
+}
