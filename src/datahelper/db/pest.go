@@ -223,7 +223,7 @@ func ExecUpdateDailyReport(data *model.DailyReportData) (err error) {
 	return
 }
 func ExecDeleteHouse(uid int) (err error) {
-	query := "delete house_list,relation_house_personnel,unit_list,relation_unit_personnel from house_list,relation_house_personnel,unit_list,relation_unit_personnel where house_list.uid=? and relation_house_personnel.house_id=house_list.uid and unit_list.house_id=house_list.uid and relation_unit_personnel.unit_id=unit_list.uid"
+	query := "delete house_list,relation_house_personnel,unit_list,relation_unit_personnel from house_list left join relation_house_personnel on relation_house_personnel.house_id=house_list.uid left join unit_list on unit_list.house_id=house_list.uid left join relation_unit_personnel on relation_unit_personnel.unit_id=unit_list.uid where house_list.uid=?"
 	err = Exec(query, uid)
 	if err != nil {
 		return
@@ -232,7 +232,7 @@ func ExecDeleteHouse(uid int) (err error) {
 	return
 }
 func ExecDeleteUnit(uid int) (err error) {
-	query := "delete unit_list,relation_unit_personnel from unit_list,relation_unit_personnel where unit_list.uid=? and relation_unit_personnel.unit_id=unit_list.uid"
+	query := "delete unit_list,relation_unit_personnel from unit_list left join relation_unit_personnel on relation_unit_personnel.unit_id=unit_list.uid where unit_list.uid=?"
 	err = Exec(query, uid)
 	if err != nil {
 		return
