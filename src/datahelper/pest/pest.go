@@ -183,6 +183,15 @@ func DeleteUnit(uid int) (res map[string]interface{}, err error) {
 	}
 	return
 }
+func DeletePersonnel(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeletePersonnel(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "人员删除成功！"
+	}
+	return
+}
 func DeleteTouch(uid int) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	err = db.ExecDeleteTouch(uid)

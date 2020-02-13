@@ -39,6 +39,8 @@ type PersonnelData struct {
 	Sign_Organization  string
 	Limited_Date       string
 	History            string
+	Phone              string
+	Remark             string
 }
 type HousePersonnelData struct {
 	House_ID          int

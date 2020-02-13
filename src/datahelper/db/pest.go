@@ -100,8 +100,8 @@ func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
 	return
 }
 func ExecCreatePersonnel(data *model.PersonnelData) (uid int64, err error) {
-	query := "INSERT INTO personnel_list (name,occupation,card_no,card_picture_front,card_picture_back,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, time.Now().UnixNano())
+	query := "INSERT INTO personnel_list (name,occupation,card_no,phone,card_picture_front,card_picture_back,face_picture,sex,nation,birthday,address,sign_organization,limited_date,history,remark,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+	uid, err = Insert(query, data.Name, data.Occupation, data.Card_No, data.Phone, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, data.Remark, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}
@@ -130,8 +130,8 @@ func ExecUpdateUnit(data *model.UnitData) (err error) {
 	return
 }
 func ExecUpdatePersonnel(data *model.PersonnelData) (err error) {
-	query := "update personnel_list set occupation=?,face_picture=?,history=? where uid=?"
-	err = Exec(query, data.Occupation, data.Face_Picture, data.History, data.Uid)
+	query := "update personnel_list set name=?,occupation=?,phone=?,face_picture=?,sex=?,nation=?,birthday=?,address=?,sign_organization=?,limited_date=?,history=?,remark=? where uid=?"
+	err = Exec(query, data.Name, data.Occupation, data.Phone, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, data.Remark, data.Uid)
 	if err != nil {
 		return
 	}
@@ -251,6 +251,15 @@ func ExecDeleteHouse(uid int) (err error) {
 }
 func ExecDeleteUnit(uid int) (err error) {
 	query := "delete unit_list,relation_unit_personnel from unit_list left join relation_unit_personnel on relation_unit_personnel.unit_id=unit_list.uid where unit_list.uid=?"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeletePersonnel(uid int) (err error) {
+	query := "delete personnel_list,relation_house_personnel,relation_unit_personnel from personnel_list left join relation_house_personnel on relation_house_personnel.personnel_id=personnel_list.uid left join relation_unit_personnel on relation_unit_personnel.personnel_id=personnel_list.uid where personnel_list.uid=?"
 	err = Exec(query, uid)
 	if err != nil {
 		return
