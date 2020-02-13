@@ -162,9 +162,27 @@ func ExecAddRelationUnitPersonnel(data *model.UnitPersonnelData) (uid int64, err
 	}
 	return
 }
+func ExecUpdateRelationHousePersonnel(data *model.HousePersonnelData) (err error) {
+	query := "Update relation_house_personnel set role=?,relation_holder=?,relation_together=? where house_id=? and personnel_id=?"
+	err = Exec(query, data.Role, data.Relation_Holder, data.Relation_Together, data.House_ID, data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecUpdateRelationUnitPersonnel(data *model.UnitPersonnelData) (err error) {
+	query := "Update relation_unit_personnel set position=? where unit_id=? and personnel_id=?"
+	err = Exec(query, data.Position, data.Unit_ID, data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
 func ExecDeleteRelationHousePersonnel(data *model.HousePersonnelData) (err error) {
 	query := "delete from relation_house_personnel where house_id=? and personnel_id=?"
-	err = Exec(query, data.House_ID, data.Personnel_ID, data.Role, data.Relation_Holder, data.Relation_Together, time.Now().UnixNano())
+	err = Exec(query, data.House_ID, data.Personnel_ID)
 	if err != nil {
 		return
 	}

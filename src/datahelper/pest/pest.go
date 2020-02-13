@@ -93,12 +93,30 @@ func AddRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]int
 	}
 	return
 }
+func UpdateRelationHousePersonnel(data *model.HousePersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateRelationHousePersonnel(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "人员房屋关系更新成功！"
+	}
+	return
+}
+func UpdateRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateRelationUnitPersonnel(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "人员单位关系更新成功！"
+	}
+	return
+}
 func DeleteRelationHousePersonnel(data *model.HousePersonnelData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
 	err = db.ExecDeleteRelationHousePersonnel(data)
 	if err == nil {
 		res["deletestatus"] = 1
-		res["msg"] = "人员房屋关系添加成功！"
+		res["msg"] = "人员房屋关系删除成功！"
 	}
 	return
 }
@@ -107,7 +125,7 @@ func DeleteRelationUnitPersonnel(data *model.UnitPersonnelData) (res map[string]
 	err = db.ExecDeleteRelationUnitPersonnel(data)
 	if err == nil {
 		res["deletestatus"] = 1
-		res["msg"] = "人员单位关系添加成功！"
+		res["msg"] = "人员单位关系删除成功！"
 	}
 	return
 }

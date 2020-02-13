@@ -126,7 +126,7 @@ func (module *PestModule) Base_UpdateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "History", &data.History)
 	if err != nil {
 		return
 	}
@@ -189,6 +189,32 @@ func (module *PestModule) Base_AddRelationPersonnelUnit(req *service.HttpRequest
 		return
 	}
 	res, err := pest.AddRelationUnitPersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateRelationPersonnelHouse(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.HousePersonnelData
+	err = req.ParseEncodeUrl(false, "House_ID", &data.House_ID, "Personnel_ID", &data.Personnel_ID, "Role", &data.Role, "Relation_Holder", &data.Relation_Holder, "Relation_Together", &data.Relation_Together)
+	if err != nil {
+		return
+	}
+	res, err := pest.UpdateRelationHousePersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
+func (module *PestModule) Base_UpdateRelationPersonnelUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.UnitPersonnelData
+	err = req.ParseEncodeUrl(false, "Unit_ID", &data.Unit_ID, "Personnel_ID", &data.Personnel_ID, "Position", &data.Position)
+	if err != nil {
+		return
+	}
+	res, err := pest.UpdateRelationUnitPersonnel(&data)
 	if err != nil {
 		return
 	}
