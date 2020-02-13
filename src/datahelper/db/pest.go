@@ -130,8 +130,8 @@ func ExecUpdateUnit(data *model.UnitData) (err error) {
 	return
 }
 func ExecUpdatePersonnel(data *model.PersonnelData) (err error) {
-	query := "update personnel_list set name=?,occupation=?,card_picture_front=?,card_picture_back=?,face_picture=?,sex=?,nation=?,birthday=?,address=?,sign_organization=?,limited_date=?,history=? where uid=?"
-	err = Exec(query, data.Name, data.Occupation, data.Card_Picture_Front, data.Card_Picture_Back, data.Face_Picture, data.Sex, data.Nation, data.Birthday, data.Address, data.Sign_Organization, data.Limited_Date, data.History, data.Uid)
+	query := "update personnel_list set occupation=?,face_picture=?,history=? where uid=?"
+	err = Exec(query, data.Occupation, data.Face_Picture, data.History, data.Uid)
 	if err != nil {
 		return
 	}

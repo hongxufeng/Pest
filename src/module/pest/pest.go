@@ -126,12 +126,8 @@ func (module *PestModule) Base_UpdateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "History", &data.History)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Occupation", &data.Occupation, "Face_Picture", &data.Face_Picture, "History", &data.History)
 	if err != nil {
-		return
-	}
-	if data.Name == "" {
-		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
 		return
 	}
 

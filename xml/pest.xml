@@ -122,7 +122,7 @@
         <sex>人员性别</sex>
         <nation>人员民族</nation>
         <birthday>人员生日</birthday>
-        <personnel_address>人员身份证地址</personnel_address>
+        <address>人员身份证地址</address>
         <sign_organization>人员身份证签发机关</sign_organization>
         <limited_date>人员身份证有效日期</limited_date>
         <history>接触史</history>
