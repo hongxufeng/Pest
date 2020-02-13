@@ -126,7 +126,7 @@ func (module *PestModule) Base_UpdateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History, "Phone", &data.Phone, "Remark", data.Remark)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History, "Phone", &data.Phone, "Remark", &data.Remark)
 	if err != nil {
 		return
 	}
