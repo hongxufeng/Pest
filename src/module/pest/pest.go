@@ -126,11 +126,18 @@ func (module *PestModule) Base_UpdateUnit(req *service.HttpRequest, result map[s
 }
 func (module *PestModule) Base_UpdatePersonnel(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.PersonnelData
-	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History, "Phone", &data.Phone, "Remark", &data.Remark)
+	err = req.ParseEncodeUrl(false, "Uid", &data.Uid, "Name", &data.Name, "Occupation", &data.Occupation, "Card_No", &data.Card_No, "Card_Picture_Front", &data.Card_Picture_Front, "Card_Picture_Back", &data.Card_Picture_Back, "Face_Picture", &data.Face_Picture, "Sex", &data.Sex, "Nation", &data.Nation, "Birthday", &data.Birthday, "Address", &data.Address, "Sign_Organization", &data.Sign_Organization, "Limited_Date", &data.Limited_Date, "History", &data.History, "Phone", &data.Phone, "Remark", &data.Remark)
 	if err != nil {
 		return
 	}
-
+	if !function.ValidateCardNo(data.Card_No) {
+		err = service.NewError(service.ERR_MISSING_VALUE, "身份证格式哦！")
+		return
+	}
+	if data.Name == "" {
+		err = service.NewError(service.ERR_MISSING_VALUE, "参数不能为空哦！")
+		return
+	}
 	res, err := pest.UpdatePersonnel(&data)
 	if err != nil {
 		return
