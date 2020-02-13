@@ -7,7 +7,7 @@
         <personnel_id>人员id</personnel_id>
         <role selector-func="GetDefinitionData" selector-func-agrs="0,否,1,是" >是否户主</role>
         <relation_holder>户主关系</relation_holder>
-        <relation_together>户主关系</relation_together>
+        <relation_together>同住关系</relation_together>
         <nature>房屋性质</nature>
         <street>所属小区/街道</street>
         <street_no>所属行政区划代码</street_no>
@@ -18,6 +18,14 @@
         <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
         <name>人员姓名</name>
+        <occupation>职业</occupation>
+        <history>接触史</history>
+        <sex>人员性别</sex>
+        <nation>人员民族</nation>
+        <birthday>人员生日</birthday>
+        <personnel_address>人员身份证地址</personnel_address>
+        <sign_organization>人员身份证签发机关</sign_organization>
+        <limited_date>人员身份证有效日期</limited_date>
         <card_no>人员身份证号</card_no>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
@@ -79,6 +87,14 @@
         <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
         <personnel_name>人员姓名</personnel_name>
+        <occupation>职业</occupation>
+        <history>接触史</history>
+        <sex>人员性别</sex>
+        <nation>人员民族</nation>
+        <birthday>人员生日</birthday>
+        <personnel_address>人员身份证地址</personnel_address>
+        <sign_organization>人员身份证签发机关</sign_organization>
+        <limited_date>人员身份证有效日期</limited_date>
         <card_no>人员身份证号</card_no>
         <unit_name>公司名称</unit_name>
         <license_number>证件号</license_number>
@@ -103,6 +119,12 @@
         <card_picture_front >身份证正面照片</card_picture_front>
         <card_picture_back >身份证反面照片</card_picture_back>
         <face_picture >人脸照片</face_picture>
+        <sex>人员性别</sex>
+        <nation>人员民族</nation>
+        <birthday>人员生日</birthday>
+        <personnel_address>人员身份证地址</personnel_address>
+        <sign_organization>人员身份证签发机关</sign_organization>
+        <limited_date>人员身份证有效日期</limited_date>
         <history>接触史</history>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
