@@ -73,24 +73,24 @@
         <uid visibility="table-hidden">UID</uid>
         <house_id visibility="table-hidden">房子id</house_id>
         <unit_id visibility="table-hidden">公司id</unit_id>
-        <unit_name>公司名称</unit_name>
+        <unit_name>单位名称</unit_name>
         <personnel_name>人员姓名</personnel_name>
         <position>职位</position>
         <card_no>人员身份证号</card_no>
         <nature visibility="table-hidden">房屋性质</nature>
-        <card_picture_front >身份证正面照片</card_picture_front>
-        <card_picture_back >身份证反面照片</card_picture_back>
-        <face_picture >人脸照片</face_picture>
+        <card_picture_front visibility="table-hidden">身份证正面照片</card_picture_front>
+        <card_picture_back visibility="table-hidden">身份证反面照片</card_picture_back>
+        <face_picture visibility="table-hidden">人脸照片</face_picture>
         <occupation>职业</occupation>
-        <history>接触史</history>
+        <history visibility="table-hidden">接触史</history>
         <phone>手机号码</phone>
-        <remark>备注</remark>
+        <remark visibility="table-hidden">备注</remark>
         <sex>人员性别</sex>
-        <nation>人员民族</nation>
-        <birthday>人员生日</birthday>
-        <personnel_address>人员身份证地址</personnel_address>
-        <sign_organization>人员身份证签发机关</sign_organization>
-        <limited_date>人员身份证有效日期</limited_date>
+        <nation visibility="table-hidden">人员民族</nation>
+        <birthday visibility="table-hidden">人员生日</birthday>
+        <personnel_address visibility="table-hidden">人员身份证地址</personnel_address>
+        <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
+        <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <license_number visibility="table-hidden">证件号</license_number>
         <identification_number visibility="table-hidden">识别号</identification_number>
         <street>单位房屋所属小区/街道</street>

@@ -1,6 +1,6 @@
 var deleteHouse = function() {
     var value = $(this).parent().siblings('[name=uid]').data('value');
-    $.post("user/pest/DeleteHouse", {
+    $.post("base/pest/DeleteHouse", {
         Uid: value
     }, function(data) {
         // var jsonObject = JSON.parse(data);
@@ -18,7 +18,7 @@ var deleteHouse = function() {
 }
 var deleteUnit = function() {
     var value = $(this).parent().siblings('[name=uid]').data('value');
-    $.post("user/pest/DeleteUnit", {
+    $.post("base/pest/DeleteUnit", {
         Uid: value
     }, function(data) {
         // var jsonObject = JSON.parse(data);
@@ -36,7 +36,25 @@ var deleteUnit = function() {
 }
 var deletePersonnel = function() {
     var value = $(this).parent().siblings('[name=uid]').data('value');
-    $.post("user/pest/DeletePersonnel", {
+    $.post("base/pest/DeletePersonnel", {
+        Uid: value
+    }, function(data) {
+        // var jsonObject = JSON.parse(data);
+        if (data.status === "fail") {
+            alert(data.msg);
+            return false
+        }
+        if (data.status === "ok") {
+            if (data.res.deletestatus === 1) {
+                alert(data.res.msg);
+            }
+            location.href = location.href;
+        }
+    });
+}
+var deleteReport = function() {
+    var value = $(this).parent().siblings('[name=uid]').data('value');
+    $.post("base/pest/DeleteDailyReport", {
         Uid: value
     }, function(data) {
         // var jsonObject = JSON.parse(data);
@@ -62,7 +80,7 @@ var viewHousePersonnel = function() {
         complete: function() {
             $(".rt-edit").click(editUnit);
             $(".rt-delete").click(deleteUnit);
-            $(".rt-personnel").click(viewUnitPersonnel);
+            $(".rt-report").click(viewReport);
         }
     });
 }
@@ -105,3 +123,4 @@ var viewReport = function() {
 var editHouse = function() {}
 var editUnit = function() {}
 var editPersonnel = function() {}
+var editReport = function() {}
