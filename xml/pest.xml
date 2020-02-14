@@ -27,17 +27,15 @@
         <nation visibility="table-hidden">人员民族</nation>
         <birthday visibility="table-hidden">人员生日</birthday>
         <personnel_address visibility="table-hidden">人员身份证地址</personnel_address>
-        <sign_organization> visibility="table-hidden"人员身份证签发机关</sign_organization>
+        <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="uid">&lt;/span>
         </buttons>
         <pagerbuttons>
-            &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
-            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
-            &lt;/span>
         </pagerbuttons>
     </table>
     <table id="house_unit"
@@ -64,7 +62,7 @@
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
-            &lt;span class="glyphicon glyphicon-trash rt-user" title="查看人员" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-user rt-personnel" title="查看人员" data-args="uid">&lt;/span>
         </buttons>
         <pagerbuttons>
         </pagerbuttons>
@@ -105,7 +103,7 @@
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
-            &lt;span class="glyphicon glyphicon-user rt-personnel" title="查看人员" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="uid">&lt;/span>
         </buttons>
         <pagerbuttons>
         </pagerbuttons>
