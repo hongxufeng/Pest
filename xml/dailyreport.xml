@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tables>
+    <table id="daily_report_list"
+        name="daily_report_list" defaultorder="uid asc" >
+        <personnel_id visibility="table-hidden">人员id</personnel_id>
+        <uid visibility="table-hidden">UID</uid>
+        <time >上报时间</time>
+        <symptom >症状</symptom>
+        <hospitalized_flag selector-func="GetDefinitionData" selector-func-agrs="0,否,1,是">是否住院</hospitalized_flag>
+        <temperature formatter-r="$$::$$度">温度</temperature>
+        <touch_people >接触人</touch_people>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        </pagerbuttons>
+    </table>
+</tables>

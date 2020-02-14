@@ -41,7 +41,6 @@
 
     <!-- Page JS Plugins CSS go here -->
     <link rel="stylesheet" href="assets/css/reportingtool/ReportingTool.css">
-    <link rel="stylesheet" href="assets/plugins/select2/select2.min.css">
 
     <!-- OneUI CSS framework -->
     <link rel="stylesheet" id="css-main" href="assets/css/W.css">
@@ -201,6 +200,7 @@
                             <li>
                                 <a href="add_street.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">街道添加</span></a>
                             </li>
+
                             <li class="nav-main-heading"><span class="sidebar-mini-hide">房屋管理</span></li>
                             <li>
                                 <a href="house.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">房屋列表</span></a>
@@ -336,36 +336,10 @@
                                             <button type="button" data-toggle="block-option" data-action="close"><i class="si si-close"></i></button>
                                         </li>-->
                                 </ul>
-                                <h3 class="block-title text-primary">添加社区</h3>
+                                <h3 class="block-title text-primary">房屋列表</h3>
                             </div>
-                            <div id="table" class="block block-content rt-content">
-                                <form class="form-horizontal" autocomplete="off">
-                                    <div data-toggle="distpicker">
-                                        <div class="form-group"><label class="col-sm-3 control-label">所在省<span class="rt-glyphicon-color">:</span></label>
-                                            <div class="col-sm-6"><select class="form-control" id="province-select" name="province-select" data-province="河北省">
-                                        </select></div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-3 control-label">所在市<span class="rt-glyphicon-color">:</span></label>
-                                            <div class="col-sm-6"><select class="form-control" id="city-select" name="city-select" data-city="沧州市">
-                                        </select></div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-3 control-label">所在县/区<span class="rt-glyphicon-color">:</span></label>
-                                            <div class="col-sm-6"><select class="form-control" id="district-select" name="district-select" data-district="---- 选择区 ----" onchange="changestation()">
-                                        </select></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group"><label class="col-sm-3 control-label">所属派出所<span class="rt-glyphicon-color">:</span></label>
-                                        <div class="col-sm-6"><select class="form-control" id="station-select" name="station-select" data-district="---- 请选择 ----">
-                                            <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
-                                        </select></div>
-                                    </div>
-                                    <div class="form-group"><label class="col-sm-3 control-label">社区名称<span class="rt-glyphicon-color">:</span></label>
-                                        <div class="col-sm-6"><input id="community_name" name="community_name" type="text" class="form-control rt-form-control" data-toggle="modal" data-target="#modal-terms" placeholder="社区名称"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3  col-sm-6"><input type="button" onclick="addcommunity()" class="btn btn-primary form-control rt-submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交"></div>
-                                    </div>
-                                </form>
+                            <div id="table" class="block block-content">
+
                             </div>
                         </div>
                     </div>
@@ -389,9 +363,9 @@
     <script src="assets/js/core/jquery.min.js"></script>
     <script src="assets/js/W.js"></script>
     <script src="assets/js/core/Page.js"></script>
-    <script src="assets/plugins/distpicker/distpicker.js"></script>
-    <script src="assets/plugins/select2/select2.min.js"></script>
-    <script src="assets/js/pages/pages_add_community.js"></script>
+    <script src="assets/js/core/ReportingTool.js"></script>
+    <script src="assets/js/pages/pages_pest_common.js"></script>
+    <script src="assets/js/pages/pages_house.js"></script>
     <!-- Page JS Plugins + Page JS Code -->
 </body>
 
