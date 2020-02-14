@@ -1,4 +1,4 @@
-var DeleteHouse = function() {
+var deleteHouse = function() {
     var value = $(this).parent().siblings('[name=uid]').data('value');
     $.post("user/pest/DeleteHouse", {
         Uid: value
@@ -102,3 +102,6 @@ var viewReport = function() {
         }
     });
 }
+var editHouse = function() {}
+var editUnit = function() {}
+var editPersonnel = function() {}

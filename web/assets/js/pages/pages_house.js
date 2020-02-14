@@ -4,7 +4,7 @@ $(document).ready(function() {
         table: "house_area"
     });
     $(".rt-edit").click(editHouse);
-    $(".rt-delete").click(DeleteHouse);
+    $(".rt-delete").click(deleteHouse);
     $(".rt-personnel").click(viewHousePersonnel);
     $(".rt-unit").click(viewHouseUnit);
 });
