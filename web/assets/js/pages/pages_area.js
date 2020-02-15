@@ -1,12 +1,14 @@
 $(document).ready(function() {
     $("#table").rt({
         configFile: "area",
-        table: "area_list"
+        table: "area_list",
+        complete: function() {
+            $(".rt-qrcode").click(viewQr);
+            $(".rt-create").click(addOne);
+            $(".rt-edit").click(editThis);
+            $(".rt-delete").click(deleteThis);
+        }
     });
-    $(".rt-qrcode").click(viewQr);
-    $(".rt-create").click(addOne);
-    $(".rt-edit").click(editThis);
-    $(".rt-delete").click(deleteThis);
 });
 var viewQr = function() {
     var key = $(this).data('args');

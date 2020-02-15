@@ -1,10 +1,12 @@
 $(document).ready(function() {
     $("#table").rt({
         configFile: "user",
-        table: "user"
+        table: "user",
+        complete: function() {
+            $(".rt-delete").click(deleteUser);
+            $(".rt-create").click(createUser);
+        }
     });
-    $(".rt-delete").click(deleteUser);
-    $(".rt-create").click(createUser);
 });
 var createUser = function() {
     location.href = "register.html";

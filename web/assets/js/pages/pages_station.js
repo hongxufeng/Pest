@@ -1,11 +1,13 @@
 $(document).ready(function() {
     $("#table").rt({
         configFile: "area",
-        table: "station_list"
+        table: "station_list",
+        complete: function() {
+            $(".rt-create").click(addOne);
+            $(".rt-edit").click(editThis);
+            $(".rt-delete").click(deleteThis);
+        }
     });
-    $(".rt-create").click(addOne);
-    $(".rt-edit").click(editThis);
-    $(".rt-delete").click(deleteThis);
 });
 var addOne = function() {
     location.href = "add_station.html";

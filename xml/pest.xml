@@ -43,11 +43,11 @@
         <house_id visibility="table-hidden">房屋id</house_id>
         <uid visibility="table-hidden">UID</uid>
         <name search-type="true">公司名称</name>
-        <license_number>企业识别号</license_number>
-        <identification_number>企业识别号</identification_number>
-        <picture visibility="table-hidden">企业执照照片</picture>
-        <kind>公司种类</kind>
-        <scale>公司规模</scale>
+        <license_number>证件号码</license_number>
+        <identification_number visibility="table-hidden">组织机构代码</identification_number>
+        <picture visibility="table-hidden">证件照片</picture>
+        <kind selector-func="GetDefinitionData" selector-func-agrs="1,政府机关,2,事业单位,3,企业单位,4,个人商户,5,民间机构">公司种类</kind>
+        <scale selector-func="GetDefinitionData" selector-func-agrs="1,10人以下,2,10-50人,3,50-200人,4,200人以上">公司规模</scale>
         <tel>公司电话</tel>
         <bank_name visibility="table-hidden">开户行名称</bank_name>
         <bank_account visibility="table-hidden">开户行帐号</bank_account>
@@ -180,6 +180,7 @@
     <table id="house_area"
         name="house_area" defaultorder="uid asc" >
         <street>全称</street>
+        <street_no visibility="table-hidden">所属行政区划代码</street_no>
         <uid visibility="table-hidden">UID</uid>
         <nature visibility="table-hidden">房屋性质</nature>
         <address>详细地址</address>
