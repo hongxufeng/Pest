@@ -77,9 +77,10 @@ var viewHousePersonnel = function() {
         configFile: "pest",
         table: "house_personnel",
         query: query,
+        selector: false,
         complete: function() {
-            $(".rt-edit").click(editUnit);
-            $(".rt-delete").click(deleteUnit);
+            $(".rt-edit").click(editPersonnel);
+            $(".rt-delete").click(deletePersonnel);
             $(".rt-report").click(viewReport);
         }
     });
@@ -91,10 +92,11 @@ var viewHouseUnit = function() {
         configFile: "pest",
         table: "house_unit",
         query: query,
+        selector: false,
         complete: function() {
             $(".rt-edit").click(editUnit);
             $(".rt-delete").click(deleteUnit);
-            $(".rt-report").click(viewUnitPersonnel);
+            $(".rt-personnel").click(viewUnitPersonnel);
         }
     });
 }
@@ -105,6 +107,7 @@ var viewUnitPersonnel = function() {
         configFile: "pest",
         table: "unit_personnel",
         query: query,
+        selector: false,
         complete: function() {
             $(".rt-edit").click(editPersonnel);
             $(".rt-delete").click(deletePersonnel);
@@ -119,6 +122,7 @@ var viewReport = function() {
         configFile: "dailyreport",
         table: "daily_report_list",
         query: query,
+        selector: false,
         complete: function() {
             $(".rt-delete").click(deleteReport);
         }
@@ -130,7 +134,7 @@ var editHouse = function() {
     html += '<div class="form-group"><label class="col-sm-3 control-label">UID<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input readonly name="uid" type="text" class="form-control rt-form-control" placeholder="UID" value="' + $(this).parent().siblings('[name=uid]').data('value') + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">所属街道/小区编号<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input readonly name="street_no" type="text" class="form-control rt-form-control" placeholder="所属街道/小区编号" value="' + $(this).parent().siblings('[name=street_no]').data('value') + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">所属街道/小区<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input readonly name="street" type="text" class="form-control rt-form-control" placeholder="所属街道/小区" value="' + $(this).parent().siblings('[name=street]').data('value') + '"></div></div>';
-    html += '<div class="form-group"><label class="col-sm-3 control-label">房屋性质<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><div class="checkbox"><label for="nature"><input type="checkbox" name="nature" value="自住">自住</label><label for="nature"><input type="checkbox" name="nature" value="出租">出租</label><label for="nature"><input type="checkbox" name="nature" value="单位">单位</label><label for="nature"><input type="checkbox" name="nature" value="闲置">闲置</label><input type="checkbox" name="nature" value="废弃">废弃</label></div>"';
+    html += '<div class="form-group"><label class="col-sm-3 control-label">房屋性质<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><div class="checkbox"><label for="nature"><input type="checkbox" name="nature" value="自住">自住</label><label for="nature"><input type="checkbox" name="nature" value="出租">出租</label><label for="nature"><input type="checkbox" name="nature" value="单位">单位</label><label for="nature"><input type="checkbox" name="nature" value="闲置">闲置</label><label for="nature"><input type="checkbox" name="nature" value="废弃">废弃</label></div></div>"';
     html += '<div class="form-group"><label class="col-sm-3 control-label">详细地址<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input  name="address" type="text" class="form-control rt-form-control" placeholder="详细地址" value="' + $(this).parent().siblings('[name=address]').data('value') + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">常驻人口<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input  name="number" type="text" class="form-control rt-form-control" placeholder="常驻人口" value="' + $(this).parent().siblings('[name=number]').data('value') + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">备注<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input name="comment" type="text" class="form-control rt-form-control" placeholder="备注" value="' + $(this).parent().siblings('[name=comment]').data('value') + '"></div></div>';
