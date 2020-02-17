@@ -10,8 +10,10 @@ import (
 )
 
 type LoginSuccessData struct {
-	Auth   string `json:"auth"`
-	Avatar string `json:"avatar"`
+	Auth       string `json:"auth"`
+	Avatar     string `json:"avatar"`
+	Limit_Name string `json:"limit_name"`
+	Limit_ID   uint32 `json:"limit_id"`
 }
 
 type LoginFailData struct {
@@ -112,6 +114,9 @@ func CreateSuccessResp(ud *db.UserInfo) (res map[string]interface{}) {
 	var sdata LoginSuccessData
 	sdata.Auth = fmt.Sprintf("%d_%s", ud.Uid, function.Md5String(fmt.Sprintf("%d|%s", ud.Uid, ud.Password)))
 	sdata.Avatar = ud.Avatar
+	sdata.Limit_Name = ud.LimitName
+	sdata.Limit_ID = ud.LimitID
+
 	res["userdata"] = sdata
 	return
 }

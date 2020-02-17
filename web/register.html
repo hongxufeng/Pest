@@ -41,6 +41,7 @@
 
     <!-- OneUI CSS framework -->
     <link rel="stylesheet" id="css-main" href="assets/css/W.css">
+    <link rel="stylesheet" href="assets/plugins/select2/select2.min.css">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <link rel="stylesheet" id="css-login" href="assets/css/pages/pages_login.css">
@@ -116,7 +117,73 @@
                                             <option value="0">管理人员</option>
                                             <option value="1">工作人员</option>
                                         </select>
-                                        <label for="register-select">权限</label>
+                                        <label for="register-power">角色</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary">
+                                        <select class="js-register form-control register-hidden-accessible " id="register-limit-name" name="register-limit-name" style="width: 100%;" data-placeholder="Choose one.." tabindex="-1" aria-hidden="true">
+                                            <option></option>
+                                            <!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                            <option value="all">全部</option>
+                                            <option value="province_no">省</option>
+                                            <option value="city_no">市</option>
+                                            <option value="district_no">县/区</option>
+                                            <option value="station_no">派出所</option>
+                                            <option value="community_no">社区</option>
+                                            <option value="street_no">街道/小区</option>
+                                        </select>
+                                        <label for="register-limit-name">权限</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-toggle="distpicker">
+                                <div id="province" class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary"><select class="form-control" id="province-select" name="province-select" data-province="河北省">
+                                </select>
+                                            <label for="register-limit-id">所在省</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="city" class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary"><select class="form-control" id="city-select" name="city-select" data-city="沧州市">
+                                </select><label for="register-limit-id">所在市</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="district" class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="form-material form-material-primary"><select class="form-control" id="district-select" name="district-select" data-district="---- 选择区 ----" onchange="changestation()">
+                                </select><label for="register-limit-id">所在县/区</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="station" class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary"><select class="form-control" id="station-select" name="station-select" data-station="---- 请选择 ----" onchange="changecommunity()">
+                                    <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
+                                </select><label for="register-limit-id">所属派出所</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="community" class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary"><select class="form-control" id="community-select" name="community-select" data-community="---- 请选择 ----">
+                                    <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
+                                </select><label for="register-limit-id">所属社区</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="street" class="form-group">
+                                <div class="col-xs-12">
+                                    <div class="form-material form-material-primary"><select class="form-control" id="street-select" name="street-select" data-street="---- 请选择 ----">
+                                    <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
+                                </select><label for="register-limit-id">所属街道/小区</label>
                                     </div>
                                 </div>
                             </div>
@@ -189,9 +256,12 @@
 
     <!-- Page JS Plugins -->
     <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="assets/plugins/distpicker/distpicker.js"></script>
+    <script src="assets/plugins/select2/select2.min.js"></script>
 
     <!-- Page JS Code -->
     <script src="assets/js/pages/pages_register.js"></script>
+    <script src="assets/js/pages/pages_area_common.js"></script>
 </body>
 
 </html>

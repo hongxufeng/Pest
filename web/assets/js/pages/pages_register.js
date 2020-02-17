@@ -39,6 +39,9 @@ var BasePagesRegister = function() {
                 },
                 'register-power': {
                     required: true,
+                },
+                'register-limit-name': {
+                    required: true,
                 }
             },
             messages: {
@@ -56,7 +59,8 @@ var BasePagesRegister = function() {
                     minlength: '密码长度至少为6！',
                     equalTo: '请输入和上面相同的密码！'
                 },
-                'register-power': { required: '请选择权限！' }
+                'register-power': { required: '请选择角色！' },
+                'register-limit-name': { required: '请选择权限！' }
             }
         });
     };
@@ -70,7 +74,78 @@ var BasePagesRegister = function() {
 }();
 
 // Initialize when page loads
-jQuery(function() { BasePagesRegister.init(); });
+jQuery(function() {
+    BasePagesRegister.init();
+    $("#station-select").select2();
+    $("#community-select").select2();
+    $("#street-select").select2();
+    $('#province').addClass("hidden");
+    $('#city').addClass("hidden");
+    $('#district').addClass("hidden");
+    $('#station').addClass("hidden");
+    $('#community').addClass("hidden");
+    $('#street').addClass("hidden");
+    $("#register-limit-name").change(function() {
+        var limit_name = $("#register-limit-name option:selected").val();
+        switch (limit_name) {
+            case "province_no":
+                $('#province').removeClass("hidden");
+                $('#city').addClass("hidden");
+                $('#district').addClass("hidden");
+                $('#station').addClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "city_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').addClass("hidden");
+                $('#station').addClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "district_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').removeClass("hidden");
+                $('#station').addClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "station_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').removeClass("hidden");
+                $('#station').removeClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "community_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').removeClass("hidden");
+                $('#station').removeClass("hidden");
+                $('#community').removeClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "street_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').removeClass("hidden");
+                $('#station').removeClass("hidden");
+                $('#community').removeClass("hidden");
+                $('#street').removeClass("hidden");
+                break;
+            default:
+                $('#province').addClass("hidden");
+                $('#city').addClass("hidden");
+                $('#district').addClass("hidden");
+                $('#station').addClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+        }
+    })
+});
 
 $.validator.setDefaults({
     submitHandler: function() {
@@ -78,6 +153,37 @@ $.validator.setDefaults({
         var password = md5($("#register-password").val());
         var nickname = $("#register-nickname").val();
         var power = $("#register-power option:selected").val();
+        var limit_name = $("#register-limit-name option:selected").val();
+        var limit_id;
+        switch (limit_name) {
+            case "all":
+                limit_id = 0;
+                break;
+            case "province_no":
+                limit_id = $('#province-select option:selected').data('code');
+                break;
+            case "city_no":
+                limit_id = $('#city-select option:selected').data('code');
+                break;
+            case "district_no":
+                limit_id = $('#district-select option:selected').data('code');
+                break;
+            case "station_no":
+                limit_id = $('#station-select option:selected').data('code');
+                break;
+            case "community_no":
+                limit_id = $('#community-select option:selected').data('code');
+                break;
+            case "street_no":
+                limit_id = $('#street-select option:selected').data('code');
+                break;
+            default:
+                alert("权限错误!");
+        }
+        if (limit_id.length == 0) {
+            alert("请选择详细权限！");
+            return false;
+        }
         var postData = {
             method: "POST",
             url: "user/user/UserRegister",
@@ -85,7 +191,9 @@ $.validator.setDefaults({
                 username: username,
                 password: password,
                 nickname: nickname,
-                power: power
+                power: power,
+                limit_name: limit_name,
+                limit_id: limit_id
             },
             success: function(data) {
                 //已经是json对象无需解析

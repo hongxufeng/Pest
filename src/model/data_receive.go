@@ -18,10 +18,12 @@ type LoginData struct {
 	Password string
 }
 type RegisterData struct {
-	Username string
-	Password string
-	Nickname string
-	Power    int
+	Username   string
+	Password   string
+	Nickname   string
+	Power      int
+	Limit_Name string
+	Limit_ID   int
 }
 type CRUDSettings struct {
 	Cmd        string

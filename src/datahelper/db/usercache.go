@@ -25,6 +25,8 @@ type UserInfo struct {
 	Password        string `json:"password"`
 	Avatar          string `json:"avatar"`
 	UserAgent       string `json:"user_agent"`
+	LimitName       string `json:"limit_name"`
+	LimitID         uint32 `json:"limit_id"`
 	CacheUpdateTime int64  `json:"cache_update_time"` //上次缓存更新时间
 }
 
@@ -67,6 +69,8 @@ func SetUserInfoCache(uid uint32) (userinfo *UserInfo, err error) {
 			userinfo.Password = model.User_W_Password
 			userinfo.Avatar = model.User_W_Avatar
 			userinfo.UserAgent = model.User_W_UserAgent
+			userinfo.LimitName = model.User_W_LimitName
+			userinfo.LimitID = model.User_W_LimitID
 		}
 	}
 	bts, err := json.Marshal(userinfo)

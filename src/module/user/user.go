@@ -74,7 +74,7 @@ func (module *UserModule) User_UserRegister(req *service.HttpRequest, result map
 		return
 	}
 	var registerData model.RegisterData
-	err = req.ParseEncodeUrl(false, "username", &registerData.Username, "password", &registerData.Password, "nickname", &registerData.Nickname, "power", &registerData.Power)
+	err = req.ParseEncodeUrl(false, "username", &registerData.Username, "password", &registerData.Password, "nickname", &registerData.Nickname, "power", &registerData.Power, "limit_name", &registerData.Limit_Name, "limit_id", &registerData.Limit_ID)
 	if err != nil {
 		return
 	}
@@ -101,7 +101,11 @@ func (module *UserModule) User_UserRegister(req *service.HttpRequest, result map
 		return
 	}
 	if registerData.Power < 0 {
-		err = service.NewError(service.ERR_MISSING_VALUE, "权限输入错误哦！")
+		err = service.NewError(service.ERR_INVALID_PARAM, "角色输入错误哦！")
+		return
+	}
+	if registerData.Limit_Name != model.Limit_All || registerData.Limit_Name != model.Limit_City || registerData.Limit_Name != model.Limit_Community || registerData.Limit_Name != model.Limit_District || registerData.Limit_Name != model.Limit_Province || registerData.Limit_Name != model.Limit_Station || registerData.Limit_Name != model.Limit_Street {
+		err = service.NewError(service.ERR_INVALID_PARAM, "权限输入错误哦！")
 		return
 	}
 	userreg, err := user.CreateUser(&registerData)
