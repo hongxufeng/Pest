@@ -28,16 +28,11 @@
 
 .form-control.rt-search-txt {
     display: inline-block;
-    padding: 6px 26px 6px 6px;
-    width: 170px
+    width: 150px
 }
 
 .form-control.rt-search-txt.date {
     padding: 4px;
-}
-
-.rt-search>div>div {
-    width: 265px
 }
 
 .rt-search-txt.date,
@@ -88,7 +83,12 @@
 
 .rt-search>div>div {
     display: inline-block;
-    margin: 0px 0px 16px 12px;
+    margin: 0px 0px 16px 0px;
+}
+
+.rt-search>div>div>div {
+    display: inline;
+    margin: 0px 0px 16px 0px;
 }
 
 .rt-search>div>.rt-search-adv {

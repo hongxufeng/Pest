@@ -102,7 +102,7 @@ func BuildTableHead(req *service.HttpRequest, param *Param, settings *model.Sett
 	}
 	//fmt.Println("size:", size)
 	for i := 0; i < size; i++ {
-		if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 {
+		if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 			continue
 		}
 		err = BuildSearchingBlock(req, &param.ColConfigDict[i], searchbuf)
@@ -177,7 +177,7 @@ func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, size
 		//fmt.Println(s)
 		//fmt.Println(function.PArrayToSArray(s))
 		for i := 0; i < size; i++ {
-			if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 {
+			if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 				continue
 			}
 			if param.ColConfigDict[i].HasPower && param.Power >= param.ColConfigDict[i].Power {

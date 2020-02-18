@@ -46,7 +46,7 @@ type ColumnConfig struct {
 	SelectorFunc     string //为difinition文件夹下difinition.go的方法名，通过反射调用，和SelectorFuncAgrs，结合使用，可自定义selector的显示
 	SelectorFuncAgrs string //如"0,管理员,1,Geust"，表是如果数据库的value为0为显示为管理员，value为1，则显示为Geust
 	SelectorText     string
-	Visibility       string //暂时有效值table-none,table-hidden
+	Visibility       string //暂时有效值table-none,table-hidden,sql-none
 	//Passedcol []string
 }
 type TableConfig struct {
@@ -63,6 +63,7 @@ type TableConfig struct {
 	HasPower         bool
 	BtnCreateText    string
 	HasBtnCreateText bool
+	HasDistinct      bool
 	//HasCache         bool
 	//Cache            string
 }

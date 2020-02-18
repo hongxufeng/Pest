@@ -77,6 +77,10 @@ func New(uid uint32, configFile string, tableID string) (param *Param, err error
 			tableconfig.HasExcel = true
 			tableconfig.Excel = excel.Value
 		}
+		distinct := table.SelectAttr("distinct")
+		if distinct != nil && distinct.Value == "true" {
+			tableconfig.HasDistinct = true
+		}
 	} else {
 		err = service.NewError(service.ERR_XML_TABLE_LACK, "您配置的XML表格是不在的啊！")
 		return
@@ -242,7 +246,7 @@ func (param *Param) TableJson(req *service.HttpRequest, settings *model.Settings
 		return
 	}
 
-	countint, err := GetTableCount(req, param, "*")
+	countint, err := GetTableCount(req, param)
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +300,7 @@ func (param *Param) Table(req *service.HttpRequest, settings *model.Settings) (r
 		return
 	}
 
-	count, err := GetTableCount(req, param, "*")
+	count, err := GetTableCount(req, param)
 	if err != nil {
 		return nil, err
 	}

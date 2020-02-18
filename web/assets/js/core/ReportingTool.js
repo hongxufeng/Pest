@@ -174,21 +174,22 @@
                       <div class=\"rt-search rt-" + settings.style + "\" style=\"display:none\"></div>\
                       <div class=\"rt-body rt-" + settings.style + "\"></div>");
                     if (settings.searchBar) {
-                        if (settings.searchBar === true) {
-                            if (jsonObject.search) {
-                                if (settings.style === "table") {
+                        if (settings.style === "table") {
+                            if (settings.searchBar === true) {
+                                if (jsonObject.search) {
                                     var rtSearch = _this.find(".rt-search");
                                     rtSearch.html(tableSearcher);
                                     rtSearch.find(".rt-search-cdts").html(jsonObject.search);
                                     rtSearch.css("display", "block");
                                 }
-                            }
-                        } else {
-                            if (settings.style === "table") {
+                            } else {
                                 var rtSearch = _this.find(".rt-search");
                                 rtSearch.html(tableSearcher);
                                 rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                                 rtSearch.css("display", "block");
+                                if (jsonObject.search) {
+                                    rtSearch.find(".rt-search-cdts").append(jsonObject.search);
+                                }
                             }
                         }
                     }
@@ -320,21 +321,22 @@
                 }
                 var jsonObject = data.res;
                 if (settings.searchBar) {
-                    if (settings.searchBar === true) {
-                        if (jsonObject.search) {
-                            if (settings.style === "table") {
+                    if (settings.style === "table") {
+                        if (settings.searchBar === true) {
+                            if (jsonObject.search) {
                                 var rtSearch = _this.find(".rt-search");
                                 rtSearch.html(tableSearcher);
                                 rtSearch.find(".rt-search-cdts").html(jsonObject.search);
                                 rtSearch.css("display", "block");
                             }
-                        }
-                    } else {
-                        if (settings.style === "table") {
+                        } else {
                             var rtSearch = _this.find(".rt-search");
                             rtSearch.html(tableSearcher);
                             rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                             rtSearch.css("display", "block");
+                            if (jsonObject.search) {
+                                rtSearch.find(".rt-search-cdts").append(jsonObject.search);
+                            }
                         }
                     }
                 }

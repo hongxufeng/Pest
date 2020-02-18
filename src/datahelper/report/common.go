@@ -137,20 +137,16 @@ func AppendWhere(req *service.HttpRequest, param *Param, buf *bytes.Buffer) erro
 	}
 	return nil
 }
-
-func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Settings) (sql string, err error) {
-	if param.TableConfig.HasPower && param.Power > param.TableConfig.Power {
-		err = service.NewError(service.ERR_POWER_DENIED, "您的用户权限不足啊！")
-		return
+func AppendSelect(param *Param, buf *bytes.Buffer) error {
+	if param.TableConfig.HasDistinct {
+		buf.WriteString("distinct ")
 	}
-	var buf bytes.Buffer
-	buf.WriteString("select ")
 	var size = len(param.ColConfigDict)
 	if size == 0 {
-		return buf.String(), service.NewError(service.ERR_XML_ATTRIBUTE_LACK, "您至少需要配置一项XML中的列属性啊！")
+		return service.NewError(service.ERR_XML_ATTRIBUTE_LACK, "您至少需要配置一项XML中的列属性啊！")
 	}
 	for i := 0; i < size; i++ {
-		if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" {
+		if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || param.ColConfigDict[i].Visibility == "sql-none" {
 			continue
 		}
 		if i != 0 {
@@ -165,9 +161,22 @@ func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Setti
 			buf.WriteString(param.ColConfigDict[i].Tag)
 		}
 	}
+	return nil
+}
+
+func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Settings) (sql string, err error) {
+	if param.TableConfig.HasPower && param.Power > param.TableConfig.Power {
+		err = service.NewError(service.ERR_POWER_DENIED, "您的用户权限不足啊！")
+		return
+	}
+	var buf bytes.Buffer
+	buf.WriteString("select ")
+	err = AppendSelect(param, &buf)
+	if err != nil {
+		return
+	}
 	buf.WriteString(" from ")
 	buf.WriteString(param.TableConfig.Name)
-
 	err = AppendWhere(req, param, &buf)
 	if err != nil {
 		return
@@ -193,25 +202,9 @@ func BuildQueryThisSQL(req *service.HttpRequest, param *Param, settings *model.C
 	}
 	var buf bytes.Buffer
 	buf.WriteString("select ")
-	var size = len(param.ColConfigDict)
-	if size == 0 {
-		return buf.String(), service.NewError(service.ERR_XML_ATTRIBUTE_LACK, "您至少需要配置一项XML中的列属性啊！")
-	}
-	for i := 0; i < size; i++ {
-		if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || param.ColConfigDict[i].Visibility == "table-none" {
-			continue
-		}
-		if i != 0 {
-			buf.WriteString(",")
-		}
-		if i == 1 {
-			buf.WriteString(param.ColConfigDict[i].Tag)
-		} else {
-			buf.WriteString("COALESCE (")
-			buf.WriteString(param.ColConfigDict[i].Tag)
-			buf.WriteString(", '') AS ")
-			buf.WriteString(param.ColConfigDict[i].Tag)
-		}
+	err = AppendSelect(param, &buf)
+	if err != nil {
+		return
 	}
 	buf.WriteString(" from ")
 	buf.WriteString(param.TableConfig.Name)
@@ -227,6 +220,13 @@ func GetSelectQuery(hasWhere bool, req *service.HttpRequest, param *Param, field
 	buf.WriteString("select ")
 	buf.WriteString(fields)
 	buf.WriteString(" from ")
+	buf.WriteString("(")
+	buf.WriteString("select ")
+	err = AppendSelect(param, &buf)
+	if err != nil {
+		return
+	}
+	buf.WriteString(" from ")
 	buf.WriteString(param.TableConfig.Name)
 	if hasWhere {
 		err = AppendWhere(req, param, &buf)
@@ -234,13 +234,14 @@ func GetSelectQuery(hasWhere bool, req *service.HttpRequest, param *Param, field
 			return
 		}
 	}
+	buf.WriteString(") as list")
 	query = buf.String()
 	//fmt.Println(query)
 	return
 }
 
-func GetTableCount(req *service.HttpRequest, param *Param, fields string) (count int, err error) {
-	query, _ := GetSelectQuery(true, req, param, "count("+fields+")")
+func GetTableCount(req *service.HttpRequest, param *Param) (count int, err error) {
+	query, _ := GetSelectQuery(true, req, param, "count(*)")
 	result, err := db.Query(query)
 	if err != nil {
 		return
