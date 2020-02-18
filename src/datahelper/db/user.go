@@ -54,14 +54,14 @@ func GetUidbyName(name string) (uid uint32, err error) {
 }
 func GetUserInfobyDB(uid uint32) (*UserInfo, error) {
 	userinfo := new(UserInfo)
-	query := "SELECT uid,username,nickname,password,salt,state,power,avatar,user_agent,limit_name,limit_id FROM " + userlist + " WHERE uid=? limit 0,1"
+	query := "SELECT uid,username,nickname,password,salt,state,power,avatar,limit_name,limit_id,user_agent FROM " + userlist + " WHERE uid=? limit 0,1"
 	result, e := MysqlMain.Query(query, uid)
 	if e != nil {
 		return userinfo, e
 	}
 	defer result.Close()
 	if result.Next() {
-		e = result.Scan(&userinfo.Uid, &userinfo.UserName, &userinfo.NickName, &userinfo.Password, &userinfo.Salt, &userinfo.State, &userinfo.Power, &userinfo.Avatar, &userinfo.UserAgent, &userinfo.LimitName, &userinfo.LimitID)
+		e = result.Scan(&userinfo.Uid, &userinfo.UserName, &userinfo.NickName, &userinfo.Password, &userinfo.Salt, &userinfo.State, &userinfo.Power, &userinfo.Avatar, &userinfo.LimitName, &userinfo.LimitID, &userinfo.UserAgent)
 	} else {
 		e = errors.New("您输入的用户未找到呢！")
 	}

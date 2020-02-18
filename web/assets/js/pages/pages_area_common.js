@@ -1,6 +1,7 @@
 var changestation = function() {
     var district_no = $('#district-select option:selected').data('code');
-    var url = "base/report/GetTableJson?page=1&rows=100&district_no=" + district_no
+    var url = "base/report/GetTableJson?page=1&rows=100&district_no=" + district_no;
+    $.ajaxSettings.async = false;
     $.post(url, {
             table: "station_list",
             configFile: "area"
@@ -34,7 +35,8 @@ var changestation = function() {
 }
 var changecommunity = function() {
     var station_no = $('#station-select option:selected').val();
-    var url = "base/report/GetTableJson?page=1&rows=100&station_no=" + station_no
+    var url = "base/report/GetTableJson?page=1&rows=100&station_no=" + station_no;
+    $.ajaxSettings.async = false;
     $.post(url, {
             table: "community_station",
             configFile: "area"
@@ -66,7 +68,8 @@ var changecommunity = function() {
 }
 var changestreet = function() {
     var community_no = $('#community-select option:selected').val();
-    var url = "base/report/GetTableJson?page=1&rows=100&community_no=" + community_no
+    var url = "base/report/GetTableJson?page=1&rows=100&community_no=" + community_no;
+    $.ajaxSettings.async = false;
     $.post(url, {
             table: "area_list",
             configFile: "area"

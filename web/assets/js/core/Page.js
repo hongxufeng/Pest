@@ -1,11 +1,8 @@
 var BasePagesInit = function() {
     var initPage = function() {
         if (Cookies.get('avatar') == undefined) {
-            if (confirm("您未进行登录，并不能获取数据哦！")) {
-                window.location.href = "login.html";
-            } else {
-                return false;
-            }
+            alert("您未进行登录，并不能获取数据哦！");
+            window.location.href = "login.html";
         } else {
             // alert(decodeURI(Cookies.get("avatar")))
             $("[alt=\"Avatar\"]").attr("src", decodeURI(Cookies.get("avatar")));

@@ -163,7 +163,7 @@
                 success: function(data) {
                     if (data.status === "fail") {
                         alert(data.msg);
-                        location.href = location.pathname;
+                        return false;
                     }
                     var jsonObject = data.res;
                     _this.addClass("rt-content");
@@ -173,15 +173,22 @@
                       <div class=\"rt-selector\"></div>\
                       <div class=\"rt-search rt-" + settings.style + "\" style=\"display:none\"></div>\
                       <div class=\"rt-body rt-" + settings.style + "\"></div>");
-                    if (settings.searchBar === true) {
-                        var rtSearch = _this.find(".rt-search");
-                        if (settings.style != "tree") {
-                            rtSearch.html(tableSearcher);
-                            rtSearch.find(".rt-search-cdts").html(jsonObject.search);
+                    if (settings.searchBar) {
+                        if (settings.searchBar === true) {
                             if (jsonObject.search) {
+                                if (settings.style === "table") {
+                                    var rtSearch = _this.find(".rt-search");
+                                    rtSearch.html(tableSearcher);
+                                    rtSearch.find(".rt-search-cdts").html(jsonObject.search);
+                                    rtSearch.css("display", "block");
+                                }
+                            }
+                        } else {
+                            if (settings.style === "table") {
+                                var rtSearch = _this.find(".rt-search");
+                                rtSearch.html(tableSearcher);
+                                rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                                 rtSearch.css("display", "block");
-                            } else {
-                                rtSearch.css("display", "none");
                             }
                         }
                     }
@@ -309,15 +316,24 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
-                if (settings.searchBar === true) {
-                    if (jsonObject.search) {
+                if (settings.searchBar) {
+                    if (settings.searchBar === true) {
+                        if (jsonObject.search) {
+                            if (settings.style === "table") {
+                                var rtSearch = _this.find(".rt-search");
+                                rtSearch.html(tableSearcher);
+                                rtSearch.find(".rt-search-cdts").html(jsonObject.search);
+                                rtSearch.css("display", "block");
+                            }
+                        }
+                    } else {
                         if (settings.style === "table") {
                             var rtSearch = _this.find(".rt-search");
                             rtSearch.html(tableSearcher);
-                            rtSearch.find(".rt-search-cdts").html(jsonObject.search);
+                            rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                             rtSearch.css("display", "block");
                         }
                     }
@@ -368,6 +384,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
+                    return false;
                     //location.href = location.pathname;
                 }
                 var jsonObject = data.res;
@@ -431,7 +448,7 @@
                     // var jsonObject = JSON.parse(data);
                     if (data.status === "fail") {
                         alert(data.msg);
-                        location.href = location.pathname;
+                        return false;
                     }
                     var jsonObject = data.res;
                     childtree.append(jsonObject.body);
@@ -471,7 +488,7 @@
             }, function(data) {
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 // var jsonObject = JSON.parse(data);
@@ -490,7 +507,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 for (var i = 0; i < jsonObject.length; i++) {
@@ -537,7 +554,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 $("#" + globalVars.tableID).html(jsonObject.body);
@@ -557,7 +574,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 $("#" + globalVars.tableID).html(jsonObject.body);
@@ -577,7 +594,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 $("#" + globalVars.tableID).html(jsonObject.body);
@@ -597,7 +614,7 @@
                 // var jsonObject = JSON.parse(data);
                 if (data.status === "fail") {
                     alert(data.msg);
-                    location.href = location.pathname;
+                    return false;
                 }
                 var jsonObject = data.res;
                 $("#" + globalVars.tableID).html(jsonObject.body);

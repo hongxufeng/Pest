@@ -84,16 +84,28 @@ $.validator.setDefaults({
                     if (Cookies.get('auth') != undefined) {
                         Cookies.remove('auth');
                         Cookies.remove('avatar');
+                        Cookies.remove('limit_name');
+                        Cookies.remove('limit_id');
                     }
                     //写cookie
                     if ($("#login-remember-me").checked === false) {
                         Cookies.set('auth', data.res.userdata.auth);
                         Cookies.set('avatar', data.res.userdata.avatar);
+                        Cookies.set('limit_name', data.res.userdata.limit_name);
+                        Cookies.set('limit_id', data.res.userdata.limit_id);
                     } else {
                         Cookies.set('auth', data.res.userdata.auth, { expires: 90 });
                         Cookies.set('avatar', data.res.userdata.avatar, { expires: 90 });
+                        Cookies.set('limit_name', data.res.userdata.limit_name, { expires: 90 });
+                        Cookies.set('limit_id', data.res.userdata.limit_id, { expires: 90 });
                     }
-                    window.location.href = "area.html";
+                    switch (data.res.userdata.limit_id) {
+                        case "all":
+                            window.location.href = "house.html";
+                            break;
+                        default:
+                            window.location.href = "houselimit.html";
+                    }
                 } else {
                     failureAnimation(data.res.faildata.msg);
                     return false;
