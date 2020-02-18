@@ -236,6 +236,7 @@
         <phone>手机号码</phone>
         <remark visibility="table-hidden">备注</remark>
         <history visibility="table-hidden">接触史</history>
+        <street_no visibility="sql-none">街道/小区id</street_no>
         <street_name visibility="sql-none">街道/小区名称</street_name>
         <community_name visibility="sql-none">社区名称</community_name>
         <station_name visibility="sql-none">派出所名称</station_name>
