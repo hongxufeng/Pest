@@ -128,6 +128,12 @@ func AppendWhere(req *service.HttpRequest, param *Param, buf *bytes.Buffer) erro
 			buf.WriteString("\"")
 			buf.WriteString(v)
 			buf.WriteString("\"")
+			buf.WriteString(" or ")
+			buf.WriteString(colconfig.Tag)
+			buf.WriteString(" like ")
+			buf.WriteString("\"%")
+			buf.WriteString(v)
+			buf.WriteString("%\"")
 		}
 		buf.WriteString(")")
 		buf.WriteString(" and ")
