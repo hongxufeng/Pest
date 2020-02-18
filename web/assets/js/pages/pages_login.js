@@ -99,7 +99,7 @@ $.validator.setDefaults({
                         Cookies.set('limit_name', data.res.userdata.limit_name, { expires: 90 });
                         Cookies.set('limit_id', data.res.userdata.limit_id, { expires: 90 });
                     }
-                    switch (data.res.userdata.limit_id) {
+                    switch (data.res.userdata.limit_name) {
                         case "all":
                             window.location.href = "house.html";
                             break;

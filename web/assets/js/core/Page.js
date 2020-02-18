@@ -16,8 +16,14 @@ var BasePagesInit = function() {
         }
     };
 }();
-
-// Initialize when page loaded
+var loginout = function() {
+        Cookies.remove('auth');
+        Cookies.remove('avatar');
+        Cookies.remove('limit_name');
+        Cookies.remove('limit_id');
+        location.href = "login.html";
+    }
+    // Initialize when page loaded
 $(document).ready(function() {
     BasePagesInit.init();
 });
