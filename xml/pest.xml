@@ -310,6 +310,7 @@
         <house_id visibility="table-hidden">房屋id</house_id>
         <uid visibility="table-hidden">UID</uid>
         <unit_name search-type="true">公司名称</unit_name>
+        <unit_id visibility="table-hidden">单位id</unit_id>
         <street>单位房屋所属小区/街道</street>
         <structure_name>单位结构</structure_name>
         <structure_id visibility="table-hidden">结构ID</structure_id>
