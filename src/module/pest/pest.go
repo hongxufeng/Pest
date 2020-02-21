@@ -398,6 +398,19 @@ func (module *PestModule) Base_DeleteStructure(req *service.HttpRequest, result 
 	result["res"] = res
 	return
 }
+func (module *PestModule) Base_AddRelationPersonnelStructure(req *service.HttpRequest, result map[string]interface{}) (err error) {
+	var data model.StructurePersonnelData
+	err = req.ParseEncodeUrl(false, "Structure_ID", &data.Structure_ID, "Personnel_ID", &data.Personnel_ID, "Structure_Position", &data.Structure_Position)
+	if err != nil {
+		return
+	}
+	res, err := pest.AddRelationStructurePersonnel(&data)
+	if err != nil {
+		return
+	}
+	result["res"] = res
+	return
+}
 func (module *PestModule) Base_UpdateRelationPersonnelStructure(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.StructurePersonnelData
 	err = req.ParseEncodeUrl(false, "Structure_ID", &data.Structure_ID, "Personnel_ID", &data.Personnel_ID, "Structure_Position", &data.Structure_Position)
