@@ -269,7 +269,7 @@ func ExecDeleteHouse(uid int) (err error) {
 	return
 }
 func ExecDeleteUnit(uid int) (err error) {
-	query := "delete unit_list,relation_unit_personnel from unit_list left join relation_unit_personnel on relation_unit_personnel.unit_id=unit_list.uid where unit_list.uid=?"
+	query := "delete unit_list,relation_unit_personnel,structure_list,relation_structure_personnel from unit_list left join relation_unit_personnel on relation_unit_personnel.unit_id=unit_list.uid left join structure_list on structure_list.unit_id=unit_list.uid left join relation_structure_personnel on relation_structure_personnel.structure_id=structure_list.uid where unit_list.uid=?"
 	err = Exec(query, uid)
 	if err != nil {
 		return
