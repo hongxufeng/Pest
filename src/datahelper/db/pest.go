@@ -75,6 +75,25 @@ func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
 		return false, nil
 	}
 }
+func CheckPersonnelStructure(param1 int, param2 int) (bool, error) {
+	var count int
+	query := "SELECT Count(*) FROM relation_structure_personnel WHERE structure_id=? and personnel_id=?"
+	result, e := MysqlMain.Query(query, param1, param2)
+	if e != nil {
+		return true, e
+	}
+	defer result.Close()
+	if result.Next() {
+		e = result.Scan(&count)
+	} else {
+		return true, nil
+	}
+	if count > 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
 func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
 	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,creator_card_no,create_time) VALUES (?,?,?,?,?,?,?,?)"
 	uid, err = Insert(query, data.Nature, data.Street, data.Street_No, data.Address, data.Number, data.Comment, data.Creator_Card_No, time.Now().UnixNano())
@@ -88,8 +107,8 @@ func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
 	return
 }
 func ExecCreateUnit(data *model.UnitData) (uid int64, err error) {
-	query := "INSERT INTO unit_list (name,house_id,license_number,identification_number,picture,kind,scale,tel,bank_name,bank_account,comment,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
-	uid, err = Insert(query, data.Name, data.House_ID, data.License_Number, data.Identification_Number, data.Picture, data.Kind, data.Scale, data.Tel, data.Bank_Name, data.Bank_Account, data.Comment, time.Now().UnixNano())
+	query := "INSERT INTO unit_list (name,house_id,license_number,identification_number,picture,kind,scale,tel,bank_name,bank_account,comment,creator_card_no,create_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
+	uid, err = Insert(query, data.Name, data.House_ID, data.License_Number, data.Identification_Number, data.Picture, data.Kind, data.Scale, data.Tel, data.Bank_Name, data.Bank_Account, data.Comment, data.Creator_Card_No, time.Now().UnixNano())
 	if err != nil {
 		return 0, err
 	}
@@ -283,5 +302,65 @@ func ExecDeleteDailyReport(uid int) (err error) {
 		return
 	}
 	err = DelTableCache(model.XML_Table_Daily_Report)
+	return
+}
+func ExecCreateStructure(data *model.StructureData) (uid int64, err error) {
+	query := "INSERT INTO structure_list (parent_id,unit_id,structure_name,structure_comment,create_time) VALUES (?,?,?,?,?)"
+	uid, err = Insert(query, data.Parent_ID, data.Unit_ID, data.Structure_Name, data.Structure_Comment, time.Now().UnixNano())
+	if err != nil {
+		return 0, err
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	if err != nil {
+		return 0, err
+	}
+	return
+}
+func ExecUpdateStructure(data *model.StructureData) (err error) {
+	query := "update structure_list set structure_name=?,structure_comment=? where uid=?"
+	err = Exec(query, data.Structure_Name, data.Structure_Comment, data.Uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeleteStructure(uid int) (err error) {
+	query := "delete structure_list,relation_structure_personnel from structure_list left join relation_structure_personnel on relation_structure_personnel.structure_id=structure_list.uid where structure_list.uid=?"
+	err = Exec(query, uid)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecAddRelationStructurePersonnel(data *model.StructurePersonnelData) (uid int64, err error) {
+	query := "INSERT INTO relation_structure_personnel (structure_id,personnel_id,structure_position,create_time) VALUES (?,?,?,?)"
+	uid, err = Insert(query, data.Structure_ID, data.Personnel_ID, data.Structure_Position, time.Now().UnixNano())
+	if err != nil {
+		return 0, err
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	if err != nil {
+		return 0, err
+	}
+	return
+}
+func ExecUpdateRelationStructurePersonnel(data *model.StructurePersonnelData) (err error) {
+	query := "Update relation_structure_personnel set structure_position=? where structure_id=? and personnel_id=?"
+	err = Exec(query, data.Structure_Position, data.Structure_ID, data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
+	return
+}
+func ExecDeleteRelationStructurePersonnel(data *model.StructurePersonnelData) (err error) {
+	query := "delete from relation_structure_personnel where structure_id=? and personnel_id=?"
+	err = Exec(query, data.Structure_ID, data.Personnel_ID)
+	if err != nil {
+		return
+	}
+	err = DelTableCache(model.XML_Table_Pest)
 	return
 }

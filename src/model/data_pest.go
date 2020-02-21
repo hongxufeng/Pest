@@ -23,6 +23,7 @@ type UnitData struct {
 	Bank_Name             string
 	Bank_Account          string
 	Comment               string
+	Creator_Card_No       string
 }
 type PersonnelData struct {
 	Uid                int
@@ -81,4 +82,16 @@ type IsolationData struct {
 	End_Time           string
 	Real_Compelte_Time string
 	Unit_ID            string
+}
+type StructureData struct {
+	Uid               int
+	Parent_ID         int
+	Unit_ID           int
+	Structure_Name    string
+	Structure_Comment string
+}
+type StructurePersonnelData struct {
+	Structure_ID       int
+	Personnel_ID       int
+	Structure_Position string
 }

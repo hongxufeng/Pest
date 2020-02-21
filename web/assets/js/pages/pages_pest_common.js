@@ -1,5 +1,6 @@
 var deleteHouse = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     $.post("base/pest/DeleteHouse", {
         Uid: value
     }, function(data) {
@@ -17,7 +18,8 @@ var deleteHouse = function() {
     });
 }
 var deleteUnit = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     $.post("base/pest/DeleteUnit", {
         Uid: value
     }, function(data) {
@@ -35,7 +37,8 @@ var deleteUnit = function() {
     });
 }
 var deletePersonnel = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     $.post("base/pest/DeletePersonnel", {
         Uid: value
     }, function(data) {
@@ -53,7 +56,8 @@ var deletePersonnel = function() {
     });
 }
 var deleteReport = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     $.post("base/pest/DeleteDailyReport", {
         Uid: value
     }, function(data) {
@@ -71,7 +75,8 @@ var deleteReport = function() {
     });
 }
 var viewHousePersonnel = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     var query = "?house_id=" + value;
     $("#table").rt({
         configFile: "pest",
@@ -86,7 +91,8 @@ var viewHousePersonnel = function() {
     });
 }
 var viewHouseUnit = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     var query = "?house_id=" + value;
     $("#table").rt({
         configFile: "pest",
@@ -101,7 +107,8 @@ var viewHouseUnit = function() {
     });
 }
 var viewUnitPersonnel = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     var query = "?unit_id=" + value;
     $("#table").rt({
         configFile: "pest",
@@ -116,7 +123,8 @@ var viewUnitPersonnel = function() {
     });
 }
 var viewReport = function() {
-    var value = $(this).parent().siblings('[name=uid]').data('value');
+    var key = $(this).data('args');
+    var value = $(this).parent().siblings('[name=' + key + ']').data('value');
     var query = "?personnel_id=" + value;
     $("#table").rt({
         configFile: "dailyreport",

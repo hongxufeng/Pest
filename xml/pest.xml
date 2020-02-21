@@ -33,7 +33,7 @@
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
-            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="personnel_id">&lt;/span>
         </buttons>
         <pagerbuttons>
         </pagerbuttons>
@@ -58,6 +58,8 @@
         <number visibility="table-hidden">房屋常驻人口数量</number>
         <unit_comment visibility="table-hidden">单位备注</unit_comment>
         <house_comment visibility="table-hidden">房屋备注</house_comment>
+        <unit_creator_card_no visibility="table-hidden">单位创建者</unit_comment>
+        <house_creator_card_no visibility="table-hidden">房屋创建者</house_comment>
         <street_name visibility="sql-none">街道/小区名称</street_name>
         <community_name visibility="sql-none">社区名称</community_name>
         <station_name visibility="sql-none">派出所名称</station_name>
@@ -114,7 +116,7 @@
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
-            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="personnel_id">&lt;/span>
         </buttons>
         <pagerbuttons>
         </pagerbuttons>
@@ -253,6 +255,84 @@
             &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
             &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        </pagerbuttons>
+    </table>
+    <table id="structure_personnel"
+        name="structure_personnel" defaultorder="uid asc">
+        <personnel_id visibility="table-hidden">人员id</personnel_id>
+        <uid visibility="table-hidden">UID</uid>
+        <house_id visibility="table-hidden">房子id</house_id>
+        <unit_id visibility="table-hidden">公司id</unit_id>
+        <unit_name>单位名称</unit_name>
+        <personnel_name>人员姓名</personnel_name>
+        <position>职位</position>
+        <card_no>人员身份证号</card_no>
+        <nature visibility="table-hidden">房屋性质</nature>
+        <card_picture_front visibility="table-hidden">身份证正面照片</card_picture_front>
+        <card_picture_back visibility="table-hidden">身份证反面照片</card_picture_back>
+        <face_picture visibility="table-hidden">人脸照片</face_picture>
+        <occupation>职业</occupation>
+        <history visibility="table-hidden">接触史</history>
+        <phone>手机号码</phone>
+        <remark visibility="table-hidden">备注</remark>
+        <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
+        <nation visibility="table-hidden">人员民族</nation>
+        <birthday visibility="table-hidden">人员生日</birthday>
+        <personnel_address visibility="table-hidden">人员身份证地址</personnel_address>
+        <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
+        <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
+        <license_number visibility="table-hidden">证件号</license_number>
+        <identification_number visibility="table-hidden">识别号</identification_number>
+        <street>单位房屋所属小区/街道</street>
+        <structure_name>所属单位结构</structure_name>
+        <structure_position>所属单位结构职位</structure_position>
+        <structure_id visibility="table-hidden">结构ID</structure_id>
+        <parent_id visibility="table-hidden">父结构ID</parent_id>
+        <street_no visibility="table-hidden">所属行政区划代码</street_no>
+        <address>单位房屋详细地址</address>
+        <number visibility="table-hidden">常驻人口数量</number>
+        <unit_comment visibility="table-hidden">单位备注</unit_comment>
+        <house_comment visibility="table-hidden">房屋备注</house_comment>
+        <structure_comment visibility="table-hidden">单位结构备注</structure_comment>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-film rt-report" title="查看每日上报" data-args="personnel_id">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        </pagerbuttons>
+    </table>
+    <table id="unit_structure"
+        name="unit_structure" defaultorder="uid asc" distinct="true">
+        <house_id visibility="table-hidden">房屋id</house_id>
+        <uid visibility="table-hidden">UID</uid>
+        <unit_name search-type="true">公司名称</unit_name>
+        <street>单位房屋所属小区/街道</street>
+        <structure_name>单位结构</structure_name>
+        <structure_id visibility="table-hidden">结构ID</structure_id>
+        <parent_id visibility="table-hidden">父结构ID</parent_id>
+        <street_no visibility="table-hidden">所属行政区划代码</street_no>
+        <address>单位房屋详细地址</address>
+        <structure_comment visibility="table-hidden">单位结构备注</structure_comment>
+        <street_name visibility="sql-none">街道/小区名称</street_name>
+        <community_name visibility="sql-none">社区名称</community_name>
+        <station_name visibility="sql-none">派出所名称</station_name>
+        <district_name visibility="sql-none">所在区</district_name>
+        <city_name visibility="sql-none">所在市</city_name>
+        <province_name visibility="sql-none">所在省</province_name>
+        <community_no visibility="sql-none">社区id</community_no>
+        <station_no visibility="sql-none">派出所id</station_no>
+        <district_no visibility="sql-none">所在区id</district_no>
+        <city_no visibility="sql-none">所在市id</city_no>
+        <province_no visibility="sql-none">所在省id</province_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-user rt-personnel" title="查看人员" data-args="uid">&lt;/span>
         </buttons>
         <pagerbuttons>
         </pagerbuttons>

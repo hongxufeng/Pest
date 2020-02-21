@@ -210,3 +210,62 @@ func DeleteDailyReport(uid int) (res map[string]interface{}, err error) {
 	}
 	return
 }
+func CreateStructure(data *model.StructureData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	uid, err := db.ExecCreateStructure(data)
+	if err == nil {
+		res["structure_id"] = uid
+		res["msg"] = "结构生成成功！"
+	}
+	return
+}
+func UpdateStructure(data *model.StructureData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateStructure(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "结构更新成功！"
+	}
+	return
+}
+func DeleteStructure(uid int) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteStructure(uid)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "结构删除成功！"
+	}
+	return
+}
+func AddRelationStructurePersonnel(data *model.StructurePersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	isexist, _ := db.CheckPersonnelStructure(data.Structure_ID, data.Personnel_ID)
+	if isexist {
+		err = service.NewError(service.ERR_INVALID_PARAM, "关系已经存在！")
+		return
+	}
+	uid, err := db.ExecAddRelationStructurePersonnel(data)
+	if err == nil {
+		res["uid"] = uid
+		res["msg"] = "人员结构关系添加成功！"
+	}
+	return
+}
+func UpdateRelationStructurePersonnel(data *model.StructurePersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecUpdateRelationStructurePersonnel(data)
+	if err == nil {
+		res["updatestatus"] = 1
+		res["msg"] = "人员结构关系更新成功！"
+	}
+	return
+}
+func DeleteRelationStructurePersonnel(data *model.StructurePersonnelData) (res map[string]interface{}, err error) {
+	res = make(map[string]interface{}, 0)
+	err = db.ExecDeleteRelationStructurePersonnel(data)
+	if err == nil {
+		res["deletestatus"] = 1
+		res["msg"] = "人员结构关系删除成功！"
+	}
+	return
+}
