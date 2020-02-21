@@ -119,21 +119,24 @@ func AppendWhere(req *service.HttpRequest, param *Param, buf *bytes.Buffer) erro
 			_, ok := function.StringToInt(v)
 			buf.WriteString(colconfig.Tag)
 			buf.WriteString("=")
+			buf.WriteString("\"")
+			buf.WriteString(v)
+			buf.WriteString("\"")
 			if ok == nil {
-				buf.WriteString(v)
 				buf.WriteString(" or ")
 				buf.WriteString(colconfig.Tag)
 				buf.WriteString("=")
+				buf.WriteString(v)
+			} else {
+				//字符串模糊查询
+				buf.WriteString(" or ")
+				buf.WriteString(colconfig.Tag)
+				buf.WriteString(" like ")
+				buf.WriteString("\"%")
+				buf.WriteString(v)
+				buf.WriteString("%\"")
 			}
-			buf.WriteString("\"")
-			buf.WriteString(v)
-			buf.WriteString("\"")
-			buf.WriteString(" or ")
-			buf.WriteString(colconfig.Tag)
-			buf.WriteString(" like ")
-			buf.WriteString("\"%")
-			buf.WriteString(v)
-			buf.WriteString("%\"")
+
 		}
 		buf.WriteString(")")
 		buf.WriteString(" and ")
