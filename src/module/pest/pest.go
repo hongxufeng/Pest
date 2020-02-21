@@ -47,7 +47,7 @@ func (module *PestModule) Base_CreateHouse(req *service.HttpRequest, result map[
 }
 func (module *PestModule) Base_CreateUnit(req *service.HttpRequest, result map[string]interface{}) (err error) {
 	var data model.UnitData
-	err = req.ParseEncodeUrl(false, "Name", &data.Name, "House_ID", &data.House_ID, "License_Number", &data.License_Number, "Identification_Number", &data.Identification_Number, "Picture", &data.Picture, "Kind", &data.Kind, "Scale", &data.Scale, "Tel", &data.Tel, "Bank_Name", &data.Bank_Name, "Bank_Account", &data.Bank_Account, "Comment", &data.Comment, "Creator_Card_No", data.Creator_Card_No)
+	err = req.ParseEncodeUrl(false, "Name", &data.Name, "House_ID", &data.House_ID, "License_Number", &data.License_Number, "Identification_Number", &data.Identification_Number, "Picture", &data.Picture, "Kind", &data.Kind, "Scale", &data.Scale, "Tel", &data.Tel, "Bank_Name", &data.Bank_Name, "Bank_Account", &data.Bank_Account, "Comment", &data.Comment, "Creator_Card_No", &data.Creator_Card_No)
 	if err != nil {
 		return
 	}

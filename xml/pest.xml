@@ -315,6 +315,8 @@
         <parent_id visibility="table-hidden">父结构ID</parent_id>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
         <address>单位房屋详细地址</address>
+        <unit_creator_card_no visibility="table-hidden">单位创建人</unit_creator_card_no>
+        <house_creator_card_no visibility="table-hidden">房屋创建人</house_creator_card_no>
         <structure_comment visibility="table-hidden">单位结构备注</structure_comment>
         <street_name visibility="sql-none">街道/小区名称</street_name>
         <community_name visibility="sql-none">社区名称</community_name>
