@@ -33,11 +33,14 @@ var deleteThis = function() {
 }
 var updatestation = function() {
     var uid = $('[name=uid]').val();
-    var update_name = $('[name=station_name]').val();
-    $.post("user/area/UpdateArea", {
-        Cmd_Update: "station",
+    var station_name = $('[name=station_name]').val();
+    var station_head = $('[name=station_head]').val();
+    var station_phone = $('[name=station_phone]').val();
+    $.post("user/area/UpdateStation", {
         Uid: uid,
-        Update_Name: update_name
+        Station_Name: station_name,
+        Station_Head: station_head,
+        Station_Phone: station_phone,
     }, function(data) {
         // var jsonObject = JSON.parse(data);
         if (data.status === "fail") {
@@ -54,8 +57,8 @@ var updatestation = function() {
 }
 var editThis = function() {
     var uid = $(this).parent().siblings('[name=uid]').data('value');
-    //var street_name = $(this).parent().siblings('[name=street_name]').data('value');
-    //var community_name = $(this).parent().siblings('[name=community_name]').data('value');
+    var station_head = $(this).parent().siblings('[name=station_head]').data('value');
+    var station_phone = $(this).parent().siblings('[name=station_phone]').data('value');
     var station_name = $(this).parent().siblings('[name=station_name]').data('value');
     var district_name = $(this).parent().siblings('[name=district_name]').data('value');
     var city_name = $(this).parent().siblings('[name=city_name]').data('value');
@@ -66,6 +69,8 @@ var editThis = function() {
     html += '<div class="form-group"><label class="col-sm-3 control-label">所在市<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input readonly name="city_name" type="text" class="form-control rt-form-control" placeholder="所在市" value="' + city_name + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">所在区<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input readonly name="district_name" type="text" class="form-control rt-form-control" placeholder="所在区" value="' + district_name + '"></div></div>';
     html += '<div class="form-group"><label class="col-sm-3 control-label">派出所名称<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input name="station_name" type="text" class="form-control rt-form-control" placeholder="派出所名称" value="' + station_name + '"></div></div>';
+    html += '<div class="form-group"><label class="col-sm-3 control-label">派出所负责人<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input name="station_head" type="text" class="form-control rt-form-control" placeholder="派出所负责人" value="' + station_head + '"></div></div>';
+    html += '<div class="form-group"><label class="col-sm-3 control-label">派出所电话<span class="rt-glyphicon-color">:</span></label><div class="col-sm-6"><input name="station_phone" type="text" class="form-control rt-form-control" placeholder="派出所电话" value="' + station_phone + '"></div></div>';
     html += '<div class="form-group"><div class="col-sm-offset-3  col-sm-6"><input type="button" onclick="updatestation()" class="btn btn-primary form-control rt-submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交"></div></div>';
     $("#table").html(html);
 }
