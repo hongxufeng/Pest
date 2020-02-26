@@ -4,11 +4,23 @@
         name="area_list" defaultorder="uid asc" >
         <name >全名</name>
         <uid visibility="table-hidden">UID</uid>
-        <street_name >街道名称</street_name>
+        <street_name >小区名称</street_name>
+        <street_head>小区负责人</street_head>
+        <street_phone>小区电话</street_phone>
+        <street_property_name>物业负责人</street_property_name>
+        <street_property_phone>物业电话</street_property_phone>
         <community_no visibility="table-hidden">社区id</community_no>
         <community_name search-type="true">社区名称</community_name>
+        <community_head visibility="table-hidden">社区负责人</community_head>
+        <community_phone visibility="table-hidden">社区电话</community_phone>
+        <office_no visibility="table-hidden">办事处id</office_no>
+        <office_name search-type="true">办事处名称</office_name>
+        <office_head visibility="table-hidden">办事处负责人</office_head>
+        <office_phone visibility="table-hidden">办事处电话</office_phone>
         <station_no visibility="table-hidden">派出所id</station_no>
         <station_name search-type="true">派出所名称</station_name>
+        <station_head visibility="table-hidden">派出所负责人</station_head>
+        <station_phone visibility="table-hidden">派出所电话</station_phone>
         <district_name>县区名称</district_name>
         <district_no visibility="table-hidden">县区id</district_no>
         <city_name search-type="true">市名称</city_name>
@@ -32,6 +44,8 @@
         name="station_list" defaultorder="uid asc" >
         <station_name search-type="true">派出所名称</station_name>
         <uid visibility="table-hidden">UID</uid>
+        <station_head>派出所负责人</station_head>
+        <station_phone>派出所电话</station_phone>
         <district_name>县区名称</district_name>
         <district_no visibility="table-hidden">县区id</district_no>
         <city_name search-type="true">市名称</city_name>
@@ -53,8 +67,12 @@
         name="office_station" defaultorder="uid asc" > 
         <office_name search-type="true">办事处名称</office_name>
         <uid visibility="table-hidden">UID</uid>
+        <office_head>办事处负责人</office_head>
+        <office_phone>办事处电话</office_phone>
         <station_no visibility="table-hidden">派出所id</station_no>
         <station_name search-type="true">派出所名称</station_name>
+        <station_head visibility="table-hidden">派出所负责人</station_head>
+        <station_phone visibility="table-hidden">派出所电话</station_phone>
         <district_name>县区名称</district_name>
         <district_no visibility="table-hidden">县区id</district_no>
         <city_name search-type="true">市名称</city_name>
@@ -76,10 +94,16 @@
         name="community_office" defaultorder="uid asc" > 
         <community_name search-type="true">社区名称</community_name>
         <uid visibility="table-hidden">UID</uid>
+        <community_head>社区负责人</community_head>
+        <community_phone>社区处电话</community_phone>
         <office_no visibility="table-hidden">办事处id</office_no>
         <office_name search-type="true">办事处名称</office_name>
+        <office_head visibility="table-hidden">办事处负责人</office_head>
+        <office_phone visibility="table-hidden">办事处电话</office_phone>
         <station_no visibility="table-hidden">派出所id</station_no>
         <station_name search-type="true">派出所名称</station_name>
+        <station_head visibility="table-hidden">派出所负责人</station_head>
+        <station_phone visibility="table-hidden">派出所电话</station_phone>
         <district_name>县区名称</district_name>
         <district_no visibility="table-hidden">县区id</district_no>
         <city_name search-type="true">市名称</city_name>
