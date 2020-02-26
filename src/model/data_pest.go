@@ -42,6 +42,7 @@ type PersonnelData struct {
 	History            string
 	Phone              string
 	Remark             string
+	Home               string
 }
 type HousePersonnelData struct {
 	House_ID          int

@@ -2,11 +2,13 @@ package model
 
 const (
 	Cmd_Station   = "station"
+	Cmd_Office    = "office"
 	Cmd_Community = "community"
 	Cmd_Street    = "street"
 )
 
 type StationData struct {
+	Uid           int
 	Station_Name  string
 	Province_Name string
 	Province_No   int
@@ -14,21 +16,33 @@ type StationData struct {
 	City_No       int
 	District_Name string
 	District_No   int
+	Station_Head  string
+	Station_Phone string
+}
+type OfficeData struct {
+	Uid          int
+	Office_Name  string
+	Station_No   int
+	Office_Head  string
+	Office_Phone string
 }
 type CommunityData struct {
-	Community_Name string
-	Station_No     int
+	Uid             int
+	Community_Name  string
+	Office_No       int
+	Community_Head  string
+	Community_Phone string
 }
 type StreetData struct {
-	Street_Name  string
-	Community_No int
+	Uid                   int64
+	Street_Name           string
+	Community_No          int
+	Street_Head           string
+	Street_Phone          string
+	Street_Property_Name  string
+	Street_Property_Phone string
 }
 type DeleteData struct {
 	Cmd_Delete string
 	Uid        int
-}
-type UpdateData struct {
-	Cmd_Update  string
-	Uid         int64
-	Update_Name string
 }

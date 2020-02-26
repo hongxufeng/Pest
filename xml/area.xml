@@ -49,10 +49,35 @@
             &lt;/span>
         </pagerbuttons>
     </table>
-    <table id="community_station"
-        name="community_station" defaultorder="uid asc" > 
+    <table id="office_station"
+        name="office_station" defaultorder="uid asc" > 
+        <office_name search-type="true">办事处名称</office_name>
+        <uid visibility="table-hidden">UID</uid>
+        <station_no visibility="table-hidden">派出所id</station_no>
+        <station_name search-type="true">派出所名称</station_name>
+        <district_name>县区名称</district_name>
+        <district_no visibility="table-hidden">县区id</district_no>
+        <city_name search-type="true">市名称</city_name>
+        <city_no visibility="table-hidden">市id</city_no>
+        <province_name search-type="true">省名称</province_name>
+        <province_no visibility="table-hidden">省id</province_no>
+        <buttons>
+            &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-edit rt-edit" title="编辑" data-args="uid">&lt;/span>
+            &lt;span class="glyphicon glyphicon-trash rt-delete" title="删除" data-args="uid">&lt;/span>
+        </buttons>
+        <pagerbuttons>
+        &lt;span class="rt-pager-btn rt-pager-hover-color rt-create">
+            &lt;span class="glyphicon glyphicon-plus" title="新增">&lt;/span>添加
+            &lt;/span>
+        </pagerbuttons>
+    </table>
+    <table id="community_office"
+        name="community_office" defaultorder="uid asc" > 
         <community_name search-type="true">社区名称</community_name>
         <uid visibility="table-hidden">UID</uid>
+        <office_no visibility="table-hidden">办事处id</office_no>
+        <office_name search-type="true">办事处名称</office_name>
         <station_no visibility="table-hidden">派出所id</station_no>
         <station_name search-type="true">派出所名称</station_name>
         <district_name>县区名称</district_name>
