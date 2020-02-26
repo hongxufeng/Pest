@@ -104,7 +104,7 @@ func (module *UserModule) User_UserRegister(req *service.HttpRequest, result map
 		err = service.NewError(service.ERR_INVALID_PARAM, "角色输入错误哦！")
 		return
 	}
-	if !(registerData.Limit_Name == model.Limit_All || registerData.Limit_Name == model.Limit_City || registerData.Limit_Name == model.Limit_Community || registerData.Limit_Name == model.Limit_District || registerData.Limit_Name == model.Limit_Province || registerData.Limit_Name == model.Limit_Station || registerData.Limit_Name == model.Limit_Street) {
+	if !(registerData.Limit_Name == model.Limit_All || registerData.Limit_Name == model.Limit_City || registerData.Limit_Name == model.Limit_Community || registerData.Limit_Name == model.Limit_District || registerData.Limit_Name == model.Limit_Province || registerData.Limit_Name == model.Limit_Station || registerData.Limit_Name == model.Limit_Street || registerData.Limit_Name == model.Limit_Office) {
 		err = service.NewError(service.ERR_INVALID_PARAM, "权限输入错误哦！")
 		return
 	}
