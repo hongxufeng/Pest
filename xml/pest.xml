@@ -11,7 +11,7 @@
         <relation_holder selector-func="GetDefinitionData" selector-func-agrs="1,配偶,2,子女,3,父母,4,其他亲属">户主关系</relation_holder>
         <relation_together selector-func="GetDefinitionData" selector-func-agrs="1,是,2,否">同住关系</relation_together>
         <nature visibility="table-hidden" selector="true">房屋性质</nature>
-        <street>房屋所属小区/街道</street>
+        <street visibility="table-hidden">房屋所属小区/街道</street>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
         <address>房屋详细地址</address>
         <number visibility="table-hidden">常驻人口数量</number>
@@ -53,9 +53,9 @@
         <bank_name visibility="table-hidden">开户行名称</bank_name>
         <bank_account visibility="table-hidden">开户行帐号</bank_account>
         <nature visibility="table-hidden">房屋性质</nature>
-        <street >房屋所属小区/街道</street>
+        <street visibility="table-hidden">房屋所属小区/街道</street>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
-        <address>单位房屋详细地址</address>
+        <address visibility="table-hidden">单位房屋详细地址</address>
         <number visibility="table-hidden">房屋常驻人口数量</number>
         <unit_comment visibility="table-hidden">单位备注</unit_comment>
         <house_comment visibility="table-hidden">房屋备注</house_comment>
@@ -108,9 +108,9 @@
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <license_number visibility="table-hidden">证件号</license_number>
         <identification_number visibility="table-hidden">识别号</identification_number>
-        <street>单位房屋所属小区/街道</street>
+        <street visibility="table-hidden">单位房屋所属小区/街道</street>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
-        <address>单位房屋详细地址</address>
+        <address visibility="table-hidden">单位房屋详细地址</address>
         <number visibility="table-hidden">常驻人口数量</number>
         <unit_comment visibility="table-hidden">单位备注</unit_comment>
         <house_comment visibility="table-hidden">房屋备注</house_comment>
@@ -134,8 +134,8 @@
         <face_picture visibility="table-hidden">人脸照片</face_picture>
         <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
         <nation>人员民族</nation>
-        <birthday>人员生日</birthday>
-        <address>人员身份证地址</address>
+        <birthday visibility="table-hidden">人员生日</birthday>
+        <address visibility="table-hidden">人员身份证地址</address>
         <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <phone>手机号码</phone>
@@ -156,10 +156,10 @@
         <house_id >房屋id</house_id>
         <nature>房屋性质</nature>
         <street>所属小区/街道</street>
-        <street_no>所属行政区划代码</street_no>
+        <street_no visibility="table-hidden">所属行政区划代码</street_no>
         <address>详细地址</address>
-        <number>常驻人口数量</number>
-        <comment >房屋备注</comment>
+        <number visibility="table-hidden">常驻人口数量</number>
+        <comment visibility="table-hidden">房屋备注</comment>
         <card_no>人员身份证号</card_no>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
@@ -177,10 +177,10 @@
         <nature >房屋性质</nature>
         <uid visibility="table-hidden">UID</uid>
         <street>所属小区/街道</street>
-        <street_no>所属行政区划代码</street_no>
+        <street_no visibility="table-hidden">所属行政区划代码</street_no>
         <address>详细地址</address>
-        <number>常驻人口数量</number>
-        <comment >房屋备注</comment>
+        <number visibility="table-hidden">常驻人口数量</number>
+        <comment visibility="table-hidden">房屋备注</comment>
         <creator_card_no>添加人身份证号</creator_card_no>
         <buttons>
             &lt;span class="glyphicon glyphicon-folder-open rt-view" title="浏览" data-args="uid">&lt;/span>
@@ -234,8 +234,8 @@
         <face_picture visibility="table-hidden">人脸照片</face_picture>
         <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
         <nation>人员民族</nation>
-        <birthday>人员生日</birthday>
-        <address>人员身份证地址</address>
+        <birthday visibility="table-hidden">人员生日</birthday>
+        <address visibility="table-hidden">人员身份证地址</address>
         <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <phone>手机号码</phone>
@@ -289,13 +289,13 @@
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <license_number visibility="table-hidden">证件号</license_number>
         <identification_number visibility="table-hidden">识别号</identification_number>
-        <street>单位房屋所属小区/街道</street>
+        <street visibility="table-hidden">单位房屋所属小区/街道</street>
         <structure_name>所属单位结构</structure_name>
         <structure_position>所属单位结构职位</structure_position>
         <structure_id visibility="table-hidden">结构ID</structure_id>
         <parent_id visibility="table-hidden">父结构ID</parent_id>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
-        <address>单位房屋详细地址</address>
+        <address visibility="table-hidden">单位房屋详细地址</address>
         <number visibility="table-hidden">常驻人口数量</number>
         <unit_comment visibility="table-hidden">单位备注</unit_comment>
         <house_comment visibility="table-hidden">房屋备注</house_comment>
@@ -319,7 +319,7 @@
         <structure_name>单位结构</structure_name>
         <parent_id visibility="table-hidden">父结构ID</parent_id>
         <street_no visibility="table-hidden">所属行政区划代码</street_no>
-        <address>单位房屋详细地址</address>
+        <address visibility="table-hidden">单位房屋详细地址</address>
         <unit_creator_card_no visibility="table-hidden">单位创建人</unit_creator_card_no>
         <house_creator_card_no visibility="table-hidden">房屋创建人</house_creator_card_no>
         <structure_comment visibility="table-hidden">单位结构备注</structure_comment>
