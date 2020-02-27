@@ -278,7 +278,7 @@ func ExecDeleteUnit(uid int) (err error) {
 	return
 }
 func ExecDeletePersonnel(uid int) (err error) {
-	query := "delete personnel_list,relation_house_personnel,relation_unit_personnel from personnel_list left join relation_house_personnel on relation_house_personnel.personnel_id=personnel_list.uid left join relation_unit_personnel on relation_unit_personnel.personnel_id=personnel_list.uid where personnel_list.uid=?"
+	query := "delete personnel_list,relation_house_personnel,relation_unit_personnel,relation_structure_personnel from personnel_list left join relation_house_personnel on relation_house_personnel.personnel_id=personnel_list.uid left join relation_unit_personnel on relation_unit_personnel.personnel_id=personnel_list.uid left join relation_structure_personnel on relation_structure_personnel.personnel_id=personnel_list.uid where personnel_list.uid=?"
 	err = Exec(query, uid)
 	if err != nil {
 		return
