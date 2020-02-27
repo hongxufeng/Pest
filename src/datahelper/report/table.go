@@ -175,45 +175,42 @@ func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, sqls
 		if err != nil {
 			return
 		}
-		size := len(param.ColConfigDict) - 2
+		size := len(param.ColConfigDict)
 		for i := 0; i < size; i++ {
-			if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
-				continue
-			}
-			if param.ColConfigDict[i].HasPower && param.Power >= param.ColConfigDict[i].Power {
-				continue
-			}
-			bodybuf.WriteString("<td name=\"")
-			bodybuf.WriteString(param.ColConfigDict[i].Tag)
-			bodybuf.WriteString("\"")
-			if strings.Index(param.ColConfigDict[i].Visibility, "table-hidden") > -1 {
-				bodybuf.WriteString(" class=\"hiddenCol\"")
-			}
-			cell := function.ToString(s[i])
-			//fmt.Println(cell)
-			bodybuf.WriteString(" data-value=\"")
-			bodybuf.WriteString(cell)
-			bodybuf.WriteString("\">")
-			cell, _ = Format(&param.ColConfigDict[i], cell)
-			bodybuf.WriteString(cell)
-			if param.ColConfigDict[i].HasBtn {
-				bodybuf.WriteString("<span class=\"rt-cell-btn glyphicon glyphicon-")
-				bodybuf.WriteString(param.ColConfigDict[i].BtnIcon)
-				bodybuf.WriteString("\" onclick=\"")
-				bodybuf.WriteString(param.ColConfigDict[i].BtnFunc)
-				bodybuf.WriteString("\"></span>")
-			}
-			bodybuf.WriteString("</td>")
-			if i == size-1 {
-				if param.ColConfigDict[i+1].Tag == "buttons" {
+			if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" {
+				if param.ColConfigDict[i].Tag == "buttons" {
 					bodybuf.WriteString("<th name=\"操作\">")
-					bodybuf.WriteString(param.ColConfigDict[i+1].Text)
-					bodybuf.WriteString("</th>")
-				} else if param.ColConfigDict[i+2].Tag == "buttons" {
-					bodybuf.WriteString("<th name=\"操作\">")
-					bodybuf.WriteString(param.ColConfigDict[i+2].Text)
+					bodybuf.WriteString(param.ColConfigDict[i].Text)
 					bodybuf.WriteString("</th>")
 				}
+			} else {
+				if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
+					continue
+				}
+				if param.ColConfigDict[i].HasPower && param.Power >= param.ColConfigDict[i].Power {
+					continue
+				}
+				bodybuf.WriteString("<td name=\"")
+				bodybuf.WriteString(param.ColConfigDict[i].Tag)
+				bodybuf.WriteString("\"")
+				if strings.Index(param.ColConfigDict[i].Visibility, "table-hidden") > -1 {
+					bodybuf.WriteString(" class=\"hiddenCol\"")
+				}
+				cell := function.ToString(s[i])
+				//fmt.Println(cell)
+				bodybuf.WriteString(" data-value=\"")
+				bodybuf.WriteString(cell)
+				bodybuf.WriteString("\">")
+				cell, _ = Format(&param.ColConfigDict[i], cell)
+				bodybuf.WriteString(cell)
+				if param.ColConfigDict[i].HasBtn {
+					bodybuf.WriteString("<span class=\"rt-cell-btn glyphicon glyphicon-")
+					bodybuf.WriteString(param.ColConfigDict[i].BtnIcon)
+					bodybuf.WriteString("\" onclick=\"")
+					bodybuf.WriteString(param.ColConfigDict[i].BtnFunc)
+					bodybuf.WriteString("\"></span>")
+				}
+				bodybuf.WriteString("</td>")
 			}
 		}
 		bodybuf.WriteString("</tr>")
