@@ -318,8 +318,7 @@ func (param *Param) Table(req *service.HttpRequest, settings *model.Settings) (r
 		return nil, err
 	}
 	defer result.Close()
-	columns, _ := result.Columns()
-	size := len(columns)
+	size := len(param.ColConfigDict) - 3
 	var searchbuf, bodybuf, selectorbuf, conditionbuf, rowbuf bytes.Buffer
 	err = GetTable(req, param, settings, result, size, &bodybuf, &searchbuf, &rowbuf, count)
 	if err != nil {

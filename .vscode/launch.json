@@ -11,7 +11,7 @@
             "mode": "auto",
             "port": 8081,
             "host": "127.0.0.1",
-            "program": "${workspaceFolder}",
+            "program": "${fileDirname}",
             "env": {},
             "args": ["C:\\Work\\Pest\\configself.yaml"],
             "showLog": true
