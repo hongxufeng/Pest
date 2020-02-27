@@ -21,6 +21,7 @@
         <face_picture  visibility="table-hidden">人脸照片</face_picture>
         <occupation>职业</occupation>
         <phone>手机号码</phone>
+        <home>常住地</home>
         <remark visibility="table-hidden">备注</remark>
         <history visibility="table-hidden">接触史</history>
         <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
@@ -97,6 +98,7 @@
         <occupation>职业</occupation>
         <history visibility="table-hidden">接触史</history>
         <phone>手机号码</phone>
+        <home>常住地</home>
         <remark visibility="table-hidden">备注</remark>
         <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
         <nation visibility="table-hidden">人员民族</nation>
@@ -137,6 +139,7 @@
         <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <phone>手机号码</phone>
+        <home>常住地</home>
         <remark visibility="table-hidden">备注</remark>
         <history visibility="table-hidden">接触史</history>
         <buttons>
@@ -236,6 +239,7 @@
         <sign_organization visibility="table-hidden">人员身份证签发机关</sign_organization>
         <limited_date visibility="table-hidden">人员身份证有效日期</limited_date>
         <phone>手机号码</phone>
+        <home>常住地</home>
         <remark visibility="table-hidden">备注</remark>
         <history visibility="table-hidden">接触史</history>
         <street_no visibility="sql-none">街道/小区id</street_no>
@@ -275,6 +279,7 @@
         <occupation>职业</occupation>
         <history visibility="table-hidden">接触史</history>
         <phone>手机号码</phone>
+        <home>常住地</home>
         <remark visibility="table-hidden">备注</remark>
         <sex selector-func="GetDefinitionData" selector-func-agrs="1,男,2,女">人员性别</sex>
         <nation visibility="table-hidden">人员民族</nation>
