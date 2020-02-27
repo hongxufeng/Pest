@@ -83,6 +83,7 @@ jQuery(function() {
     $('#city').addClass("hidden");
     $('#district').addClass("hidden");
     $('#station').addClass("hidden");
+    $('#office').addClass("hidden");
     $('#community').addClass("hidden");
     $('#street').addClass("hidden");
     $("#register-limit-name").change(function() {
@@ -93,6 +94,7 @@ jQuery(function() {
                 $('#city').addClass("hidden");
                 $('#district').addClass("hidden");
                 $('#station').addClass("hidden");
+                $('#office').addClass("hidden");
                 $('#community').addClass("hidden");
                 $('#street').addClass("hidden");
                 break;
@@ -101,6 +103,7 @@ jQuery(function() {
                 $('#city').removeClass("hidden");
                 $('#district').addClass("hidden");
                 $('#station').addClass("hidden");
+                $('#office').addClass("hidden");
                 $('#community').addClass("hidden");
                 $('#street').addClass("hidden");
                 break;
@@ -109,6 +112,7 @@ jQuery(function() {
                 $('#city').removeClass("hidden");
                 $('#district').removeClass("hidden");
                 $('#station').addClass("hidden");
+                $('#office').addClass("hidden");
                 $('#community').addClass("hidden");
                 $('#street').addClass("hidden");
                 break;
@@ -117,6 +121,16 @@ jQuery(function() {
                 $('#city').removeClass("hidden");
                 $('#district').removeClass("hidden");
                 $('#station').removeClass("hidden");
+                $('#office').addClass("hidden");
+                $('#community').addClass("hidden");
+                $('#street').addClass("hidden");
+                break;
+            case "office_no":
+                $('#province').removeClass("hidden");
+                $('#city').removeClass("hidden");
+                $('#district').removeClass("hidden");
+                $('#station').removeClass("hidden");
+                $('#office').removeClass("hidden");
                 $('#community').addClass("hidden");
                 $('#street').addClass("hidden");
                 break;
@@ -125,6 +139,7 @@ jQuery(function() {
                 $('#city').removeClass("hidden");
                 $('#district').removeClass("hidden");
                 $('#station').removeClass("hidden");
+                $('#office').removeClass("hidden");
                 $('#community').removeClass("hidden");
                 $('#street').addClass("hidden");
                 break;
@@ -133,6 +148,7 @@ jQuery(function() {
                 $('#city').removeClass("hidden");
                 $('#district').removeClass("hidden");
                 $('#station').removeClass("hidden");
+                $('#office').removeClass("hidden");
                 $('#community').removeClass("hidden");
                 $('#street').removeClass("hidden");
                 break;
@@ -141,6 +157,7 @@ jQuery(function() {
                 $('#city').addClass("hidden");
                 $('#district').addClass("hidden");
                 $('#station').addClass("hidden");
+                $('#office').removeClass("hidden");
                 $('#community').addClass("hidden");
                 $('#street').addClass("hidden");
         }
@@ -170,6 +187,9 @@ $.validator.setDefaults({
                 break;
             case "station_no":
                 limit_id = $('#station-select option:selected').data('code');
+                break;
+            case "office_no":
+                limit_id = $('#office-select option:selected').data('code');
                 break;
             case "community_no":
                 limit_id = $('#community-select option:selected').data('code');
