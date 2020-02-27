@@ -176,7 +176,7 @@ func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, size
 		}
 		//fmt.Println(s)
 		//fmt.Println(function.PArrayToSArray(s))
-		for i := 0; i < len(param.ColConfigDict); i++ {
+		for i := 0; i < size; i++ {
 			if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 				continue
 			}
