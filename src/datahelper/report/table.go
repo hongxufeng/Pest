@@ -13,13 +13,13 @@ import (
 	"utils/service"
 )
 
-func GetTable(req *service.HttpRequest, param *Param, settings *model.Settings, rows *sql.Rows, size int, bodybuf *bytes.Buffer, searchbuf *bytes.Buffer, rowbuf *bytes.Buffer, count int) (err error) {
+func GetTable(req *service.HttpRequest, param *Param, settings *model.Settings, rows *sql.Rows, sqlsize int, bodybuf *bytes.Buffer, searchbuf *bytes.Buffer, rowbuf *bytes.Buffer, count int) (err error) {
 	bodybuf.WriteString("<table class=\"table table-condensed\">")
-	err = BuildTableHead(req, param, settings, size, bodybuf, searchbuf)
+	err = BuildTableHead(req, param, settings, bodybuf, searchbuf)
 	if err != nil {
 		return
 	}
-	err = BuildTableBody(param, settings, rows, size, bodybuf)
+	err = BuildTableBody(param, settings, rows, sqlsize, bodybuf)
 	if err != nil {
 		return
 	}
@@ -30,7 +30,7 @@ func GetTable(req *service.HttpRequest, param *Param, settings *model.Settings, 
 	if err != nil {
 		return
 	}
-	err = BuildNullRow(param, settings, size, rowbuf)
+	err = BuildNullRow(param, settings, rowbuf)
 	if err != nil {
 		return
 	}
@@ -90,7 +90,7 @@ func BuildSearchingBlock(req *service.HttpRequest, columnconfig *model.ColumnCon
 	return
 }
 
-func BuildTableHead(req *service.HttpRequest, param *Param, settings *model.Settings, size int, bodybuf *bytes.Buffer, searchbuf *bytes.Buffer) (err error) {
+func BuildTableHead(req *service.HttpRequest, param *Param, settings *model.Settings, bodybuf *bytes.Buffer, searchbuf *bytes.Buffer) (err error) {
 	bodybuf.WriteString("<thead>")
 	bodybuf.WriteString("<tr>")
 	if settings.HasCheckbox {
@@ -100,9 +100,10 @@ func BuildTableHead(req *service.HttpRequest, param *Param, settings *model.Sett
 		bodybuf.WriteString("</div>")
 		bodybuf.WriteString("</th>")
 	}
+	size := len(param.ColConfigDict) - 2
 	//fmt.Println("size:", size)
 	for i := 0; i < size; i++ {
-		if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
+		if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 			continue
 		}
 		err = BuildSearchingBlock(req, &param.ColConfigDict[i], searchbuf)
@@ -147,11 +148,11 @@ func BuildTableHead(req *service.HttpRequest, param *Param, settings *model.Sett
 	return
 }
 
-func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, size int, bodybuf *bytes.Buffer) (err error) {
+func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, sqlsize int, bodybuf *bytes.Buffer) (err error) {
 	bodybuf.WriteString("<tbody>")
 
 	var s []interface{}
-	for i := 0; i < size; i++ {
+	for i := 0; i < sqlsize; i++ {
 		var white = ""
 		var p *string
 		p = &white
@@ -174,10 +175,9 @@ func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, size
 		if err != nil {
 			return
 		}
-		//fmt.Println(s)
-		//fmt.Println(function.PArrayToSArray(s))
+		size := len(param.ColConfigDict) - 2
 		for i := 0; i < size; i++ {
-			if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
+			if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 				continue
 			}
 			if param.ColConfigDict[i].HasPower && param.Power >= param.ColConfigDict[i].Power {
@@ -222,7 +222,7 @@ func BuildTableBody(param *Param, settings *model.Settings, rows *sql.Rows, size
 	return
 }
 
-func BuildNullRow(param *Param, settings *model.Settings, size int, rowbuf *bytes.Buffer) (err error) {
+func BuildNullRow(param *Param, settings *model.Settings, rowbuf *bytes.Buffer) (err error) {
 	var definitionData definition.Definition
 	define := reflect.ValueOf(&definitionData)
 	rowbuf.WriteString("<tr>")
@@ -233,8 +233,9 @@ func BuildNullRow(param *Param, settings *model.Settings, size int, rowbuf *byte
 		rowbuf.WriteString("</div>")
 		rowbuf.WriteString("</td>")
 	}
+	size := len(param.ColConfigDict) - 2
 	for i := 0; i < size; i++ {
-		if strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 {
+		if param.ColConfigDict[i].Tag == "buttons" || param.ColConfigDict[i].Tag == "pagerbuttons" || strings.Index(param.ColConfigDict[i].Visibility, "table-none") > -1 || strings.Index(param.ColConfigDict[i].Visibility, "sql-none") > -1 {
 			continue
 		}
 		rowbuf.WriteString("<td name=\"")

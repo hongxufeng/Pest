@@ -331,10 +331,11 @@ func BuildTablePager(param *Param, settings *model.Settings, bodybuf *bytes.Buff
 	return
 }
 
-func BuildSelectorBar(req *service.HttpRequest, param *Param, size int, selectorbuf *bytes.Buffer, conditionbuf *bytes.Buffer) (err error) {
+func BuildSelectorBar(req *service.HttpRequest, param *Param, selectorbuf *bytes.Buffer, conditionbuf *bytes.Buffer) (err error) {
 	var selectordata map[string]string
 	var definitionData definition.Definition
 	define := reflect.ValueOf(&definitionData)
+	size := len(param.ColConfigDict) - 2
 	for i := 0; i < size; i++ {
 		selectordata = make(map[string]string, 0)
 		if !param.ColConfigDict[i].IsInSelector {

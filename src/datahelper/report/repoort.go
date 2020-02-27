@@ -318,14 +318,15 @@ func (param *Param) Table(req *service.HttpRequest, settings *model.Settings) (r
 		return nil, err
 	}
 	defer result.Close()
-	size := len(param.ColConfigDict) - 3
+	columns, _ := result.Columns()
+	sqlsize := len(columns)
 	var searchbuf, bodybuf, selectorbuf, conditionbuf, rowbuf bytes.Buffer
-	err = GetTable(req, param, settings, result, size, &bodybuf, &searchbuf, &rowbuf, count)
+	err = GetTable(req, param, settings, result, sqlsize, &bodybuf, &searchbuf, &rowbuf, count)
 	if err != nil {
 		return nil, err
 	}
 	if settings.Style == model.Style_Table {
-		err = BuildSelectorBar(req, param, size, &selectorbuf, &conditionbuf)
+		err = BuildSelectorBar(req, param, &selectorbuf, &conditionbuf)
 		if err != nil {
 			return nil, err
 		}
