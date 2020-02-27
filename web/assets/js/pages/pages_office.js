@@ -33,11 +33,14 @@ var deleteThis = function() {
 }
 var updateoffice = function() {
     var uid = $('[name=uid]').val();
-    var update_name = $('[name=community_name]').val();
-    $.post("user/area/UpdateArea", {
-        Cmd_Update: "community",
+    var office_name = $('[name=office_name]').val();
+    var office_head = $('[name=office_head]').val();
+    var office_phone = $('[name=office_phone]').val();
+    $.post("user/area/UpdateOffice", {
         Uid: uid,
-        Update_Name: update_name
+        Office_Name: office_name,
+        Office_Head: office_head,
+        Office_Phone: office_phone
     }, function(data) {
         // var jsonObject = JSON.parse(data);
         if (data.status === "fail") {

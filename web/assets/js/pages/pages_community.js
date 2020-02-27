@@ -36,7 +36,7 @@ var updatecommunity = function() {
     var community_name = $('[name=community_name]').val();
     var community_head = $('[name=community_head]').val();
     var community_phone = $('[name=community_phone]').val();
-    $.post("user/area/UpdateArea", {
+    $.post("user/area/UpdateCommunity", {
         Uid: uid,
         Community_Name: community_name,
         Community_Head: community_head,

@@ -7,9 +7,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>街道/小区添加</title>
+    <title>小区添加</title>
 
-    <meta name="description" content="街道/小区添加">
+    <meta name="description" content="小区添加">
     <meta name="author" content="W">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
@@ -342,7 +342,7 @@
                                             <button type="button" data-toggle="block-option" data-action="close"><i class="si si-close"></i></button>
                                         </li>-->
                                 </ul>
-                                <h3 class="block-title text-primary">添加街道/小区</h3>
+                                <h3 class="block-title text-primary">添加小区</h3>
                             </div>
                             <div id="table" class="block block-content rt-content">
                                 <form class="form-horizontal" autocomplete="off">
@@ -361,7 +361,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group"><label class="col-sm-3 control-label">所属派出所<span class="rt-glyphicon-color">:</span></label>
-                                        <div class="col-sm-6"><select class="form-control" id="station-select" name="station-select" data-station="---- 请选择 ----" onchange="changecommunity()">
+                                        <div class="col-sm-6"><select class="form-control" id="station-select" name="station-select" data-station="---- 请选择 ----" onchange="changeoffice()">
+                                            <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
+                                        </select></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">所属办事处<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><select class="form-control" id="office-select" name="office-select" data-station="---- 请选择 ----" onchange="changecommunity()">
                                             <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
                                         </select></div>
                                     </div>
@@ -370,8 +375,20 @@
                                             <option data-code data-text="---- 请选择 ----" value="">---- 请选择 ----</option>
                                         </select></div>
                                     </div>
-                                    <div class="form-group"><label class="col-sm-3 control-label">街道/小区<span class="rt-glyphicon-color">:</span></label>
-                                        <div class="col-sm-6"><input id="street_name" name="street_name" type="text" class="form-control rt-form-control" data-toggle="modal" data-target="#modal-terms" placeholder="街道/小区名称"></div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">小区名称<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><input id="street_name" name="street_name" type="text" class="form-control rt-form-control" placeholder="小区名称"></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">小区负责人<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><input id="street_head" name="street_head" type="text" class="form-control rt-form-control" placeholder="小区负责人"></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">小区电话<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><input id="street_phone" name="street_phone" type="text" class="form-control rt-form-control" placeholder="小区电话"></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">物业名称<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><input id="street_property_name" name="street_property_name" type="text" class="form-control rt-form-control" placeholder="物业名称"></div>
+                                    </div>
+                                    <div class="form-group"><label class="col-sm-3 control-label">物业电话<span class="rt-glyphicon-color">:</span></label>
+                                        <div class="col-sm-6"><input id="street_property_phone" name="street_property_phone" type="text" class="form-control rt-form-control" placeholder="物业电话"></div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-offset-3  col-sm-6"><input type="button" onclick="addstreet()" class="btn btn-primary form-control rt-submit" value="提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交"></div>
