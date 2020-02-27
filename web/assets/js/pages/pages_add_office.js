@@ -37,7 +37,7 @@ var addcommunity = function() {
     var office_phone = $('#office_phone').val();
     var station_no = $('#station-select').val();
     //alert(community_name + station_no)
-    $.post("user/area/AddCommunity", {
+    $.post("user/area/AddOffice", {
             Office_Name: office_name,
             Office_Head: office_head,
             Office_Phone: office_phone,

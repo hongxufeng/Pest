@@ -21,6 +21,9 @@ $(document).ready(function() {
             case "station_no":
                 limit = "?" + limit_name + "=" + limit_id;
                 break;
+            case "office_no":
+                limit = "?" + limit_name + "=" + limit_id;
+                break;
             case "community_no":
                 limit = "?" + limit_name + "=" + limit_id;
                 break;

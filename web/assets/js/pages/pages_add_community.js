@@ -72,7 +72,7 @@ var addcommunity = function() {
     //alert(community_name + station_no)
     $.post("user/area/AddCommunity", {
             Community_Name: community_name,
-            Community_Nead: community_head,
+            Community_Head: community_head,
             Community_Phone: community_phone,
             Office_No: office_no
         },
