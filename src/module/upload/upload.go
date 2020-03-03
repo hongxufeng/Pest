@@ -1,6 +1,7 @@
 package upload
 
 import (
+	"path"
 	"utils/config"
 	"utils/service"
 	"utils/upload"
@@ -24,24 +25,23 @@ func (module *UploadModule) Init(conf *config.Config) error {
 	return nil
 }
 func (r *UploadModule) Base_UploadFile(req *service.HttpRequest, res map[string]interface{}) (e error) {
-	bytes, filename, e := req.PostFileInfo("file")
 	stype := req.PostParam("type")
 	switch stype {
 	case "avatar", "picture", "voice", "video":
 	default:
 		stype = "other"
 	}
-	//get extname from fname
+	img, filename, e := req.PostImageInfo("file")
 	if e != nil {
-		e = service.NewError(service.ERR_INVALID_PARAM, e.Error(), "上传错误")
+		e = service.NewError(service.ERR_INVALID_PARAM, e.Error(), "解析图片文件错误")
 		return
 	}
-	remoteName, e := upload.PutFileBytes(bytes, filename, stype)
+	extname := path.Ext(filename)
+	remoteName, e := upload.PutPictureImage(img, extname, stype)
 	if e != nil {
 		e = service.NewError(service.ERR_INVALID_PARAM, e.Error(), "上传文件到服务器错误")
 		return
 	}
-
 	rs := make(map[string]interface{})
 	rs["url"] = remoteName
 	res["res"] = rs

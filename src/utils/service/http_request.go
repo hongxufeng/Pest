@@ -3,12 +3,15 @@ package service
 import (
 	"errors"
 	"fmt"
+	"image"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"reflect"
 	"strings"
 	"utils/function"
+
+	"github.com/disintegration/imaging"
 )
 
 const MAX_PS = 1000
@@ -264,13 +267,12 @@ func (hr *HttpRequest) PostFile(param string, filename string) (e error) {
 
 //获取HTTP post的详细信息
 func (hr *HttpRequest) PostFileInfo(param string) (bytes []byte, filename string, e error) {
-	// hr.request.ParseMultipartForm(1024 * 1024 * 10)
+	//hr.request.ParseMultipartForm(1024 * 1024 * 10)
 	file, handler, e := hr.request.FormFile(param)
 	if e != nil {
 		e = errors.New(fmt.Sprintf("FormFile: %v", e.Error()))
 		return
 	}
-
 	defer file.Close()
 	filename = handler.Filename
 	bytes, e = ioutil.ReadAll(file)
@@ -281,7 +283,22 @@ func (hr *HttpRequest) PostFileInfo(param string) (bytes []byte, filename string
 	// e = ioutil.WriteFile(filename, bytes, os.ModePerm)
 	return
 }
-
+func (hr *HttpRequest) PostImageInfo(param string) (image image.Image, filename string, e error) {
+	hr.request.ParseMultipartForm(1024 * 1024 * 10)
+	file, handler, e := hr.request.FormFile(param)
+	if e != nil {
+		e = errors.New(fmt.Sprintf("FormFile: %v", e.Error()))
+		return
+	}
+	defer file.Close()
+	filename = handler.Filename
+	image, e = imaging.Decode(file)
+	if e != nil {
+		e = errors.New(fmt.Sprintf("Decode: %v", e.Error()))
+		return
+	}
+	return
+}
 func (hr *HttpRequest) GetParams(verify bool, params ...interface{}) error {
 	if len(params)%2 != 0 {
 		return errors.New("params count must be even")
