@@ -19,6 +19,7 @@ type AreaModule struct {
 
 func (module *AreaModule) Init(conf *config.Config) error {
 	module.level = service.SetEnvironment(conf.Environment)
+	module.qrurl = conf.Qrurl
 	Info = fileLogger.NewDefaultLogger(conf.LogDir, "Area_Info.log")
 	Error = fileLogger.NewDefaultLogger(conf.LogDir, "Area_Error.log")
 	Info.SetPrefix("[area] ")

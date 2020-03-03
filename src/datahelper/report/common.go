@@ -344,7 +344,6 @@ func BuildSelectorBar(req *service.HttpRequest, param *Param, selectorbuf *bytes
 		if param.ColConfigDict[i].HasSelectorFunc == true {
 			method := define.MethodByName(param.ColConfigDict[i].SelectorFunc)
 			values := method.Call([]reflect.Value{reflect.ValueOf(param.ColConfigDict[i].SelectorFuncAgrs)})
-			//fmt.Println(values)
 			if len(values) != 2 {
 				err = errors.New(fmt.Sprintf("method %s return value is not 2.", param.ColConfigDict[i].SelectorFunc))
 			}
@@ -360,8 +359,13 @@ func BuildSelectorBar(req *service.HttpRequest, param *Param, selectorbuf *bytes
 				return x.(error)
 			}
 		} else {
-			selectordata, e := db.HGetSelectorBarCache(param.TableConfig.Name, param.ColConfigDict[i].Tag)
-			if e != nil {
+			being, _ := db.GetSelectorCachePersistence(param.TableConfig.Name, param.ColConfigDict[i].Tag)
+			if being == true {
+				selectordata, _ = db.HGetSelectorBarCache(param.TableConfig.Name, param.ColConfigDict[i].Tag)
+				//fmt.Println(being, selectordata)
+			} else {
+				_ = db.SetSelectorCachePersistence(param.TableConfig.Name, param.ColConfigDict[i].Tag)
+				//fmt.Println("nothing")
 				query, _ := GetSelectQuery(false, req, param, "distinct("+param.ColConfigDict[i].Tag+")")
 				result, e := db.Query(query)
 				if e != nil {

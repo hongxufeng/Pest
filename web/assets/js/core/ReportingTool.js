@@ -188,7 +188,7 @@
                                 rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                                 rtSearch.css("display", "block");
                                 if (jsonObject.search) {
-                                    rtSearch.find(".rt-search-cdts").append(jsonObject.search);
+                                    rtSearch.find(".rt-search-custom").append(jsonObject.search);
                                 }
                             }
                         }
@@ -335,7 +335,7 @@
                             rtSearch.find(".rt-search-cdts").html(settings.searchBar);
                             rtSearch.css("display", "block");
                             if (jsonObject.search) {
-                                rtSearch.find(".rt-search-cdts").append(jsonObject.search);
+                                rtSearch.find(".rt-search-custom").append(jsonObject.search);
                             }
                         }
                     }

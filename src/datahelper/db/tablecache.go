@@ -3,10 +3,13 @@ package db
 import (
 	"model"
 	"utils/function"
+
+	"github.com/go-redis/redis"
 )
 
 const (
 	CACHE_TABLE_SELECTOR_BAR = "W_Redis_Cache_Table_Selector_Bar_Map"
+	CACHE_TABLE_SELECTOR     = "W_Redis_Cache_Table_Selector_Existence_bool"
 	CACHE_XML_Config         = "W_Redis_Cache_Xml_Config_Byte"
 	CACHE_TABLE              = "W_Redis_Cache_Table_String"
 	CACHE_TABLE_UPDATE_FALG  = "W_Redis_Cache_Table_Update_Bool"
@@ -21,10 +24,26 @@ func GetXmlConfigCache(table string) (xmlConfig []byte, err error) {
 	return
 }
 
+//Persistence用于判断是否更新SelectorBarCache
+func SetSelectorCachePersistence(table string, selectorfeild string) (err error) {
+	err = RedisCache.Set(function.MakeKey(CACHE_TABLE_SELECTOR, table, selectorfeild), true, model.User_Info_Persistence_Duration).Err()
+	return
+}
+
+func GetSelectorCachePersistence(table string, selectorfeild string) (being bool, err error) {
+	_, err = RedisCache.Get(function.MakeKey(CACHE_TABLE_SELECTOR, table, selectorfeild)).Result()
+	if err == redis.Nil {
+		being = false
+	} else if err != nil {
+		being = false
+	} else {
+		being = true
+	}
+	return
+}
+
 func HSetSelectorBarCache(table string, selectorfeild string, key string, value string) (err error) {
-	k := function.MakeKey(CACHE_TABLE_SELECTOR_BAR, table, selectorfeild)
-	err = RedisCache.HSet(k, key, value).Err()
-	_, err = RedisCache.Expire(k, model.Table_Cache_Duration).Result()
+	err = RedisCache.HSet(function.MakeKey(CACHE_TABLE_SELECTOR_BAR, table, selectorfeild), key, value).Err()
 	return
 }
 

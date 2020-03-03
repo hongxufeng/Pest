@@ -40,5 +40,5 @@ func main() {
 	server.AddModule("user", &user.UserModule{})
 	server.AddModule("upload", &upload.UploadModule{})
 	server.AddModule("imports", &imports.ImportsModule{})
-	fmt.Println(server.StartService())
+	fmt.Println(server.StartServiceUpload())
 }

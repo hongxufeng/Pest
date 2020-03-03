@@ -1,8 +1,6 @@
 package upload
 
 import (
-	"math/rand"
-	"time"
 	"utils/config"
 	"utils/service"
 	"utils/upload"
@@ -26,8 +24,6 @@ func (module *UploadModule) Init(conf *config.Config) error {
 	return nil
 }
 func (r *UploadModule) Base_UploadFile(req *service.HttpRequest, res map[string]interface{}) (e error) {
-	rand.Seed(time.Now().UnixNano())
-
 	bytes, filename, e := req.PostFileInfo("file")
 	stype := req.PostParam("type")
 	switch stype {

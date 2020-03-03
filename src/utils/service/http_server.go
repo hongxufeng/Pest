@@ -5,8 +5,6 @@ import (
 	"datahelper/user"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/hongxufeng/fileLogger"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -15,6 +13,9 @@ import (
 	"time"
 	"utils/config"
 	"utils/function"
+
+	"github.com/gorilla/mux"
+	"github.com/hongxufeng/fileLogger"
 )
 
 type Server struct {
@@ -92,8 +93,18 @@ func (server *Server) AddModule(name string, module Module) (err error) {
 	server.modules[name] = module
 	return
 }
-
-func (server *Server) StartService() error {
+func (server *Server) StartServiceUpload() error {
+	r := mux.NewRouter()
+	// Routes consist of a path and a handler function.
+	r.HandleFunc("/user/{module}/{method}", server.UserHandler)
+	r.HandleFunc("/base/{module}/{method}", server.BaseHandler)
+	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("uploads/"))))
+	fmt.Println("上传服务已经启动！")
+	server.info.Print("上传服务已经启动！")
+	// Bind to a port and pass our router in
+	return http.ListenAndServe(server.conf.Address.Port, r)
+}
+func (server *Server) StartServicePest() error {
 	r := mux.NewRouter()
 	// Routes consist of a path and a handler function.
 	r.HandleFunc("/user/{module}/{method}", server.UserHandler)

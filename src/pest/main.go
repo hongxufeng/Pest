@@ -42,5 +42,5 @@ func main() {
 	server.AddModule("report", &report.ReportModule{})
 	server.AddModule("pest", &pest.PestModule{})
 	server.AddModule("area", &area.AreaModule{})
-	fmt.Println(server.StartService())
+	fmt.Println(server.StartServicePest())
 }
