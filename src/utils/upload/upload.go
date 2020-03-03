@@ -51,7 +51,7 @@ func PutPictureImage(srcImage image.Image, extname string, stype string) (remote
 	if err != nil {
 		return "", err
 	}
-	dst := imaging.Resize(srcImage, 800, 600, imaging.Lanczos)
+	dst := imaging.Resize(srcImage, 800, 0, imaging.Lanczos)
 	err = imaging.Save(dst, objName)
 	if err != nil {
 		return "", err
