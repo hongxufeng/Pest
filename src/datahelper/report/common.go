@@ -179,7 +179,6 @@ func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Setti
 		return
 	}
 	var buf bytes.Buffer
-	buf.WriteString("select * from (")
 	buf.WriteString("select ")
 	err = AppendSelect(param, &buf)
 	if err != nil {
@@ -191,7 +190,6 @@ func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Setti
 	if err != nil {
 		return
 	}
-	buf.WriteString(") as list")
 	if settings.Order != "" {
 		buf.WriteString(" order by ")
 		buf.WriteString(settings.Order)
@@ -202,7 +200,7 @@ func BuildQuerySQL(req *service.HttpRequest, param *Param, settings *model.Setti
 	buf.WriteString(" limit ")
 	buf.WriteString(function.IntToString(settings.Rows * (settings.Page - 1)))
 	buf.WriteString(",")
-	buf.WriteString(function.IntToString(settings.Rows*settings.Page - 1))
+	buf.WriteString(function.IntToString(settings.Rows))
 	sql = buf.String()
 	return
 }
