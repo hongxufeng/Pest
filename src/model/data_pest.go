@@ -1,19 +1,19 @@
 package model
 
 type HouseData struct {
-	Uid             int
+	Uid             int64
 	Nature          string
 	Street          string
-	Street_No       int
+	Street_No       int64
 	Address         string
 	Number          int
 	Comment         string
 	Creator_Card_No string
 }
 type UnitData struct {
-	Uid                   int
+	Uid                   int64
 	Name                  string
-	House_ID              int
+	House_ID              int64
 	License_Number        string
 	Identification_Number string
 	Picture               string
@@ -26,7 +26,7 @@ type UnitData struct {
 	Creator_Card_No       string
 }
 type PersonnelData struct {
-	Uid                int
+	Uid                int64
 	Name               string
 	Occupation         string
 	Card_No            string
@@ -45,20 +45,20 @@ type PersonnelData struct {
 	Home               string
 }
 type HousePersonnelData struct {
-	House_ID          int
-	Personnel_ID      int
+	House_ID          int64
+	Personnel_ID      int64
 	Role              int
 	Relation_Holder   int
 	Relation_Together int
 }
 type UnitPersonnelData struct {
-	Unit_ID      int
-	Personnel_ID int
+	Unit_ID      int64
+	Personnel_ID int64
 	Position     int
 }
 type TouchData struct {
-	Uid          int
-	Personnel_ID int
+	Uid          int64
+	Personnel_ID int64
 	Way          string
 	Time         string
 	Place        string
@@ -66,8 +66,8 @@ type TouchData struct {
 	Touch_People string
 }
 type DailyReportData struct {
-	Uid               int
-	Personnel_ID      int
+	Uid               int64
+	Personnel_ID      int64
 	Symptom           string
 	Time              string
 	Hospitalized_Flag int
@@ -75,8 +75,8 @@ type DailyReportData struct {
 	Touch_People      string
 }
 type IsolationData struct {
-	Uid                int
-	House_ID           int
+	Uid                int64
+	House_ID           int64
 	Flag               int
 	Reason             string
 	Start_Time         string
@@ -85,14 +85,14 @@ type IsolationData struct {
 	Unit_ID            string
 }
 type StructureData struct {
-	Uid               int
-	Parent_ID         int
-	Unit_ID           int
+	Uid               int64
+	Parent_ID         int64
+	Unit_ID           int64
 	Structure_Name    string
 	Structure_Comment string
 }
 type StructurePersonnelData struct {
-	Structure_ID       int
-	Personnel_ID       int
+	Structure_ID       int64
+	Personnel_ID       int64
 	Structure_Position string
 }

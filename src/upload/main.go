@@ -3,6 +3,7 @@ package main
 import (
 	"datahelper/db"
 	"fmt"
+	"module/imports"
 	"module/upload"
 	"module/user"
 	"os"
@@ -38,5 +39,6 @@ func main() {
 	}
 	server.AddModule("user", &user.UserModule{})
 	server.AddModule("upload", &upload.UploadModule{})
+	server.AddModule("imports", &imports.ImportsModule{})
 	fmt.Println(server.StartService())
 }

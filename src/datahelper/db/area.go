@@ -17,6 +17,19 @@ func GetStreetbyID(uid int64) (name string, province_name string, city_name stri
 	}
 	return
 }
+func GetStreetbyParam(district_name string, office_name string, community_name string, street_name string) (uid int64, name string, err error) {
+	uid = 0
+	queryStr := "SELECT uid,name FROM area_list WHERE district_name=? and office_name=? and community_name=? and street_name=? limit 0,1"
+	result, err := MysqlMain.Query(queryStr, district_name, office_name, community_name, street_name)
+	if err != nil {
+		return
+	}
+	defer result.Close()
+	if result.Next() {
+		err = result.Scan(&uid, &name)
+	}
+	return
+}
 func ExecAddStation(data *model.StationData) (uid int64, err error) {
 	query := "INSERT INTO station_list (station_name,province_no,province_name,city_no,city_name,district_no,district_name,station_head,station_phone,create_time) VALUES (?,?,?,?,?,?,?,?,?,?)"
 	uid, err = Insert(query, data.Station_Name, data.Province_No, data.Province_Name, data.City_No, data.City_Name, data.District_No, data.District_Name, data.Station_Head, data.Station_Phone, time.Now().UnixNano())

@@ -57,7 +57,7 @@ func BuildVEBody(req *service.HttpRequest, param *Param, settings *model.CRUDSet
 		//fmt.Println(function.PArrayToSArray(s))
 		var current = 0
 		for _, colConfig := range param.ColConfigDict {
-			if colConfig.Tag == "buttons" || colConfig.Tag == "pagerbuttons" || colConfig.Visibility == "table-none" {
+			if colConfig.Tag == "buttons" || colConfig.Tag == "pagerbuttons" || colConfig.Visibility == "table-none" || colConfig.Visibility == "sql-none" {
 				continue
 			}
 			bodybuf.WriteString("<div class=\"form-group\">")
@@ -107,7 +107,7 @@ func BuildVEBody(req *service.HttpRequest, param *Param, settings *model.CRUDSet
 }
 func BuildCBody(param *Param, settings *model.CRUDSettings, bodybuf *bytes.Buffer) (err error) {
 	for _, colConfig := range param.ColConfigDict {
-		if colConfig.Tag == "buttons" || colConfig.Tag == "pagerbuttons" || colConfig.Visibility == "table-none" {
+		if colConfig.Tag == "buttons" || colConfig.Tag == "pagerbuttons" || colConfig.Visibility == "table-none" || colConfig.Visibility == "sql-none" {
 			continue
 		}
 		bodybuf.WriteString("<div class=\"form-group\">")

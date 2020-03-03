@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func GetUidbyNo(name string) (uid uint32, err error) {
+func GetPersonnelbyNo(name string) (uid int64, err error) {
 	uid = 0
 	queryStr := "SELECT uid FROM personnel_list WHERE card_no=? limit 0,1"
 	result, err := MysqlMain.Query(queryStr, name)
@@ -18,6 +18,7 @@ func GetUidbyNo(name string) (uid uint32, err error) {
 	}
 	return
 }
+
 func GetCheckPersonnel(param string, name string) (bool, error) {
 	var count int
 	query := "SELECT Count(*) FROM personnel_list WHERE " + param + "=?"
@@ -37,7 +38,7 @@ func GetCheckPersonnel(param string, name string) (bool, error) {
 		return false, nil
 	}
 }
-func CheckPersonnelHouse(param1 int, param2 int) (bool, error) {
+func CheckPersonnelHouse(param1 int64, param2 int64) (bool, error) {
 	var count int
 	query := "SELECT Count(*) FROM relation_house_personnel WHERE house_id=? and personnel_id=?"
 	result, e := MysqlMain.Query(query, param1, param2)
@@ -56,7 +57,7 @@ func CheckPersonnelHouse(param1 int, param2 int) (bool, error) {
 		return false, nil
 	}
 }
-func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
+func CheckPersonnelUnit(param1 int64, param2 int64) (bool, error) {
 	var count int
 	query := "SELECT Count(*) FROM relation_unit_personnel WHERE unit_id=? and personnel_id=?"
 	result, e := MysqlMain.Query(query, param1, param2)
@@ -75,7 +76,7 @@ func CheckPersonnelUnit(param1 int, param2 int) (bool, error) {
 		return false, nil
 	}
 }
-func CheckPersonnelStructure(param1 int, param2 int) (bool, error) {
+func CheckPersonnelStructure(param1 int64, param2 int64) (bool, error) {
 	var count int
 	query := "SELECT Count(*) FROM relation_structure_personnel WHERE structure_id=? and personnel_id=?"
 	result, e := MysqlMain.Query(query, param1, param2)
@@ -93,6 +94,19 @@ func CheckPersonnelStructure(param1 int, param2 int) (bool, error) {
 	} else {
 		return false, nil
 	}
+}
+func GetHousebyParam(street_no int64, street string, address string) (uid int64, err error) {
+	uid = 0
+	queryStr := "SELECT uid FROM house_list WHERE street_no=? and street=? and address=? limit 0,1"
+	result, err := MysqlMain.Query(queryStr, street_no, street, address)
+	if err != nil {
+		return
+	}
+	defer result.Close()
+	if result.Next() {
+		err = result.Scan(&uid)
+	}
+	return
 }
 func ExecCreateHouse(data *model.HouseData) (uid int64, err error) {
 	query := "INSERT INTO house_list (nature,street,street_no,address,number,comment,creator_card_no,create_time) VALUES (?,?,?,?,?,?,?,?)"
