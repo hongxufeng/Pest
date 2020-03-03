@@ -13,3 +13,5 @@ web/qr
 .vs
 .vscode
 bin
+pest.exe
+upload.exe
