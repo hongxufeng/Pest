@@ -4,7 +4,12 @@ pkg
 configself.yaml
 src/github.com
 src/gopkg.in
+src/golang.org
 reportingtool.exe
+https
 log
+uploads
+web/qr
 .vs
-.vscodes
+.vscode
+bin
