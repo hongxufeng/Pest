@@ -160,7 +160,7 @@ func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, per
 			continue
 		} else if personnelid == 0 {
 			data.Personnel_Name = i.G
-			if i.H == "女" {
+			if i.H == "女" || i.H == "女性" {
 				data.Personnel_Sex = 2
 			} else {
 				data.Personnel_Sex = 1
