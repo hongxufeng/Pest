@@ -146,9 +146,12 @@ func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, per
 			houseaffect++
 		}
 		data.Personnel_Card_No = i.J
+		if len(data.Personnel_Card_No) == 0 {
+			Info.Info("第%d条数据,人员身份证为空,已跳过.", k)
+			continue
+		}
 		if !function.ValidateCardNo(data.Personnel_Card_No) {
 			Info.Info("ValidateCardNo,第%d条数据,身份证%s不合法", k, data.Personnel_Card_No)
-			continue
 		}
 		personnelid, e4 := db.GetPersonnelbyNo(data.Personnel_Card_No)
 		data.Personnel_ID = personnelid
@@ -162,7 +165,9 @@ func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, per
 			} else {
 				data.Personnel_Sex = 1
 			}
-			data.Personnel_Birthday = function.Substr(data.Personnel_Card_No, 6, 4) + "-" + function.Substr(data.Personnel_Card_No, 10, 2) + "-" + function.Substr(data.Personnel_Card_No, 12, 2)
+			if len(data.Personnel_Card_No) == 18 {
+				data.Personnel_Birthday = function.Substr(data.Personnel_Card_No, 6, 4) + "-" + function.Substr(data.Personnel_Card_No, 10, 2) + "-" + function.Substr(data.Personnel_Card_No, 12, 2)
+			}
 			data.Personnel_Home = i.K
 			data.Personnel_Address = i.L
 			data.Personnel_Occupation = i.M
