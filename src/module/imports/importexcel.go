@@ -117,7 +117,7 @@ func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, per
 		streetid, name, e1 := db.GetStreetbyParam(i.A, i.B, i.C, i.D, i.E)
 		if e1 != nil || streetid == 0 {
 			skip++
-			Info.Info("GetStreetbyParam,已跳过第%d条数据,区县%s街道办事处%s社区%s小区名称%s", k, i.A, i.B, i.C, i.D)
+			Info.Info("GetStreetbyParam,已跳过第%d条数据,区县%s派出所%s街道办事处%s社区%s小区名称%s", k, i.A, i.B, i.C, i.D, i.E)
 			continue
 		}
 		data.Street_Name = name
