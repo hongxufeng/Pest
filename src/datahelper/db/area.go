@@ -17,10 +17,10 @@ func GetStreetbyID(uid int64) (name string, province_name string, city_name stri
 	}
 	return
 }
-func GetStreetbyParam(district_name string, office_name string, community_name string, street_name string) (uid int64, name string, err error) {
+func GetStreetbyParam(district_name string, station_name string, office_name string, community_name string, street_name string) (uid int64, name string, err error) {
 	uid = 0
-	queryStr := "SELECT uid,name FROM area_list WHERE district_name=? and office_name=? and community_name=? and street_name=? limit 0,1"
-	result, err := MysqlMain.Query(queryStr, district_name, office_name, community_name, street_name)
+	queryStr := "SELECT uid,name FROM area_list WHERE district_name=? and station_name=? and office_name=? and community_name=? and street_name=? limit 0,1"
+	result, err := MysqlMain.Query(queryStr, district_name, station_name, office_name, community_name, street_name)
 	if err != nil {
 		return
 	}
