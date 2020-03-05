@@ -5,6 +5,82 @@ import (
 	"time"
 )
 
+func GetCheckStation(param1 int, param2 string) (bool, error) {
+	var count int
+	query := "SELECT Count(*) FROM station_list WHERE district_no=? and station_name=?"
+	result, e := MysqlMain.Query(query, param1, param2)
+	if e != nil {
+		return true, e
+	}
+	defer result.Close()
+	if result.Next() {
+		e = result.Scan(&count)
+	} else {
+		return true, nil
+	}
+	if count > 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
+func GetCheckOffice(param1 int64, param2 string) (bool, error) {
+	var count int
+	query := "SELECT Count(*) FROM office_list WHERE station_no=? and office_name=?"
+	result, e := MysqlMain.Query(query, param1, param2)
+	if e != nil {
+		return true, e
+	}
+	defer result.Close()
+	if result.Next() {
+		e = result.Scan(&count)
+	} else {
+		return true, nil
+	}
+	if count > 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
+func GetCheckCommunity(param1 int64, param2 string) (bool, error) {
+	var count int
+	query := "SELECT Count(*) FROM community_list WHERE office_no=? and community_name=?"
+	result, e := MysqlMain.Query(query, param1, param2)
+	if e != nil {
+		return true, e
+	}
+	defer result.Close()
+	if result.Next() {
+		e = result.Scan(&count)
+	} else {
+		return true, nil
+	}
+	if count > 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
+func GetCheckStreet(param1 int64, param2 string) (bool, error) {
+	var count int
+	query := "SELECT Count(*) FROM street_list WHERE community_no=? and street_name=?"
+	result, e := MysqlMain.Query(query, param1, param2)
+	if e != nil {
+		return true, e
+	}
+	defer result.Close()
+	if result.Next() {
+		e = result.Scan(&count)
+	} else {
+		return true, nil
+	}
+	if count > 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
 func GetStreetbyID(uid int64) (name string, province_name string, city_name string, district_name string, station_name string, office_name string, community_name string, street_name string, street_qrcode string, err error) {
 	queryStr := "SELECT name,province_name,city_name,district_name,station_name,office_name,community_name,street_name,COALESCE (street_qrcode,'') FROM area_list WHERE uid=? limit 0,1"
 	result, err := MysqlMain.Query(queryStr, uid)
@@ -86,7 +162,7 @@ func ExecUpdateStreetQr(uid int64, qrfile string) error {
 	}
 	return DelTableCache(model.XML_Table_Area)
 }
-func ExecDeleteStreet(uid int) error {
+func ExecDeleteStreet(uid int64) error {
 	query := "delete from street_list where uid=?"
 	err := Exec(query, uid)
 	if err != nil {
@@ -94,7 +170,7 @@ func ExecDeleteStreet(uid int) error {
 	}
 	return DelTableCache(model.XML_Table_Area)
 }
-func ExecDeleteStation(uid int) error {
+func ExecDeleteStation(uid int64) error {
 	query := "delete station_list,office_list,community_list,street_list from station_list left join office_list on office_list.station_no=station_list.uid LEFT JOIN community_list ON community_list.office_no=station_list.uid LEFT JOIN street_list ON street_list.community_no=community_list.uid where station_list.uid=?"
 	err := Exec(query, uid)
 	if err != nil {
@@ -102,7 +178,7 @@ func ExecDeleteStation(uid int) error {
 	}
 	return DelTableCache(model.XML_Table_Area)
 }
-func ExecDeleteOffice(uid int) error {
+func ExecDeleteOffice(uid int64) error {
 	query := "delete street_list,community_list,office_list from office_list left join community_list on community.office_no=office_list.uid left join street_list on street_list.community_no=community_list.uid where office_list.uid=?"
 	err := Exec(query, uid)
 	if err != nil {
@@ -110,7 +186,7 @@ func ExecDeleteOffice(uid int) error {
 	}
 	return DelTableCache(model.XML_Table_Area)
 }
-func ExecDeleteCommunity(uid int) error {
+func ExecDeleteCommunity(uid int64) error {
 	query := "delete street_list,community_list from community_list left join street_list on street_list.community_no=community_list.uid where community_list.uid=?"
 	err := Exec(query, uid)
 	if err != nil {

@@ -24,6 +24,11 @@ func GenerateQrCode(url string, filename string) error {
 }
 func AddStation(data *model.StationData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
+	isexist, _ := db.GetCheckStation(data.District_No, data.Station_Name)
+	if isexist {
+		err = service.NewError(service.ERR_INVALID_PARAM, "派出所信息已存在！")
+		return
+	}
 	uid, err := db.ExecAddStation(data)
 	if err == nil {
 		res["uid"] = uid
@@ -33,6 +38,11 @@ func AddStation(data *model.StationData) (res map[string]interface{}, err error)
 }
 func AddOffice(data *model.OfficeData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
+	isexist, _ := db.GetCheckOffice(data.Station_No, data.Office_Name)
+	if isexist {
+		err = service.NewError(service.ERR_INVALID_PARAM, "办事处信息已存在！")
+		return
+	}
 	uid, err := db.ExecAddOffice(data)
 	if err == nil {
 		res["uid"] = uid
@@ -42,6 +52,11 @@ func AddOffice(data *model.OfficeData) (res map[string]interface{}, err error) {
 }
 func AddCommunity(data *model.CommunityData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
+	isexist, _ := db.GetCheckCommunity(data.Office_No, data.Community_Name)
+	if isexist {
+		err = service.NewError(service.ERR_INVALID_PARAM, "社区信息已存在！")
+		return
+	}
 	uid, err := db.ExecAddCommunity(data)
 	if err == nil {
 		res["uid"] = uid
@@ -51,6 +66,11 @@ func AddCommunity(data *model.CommunityData) (res map[string]interface{}, err er
 }
 func AddStreet(qrurl string, data *model.StreetData) (res map[string]interface{}, err error) {
 	res = make(map[string]interface{}, 0)
+	isexist, _ := db.GetCheckStreet(data.Community_No, data.Street_Name)
+	if isexist {
+		err = service.NewError(service.ERR_INVALID_PARAM, "小区信息已存在！")
+		return
+	}
 	uid, err := db.ExecAddStreet(data)
 	if err != nil {
 		return
