@@ -123,7 +123,7 @@ func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, per
 		data.Street_Name = name
 		data.Street_No = streetid
 		data.Addrees = i.F
-		houseid, e2 := db.GetHousebyParam(data.Street_No, data.Street_Name, data.Addrees)
+		houseid, e2 := db.GetHousebyParam(data.Street_No, data.Addrees)
 		data.House_ID = houseid
 		if e2 != nil {
 			Info.Info("GetHousebyParam,出现异常,异常信息为:%s", e2.Error())

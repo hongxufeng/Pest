@@ -4,7 +4,7 @@
         name="area_list" defaultorder="uid asc" >
         <name >全名</name>
         <uid visibility="table-hidden">UID</uid>
-        <street_name >小区名称</street_name>
+        <street_name search-type="true">小区名称</street_name>
         <street_head>小区负责人</street_head>
         <street_phone>小区电话</street_phone>
         <street_property_name>物业负责人</street_property_name>

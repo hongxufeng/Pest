@@ -95,10 +95,10 @@ func CheckPersonnelStructure(param1 int64, param2 int64) (bool, error) {
 		return false, nil
 	}
 }
-func GetHousebyParam(street_no int64, street string, address string) (uid int64, err error) {
+func GetHousebyParam(street_no int64, address string) (uid int64, err error) {
 	uid = 0
-	queryStr := "SELECT uid FROM house_list WHERE street_no=? and street=? and address=? limit 0,1"
-	result, err := MysqlMain.Query(queryStr, street_no, street, address)
+	queryStr := "SELECT uid FROM house_list WHERE street_no=? and address=? limit 0,1"
+	result, err := MysqlMain.Query(queryStr, street_no, address)
 	if err != nil {
 		return
 	}

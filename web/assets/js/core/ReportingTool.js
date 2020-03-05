@@ -529,6 +529,7 @@
             });
         };
         var search = function() {
+            globalVars.queryObj.page = 1
             $(".rt-search-txt").each(function() {
                 var value = $.trim($(this).val());
                 var name = $(this).attr("name"),
