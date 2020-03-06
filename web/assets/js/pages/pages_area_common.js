@@ -20,7 +20,7 @@ var changestation = function() {
                 $("#office-select").append(html);
                 $("#community-select").append(html);
                 $("#street-select").append(html);
-                if (data.res.count > 0) {
+                if (data.res.count > 0 && $('#district-select').val()) {
                     if (data.res.table) {
                         var res = JSON.parse(data.res.table);
                     } else {
