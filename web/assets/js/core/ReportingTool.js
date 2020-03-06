@@ -28,7 +28,7 @@
             };
 
         var settings = $.extend({
-            asyncLoad: false,
+            asyncLoad: true,
             asyncRefresh: $.support.opacity,
             complete: function() {},
             configFile: "",
@@ -376,52 +376,69 @@
             if (settings.query) {
                 settings.query = buildQueryStr();
             }
-            $.post(serverURL + "GetTable" + getQuery(), {
-                table: globalVars.queryObj.table,
-                configFile: settings.configFile,
-                hasCheckbox: settings.hasCheckbox,
-                style: settings.style,
-                rowList: settings.rowList.toString()
-            }, function(data) {
-                // var jsonObject = JSON.parse(data);
-                if (data.status === "fail") {
-                    alert(data.msg);
-                    return false;
-                    //location.href = location.pathname;
-                }
-                var jsonObject = data.res;
-                _this.find(".rt-body").html(jsonObject.body);
-                _this.find(".rt-condition").html(jsonObject.condition);
-                if (settings.selector === true) {
-                    _this.find(".rt-selector").html(jsonObject.selector);
-                } else {
-                    _this.find(".rt-selector").css("display", "none");
-                }
-                if (settings.striped) {
-                    _this.find("table").addClass("table-striped");
-                }
-                if (!settings.hasPager) {
-                    _this.find(".rt-pager-container").css("display", "none");
-                }
-                if (!jsonObject.exception) {
-                    settings.complete();
-                }
-                $("td .rt-checkboxWrapper").each(function() {
-                    var checkbox = $(this).find(".rt-checkbox");
-                    if (cachedRows[globalVars.tableID][checkbox.val()]) {
-                        checkbox[0].checked = true;
-                        $(this).addClass("checked");
-                        $(this).closest("tr").addClass("rt-tr-selected");
+            var postOpts = {
+                async: settings.asyncLoad,
+                method: "POST",
+                url: serverURL + "GetTable" + getQuery(),
+                data: {
+                    table: globalVars.queryObj.table,
+                    configFile: settings.configFile,
+                    hasCheckbox: settings.hasCheckbox,
+                    style: settings.style,
+                    rowList: settings.rowList.toString()
+                },
+                beforeSend: function() {
+                    _this.addClass("block-opt-refresh"); //调用本次ajax请求时传递的options参数
+                },
+                success: function(data) {
+                    // var jsonObject = JSON.parse(data);
+                    if (data.status === "fail") {
+                        alert(data.msg);
+                        return false;
+                        //location.href = location.pathname;
                     }
-                });
-                var hasCheckbox = _this.find("td .rt-checkbox").length;
-                if (hasCheckbox && hasCheckbox === _this.find("td .rt-checkbox:checked").length) {
-                    var thCheckbox = _this.find(".rt-th-checkbox");
-                    thCheckbox.find(".rt-checkboxWrapper").addClass("checked");
-                    thCheckbox.find(".rt-checkbox")[0].checked = true;
+                    var jsonObject = data.res;
+                    _this.find(".rt-body").html(jsonObject.body);
+                    _this.find(".rt-condition").html(jsonObject.condition);
+                    if (settings.selector === true) {
+                        _this.find(".rt-selector").html(jsonObject.selector);
+                    } else {
+                        _this.find(".rt-selector").css("display", "none");
+                    }
+                    if (settings.striped) {
+                        _this.find("table").addClass("table-striped");
+                    }
+                    if (!settings.hasPager) {
+                        _this.find(".rt-pager-container").css("display", "none");
+                    }
+                    if (!jsonObject.exception) {
+                        settings.complete();
+                    }
+                    $("td .rt-checkboxWrapper").each(function() {
+                        var checkbox = $(this).find(".rt-checkbox");
+                        if (cachedRows[globalVars.tableID][checkbox.val()]) {
+                            checkbox[0].checked = true;
+                            $(this).addClass("checked");
+                            $(this).closest("tr").addClass("rt-tr-selected");
+                        }
+                    });
+                    var hasCheckbox = _this.find("td .rt-checkbox").length;
+                    if (hasCheckbox && hasCheckbox === _this.find("td .rt-checkbox:checked").length) {
+                        var thCheckbox = _this.find(".rt-th-checkbox");
+                        thCheckbox.find(".rt-checkboxWrapper").addClass("checked");
+                        thCheckbox.find(".rt-checkbox")[0].checked = true;
+                    }
+                    format();
+                },
+                complete: function() {
+                    _this.removeClass("block-opt-refresh");
+                },
+                error: function() {
+                    alert("您未搭建服务器哦！");
+                    return false;
                 }
-                format();
-            });
+            };
+            $.ajax(postOpts);
         };
         var expandNode = function() {
             var parentNode = $(this).parent();
