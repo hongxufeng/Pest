@@ -5,6 +5,7 @@ import (
 	"errors"
 	"model"
 	"utils/function"
+	"utils/service"
 
 	"github.com/tealeg/xlsx"
 )
@@ -53,11 +54,13 @@ func AddExcelData(xlFile *xlsx.File) (res map[string]interface{}, err error) {
 	if err != nil {
 		return
 	}
-	skip, houseaffect, personnelaffect := ExecAddExcelData(listlistExcelInfo)
-	res["msg"] = "导入数据成功！"
-	res["skip"] = skip
-	res["houseaffect"] = houseaffect
-	res["personnelaffect"] = personnelaffect
+	skip, houseaffect, personnelaffect, err := ExecAddExcelData(listlistExcelInfo)
+	if err == nil {
+		res["msg"] = "导入数据成功！"
+		res["skip"] = skip
+		res["houseaffect"] = houseaffect
+		res["personnelaffect"] = personnelaffect
+	}
 	return
 }
 func ReadExcelData(xlFile *xlsx.File) (listExcelInfo []ExcelInfo, err error) {
@@ -108,11 +111,16 @@ func StrToStruct(strs []string) (info ExcelInfo, err error) {
 	info.O = strs[14]
 	return
 }
-func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, personnelaffect int) {
+func ExecAddExcelData(listExcelInfo []ExcelInfo) (skip int, houseaffect int, personnelaffect int, err error) {
 	for k, i := range listExcelInfo {
 		data := DataInfo{}
-		if i.A == "区县" && i.B == "派出所" && i.C == "街道办事处" || i.D == "社区" || i.E == "小区名称" {
-			continue
+		if k == 0 {
+			if i.A == "区县" && i.B == "派出所" && i.C == "街道办事处" || i.D == "社区" || i.E == "小区名称" && i.F == "详细地址" && i.G == "姓名" && i.H == "性别" && i.I == "年龄" && i.J == "身份证号" && i.K == "常住地" && i.L == "户籍地" && i.M == "工作单位" && i.N == "联系方式" && i.O == "是否出租" {
+				continue
+			} else {
+				err = service.NewError(service.ERR_INVALID_FORMAT, "excel表格表头不正确！")
+				return
+			}
 		}
 		streetid, name, e1 := db.GetStreetbyParam(i.A, i.B, i.C, i.D, i.E)
 		if e1 != nil || streetid == 0 {
