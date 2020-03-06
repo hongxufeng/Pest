@@ -28,7 +28,7 @@
             };
 
         var settings = $.extend({
-            asyncLoad: true,
+            asyncLoad: false,
             asyncRefresh: $.support.opacity,
             complete: function() {},
             configFile: "",
@@ -157,9 +157,6 @@
                     style: settings.style,
                     rowList: settings.rowList.toString()
                 },
-                beforeSend: function() {
-                    _this.addClass("block-opt-refresh"); //调用本次ajax请求时传递的options参数
-                },
                 success: function(data) {
                     if (data.status === "fail") {
                         alert(data.msg);
@@ -278,9 +275,6 @@
                     if (!jsonObject.exception) {
                         settings.complete();
                     }
-                },
-                complete: function() {
-                    _this.removeClass("block-opt-refresh");
                 },
                 error: function() {
                     alert("您未搭建服务器哦！");
